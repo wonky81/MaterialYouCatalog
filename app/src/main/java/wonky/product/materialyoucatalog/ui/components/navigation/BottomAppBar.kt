@@ -2,10 +2,7 @@ package wonky.product.materialyoucatalog.ui.components.bottomappbar
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,13 +12,16 @@ import androidx.compose.ui.unit.dp
 import wonky.product.materialyoucatalog.ui.theme.MaterialYouCatalogTheme
 
 @Composable
-fun MYBottomAppBar() {
+fun MYBottomAppBar(
+    modifier: Modifier = Modifier
+) {
 
     Column(
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BottomAppBar(
+            modifier = modifier,
             actions = {
                 IconButton(onClick = { /*TODO*/ }) {
                     Icon(
@@ -41,6 +41,12 @@ fun MYBottomAppBar() {
                         contentDescription = null
                     )
                 }
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        Icons.Filled.Settings,
+                        contentDescription = null
+                    )
+                }
             },
             floatingActionButton = {
                 FloatingActionButton(
@@ -54,13 +60,5 @@ fun MYBottomAppBar() {
                 }
             }
         )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MaterialYouCatalogTheme {
-        MYBottomAppBar()
     }
 }

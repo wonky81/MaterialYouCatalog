@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MaterialYou Catalog</string>
+    <string name="app_title">Material3 Catalog</string>
+    <string name="overview_progress_indicators">Progress indicators inform users about the status of ongoing processes, such as loading an app or submitting a form.</string>
+    <string name="overview_text_font">Use typography to make writing legible and beautiful. Material\'s default type scale includes contrasting and flexible styles to support a wide range of use cases.</string>
+    <string name="overview_chips">Chips can show multiple interactive elements together in the same area, such as a list of selectable movie times, or a series of email contacts. There are four types of chips: assist, filter, input, and suggestion.</string>
+    <string name="not_available_message">Jetpack Compose is not yet available.</string>
+    <string name="overview_buttons">Buttons help people initiate actions, from sending an email, to sharing a document, to liking a post.</string>
 </resources>

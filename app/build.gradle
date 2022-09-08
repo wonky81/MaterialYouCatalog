@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -60,4 +62,23 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+    // If using insets-ui
+    def inset_version = "0.21.3-beta"
+    implementation "com.google.accompanist:accompanist-insets-ui:$inset_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
+
+    def compose_version = '1.0.1'
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+
+    var navigation_version = "2.4.0-alpha04"
+    implementation "androidx.navigation:navigation-compose:$navigation_version"
+
+    var hilt_version = "2.31-alpha"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    def hilt_lifecycle_viewmodel = "1.0.0-alpha03"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_viewmodel"
+    kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_viewmodel"
 }
