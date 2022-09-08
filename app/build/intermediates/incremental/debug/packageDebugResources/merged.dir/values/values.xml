@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">MaterialYou Catalog</string>
+    <string name="app_title">Material3 Catalog</string>
+    <string name="not_available_message">Jetpack Compose is not yet available.</string>
+    <string name="overview_buttons">Buttons help people initiate actions, from sending an email, to sharing a document, to liking a post.</string>
+    <string name="overview_chips">Chips can show multiple interactive elements together in the same area, such as a list of selectable movie times, or a series of email contacts. There are four types of chips: assist, filter, input, and suggestion.</string>
+    <string name="overview_progress_indicators">Progress indicators inform users about the status of ongoing processes, such as loading an app or submitting a form.</string>
+    <string name="overview_text_font">Use typography to make writing legible and beautiful. Material\'s default type scale includes contrasting and flexible styles to support a wide range of use cases.</string>
+    <style name="Theme.MaterialYouCatalog" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>

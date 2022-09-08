@@ -1,0 +1,114 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="wonky.product.materialyoucatalog"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml
+10
+11    <application
+11-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:5:5-27:19
+12        android:name="wonky.product.materialyoucatalog.core.BaseApplication"
+12-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:6:9-45
+13        android:allowBackup="true"
+13-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:7:9-35
+14        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+14-->[androidx.core:core:1.7.0] D:\dev\android-gradle\caches\transforms-3\4d7f397d5a1b1668bd81c8da177a719a\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+15        android:dataExtractionRules="@xml/data_extraction_rules"
+15-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:8:9-65
+16        android:debuggable="true"
+17        android:fullBackupContent="@xml/backup_rules"
+17-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:9:9-54
+18        android:icon="@mipmap/ic_launcher"
+18-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:10:9-43
+19        android:label="@string/app_name"
+19-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:11:9-41
+20        android:roundIcon="@mipmap/ic_launcher_round"
+20-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:12:9-54
+21        android:supportsRtl="true"
+21-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:13:9-35
+22        android:testOnly="true"
+23        android:theme="@style/Theme.MaterialYouCatalog" >
+23-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:14:9-56
+24        <activity
+24-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:16:9-26:20
+25            android:name="wonky.product.materialyoucatalog.MainActivity"
+25-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:17:13-41
+26            android:exported="true"
+26-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:18:13-36
+27            android:label="@string/app_name"
+27-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:19:13-45
+28            android:theme="@style/Theme.MaterialYouCatalog" >
+28-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:20:13-60
+29            <intent-filter>
+29-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:21:13-25:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:22:17-69
+30-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:22:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:24:17-77
+32-->D:\dev\workspace\android\MaterialYouCatalog\app\src\main\AndroidManifest.xml:24:27-74
+33            </intent-filter>
+34        </activity>
+35        <activity
+35-->[androidx.compose.ui:ui-tooling:1.1.1] D:\dev\android-gradle\caches\transforms-3\c32c56a88dd2c469b73bc76a2d2a63df\transformed\ui-tooling-1.1.1\AndroidManifest.xml:25:9-27:39
+36            android:name="androidx.compose.ui.tooling.PreviewActivity"
+36-->[androidx.compose.ui:ui-tooling:1.1.1] D:\dev\android-gradle\caches\transforms-3\c32c56a88dd2c469b73bc76a2d2a63df\transformed\ui-tooling-1.1.1\AndroidManifest.xml:26:13-71
+37            android:exported="true" />
+37-->[androidx.compose.ui:ui-tooling:1.1.1] D:\dev\android-gradle\caches\transforms-3\c32c56a88dd2c469b73bc76a2d2a63df\transformed\ui-tooling-1.1.1\AndroidManifest.xml:27:13-36
+38        <activity
+38-->[androidx.compose.ui:ui-test-manifest:1.1.1] D:\dev\android-gradle\caches\transforms-3\c2820f2a3506949144bafee3427c0b38\transformed\ui-test-manifest-1.1.1\AndroidManifest.xml:25:9-27:39
+39            android:name="androidx.activity.ComponentActivity"
+39-->[androidx.compose.ui:ui-test-manifest:1.1.1] D:\dev\android-gradle\caches\transforms-3\c2820f2a3506949144bafee3427c0b38\transformed\ui-test-manifest-1.1.1\AndroidManifest.xml:26:13-63
+40            android:exported="true" />
+40-->[androidx.compose.ui:ui-test-manifest:1.1.1] D:\dev\android-gradle\caches\transforms-3\c2820f2a3506949144bafee3427c0b38\transformed\ui-test-manifest-1.1.1\AndroidManifest.xml:27:13-36
+41
+42        <provider
+42-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:25:9-33:20
+43            android:name="androidx.startup.InitializationProvider"
+43-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:26:13-67
+44            android:authorities="wonky.product.materialyoucatalog.androidx-startup"
+44-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:27:13-68
+45            android:exported="false" >
+45-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:28:13-37
+46            <meta-data
+46-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:30:13-32:52
+47                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+47-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:31:17-85
+48                android:value="androidx.startup" />
+48-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:32:17-49
+49        </provider>
+50
+51        <receiver
+51-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:35:9-47:20
+52            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+52-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:36:13-76
+53            android:directBootAware="false"
+53-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:37:13-44
+54            android:enabled="true"
+54-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:38:13-35
+55            android:exported="true"
+55-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:39:13-36
+56            android:permission="android.permission.DUMP" >
+56-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:40:13-57
+57            <intent-filter>
+57-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:41:13-43:29
+58                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+58-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:42:17-91
+58-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:42:25-88
+59            </intent-filter>
+60            <intent-filter>
+60-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:44:13-46:29
+61                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+61-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:45:17-85
+61-->[androidx.profileinstaller:profileinstaller:1.2.0] D:\dev\android-gradle\caches\transforms-3\f361137e1c770f4deb419a295cee8661\transformed\profileinstaller-1.2.0\AndroidManifest.xml:45:25-82
+62            </intent-filter>
+63        </receiver>
+64    </application>
+65
+66</manifest>
