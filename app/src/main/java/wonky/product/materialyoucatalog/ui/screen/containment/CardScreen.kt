@@ -1,20 +1,22 @@
 package wonky.product.materialyoucatalog.ui.screen.containment
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import wonky.product.materialyoucatalog.R
 import wonky.product.materialyoucatalog.ui.components.containment.MYElevatedCard
 import wonky.product.materialyoucatalog.ui.components.containment.MYFilledCard
 import wonky.product.materialyoucatalog.ui.components.containment.MYOutlinedCard
-import wonky.product.materialyoucatalog.ui.screen.ComponentArrangement
+import wonky.product.materialyoucatalog.ui.screen.ElevationLevel
+import wonky.product.materialyoucatalog.ui.screen.MaterialContents
+import wonky.product.materialyoucatalog.ui.screen.MaterialElementScreen
+import wonky.product.materialyoucatalog.ui.screen.Overview
 
 
 private const val TAG = "CardScreen"
@@ -26,39 +28,54 @@ fun CardScreen(
     onChangeBottomSheetHeight: (Dp) -> Unit
 ) {
 
-    var cardDefaultElevation by remember{ mutableStateOf(1f) }
-    var pressedElevation by remember{ mutableStateOf(1f) }
-    var focusedElevation by remember{ mutableStateOf(1f) }
-    var hoveredElevation by remember{ mutableStateOf(1f) }
-    var disabledElevation by remember{ mutableStateOf(1f) }
+    MaterialContents {
+        Overview(stringResource(R.string.overview_card))
+        MaterialElementScreen(
+            title = "Filled Card",
+            componentContent = {
+                ElevationLevel.values().forEach {
+                    MYFilledCard(
+                        text = "Filled Card ( ${it.dp} )",
+                        defaultElevation = it.dp,
+                        disabledElevation =  it.dp
+                    )
+                }
+            },
+            controlContent = {
 
-    Log.d(TAG, "CardScreen: defaultElevation = $cardDefaultElevation")
-    
-    Column {
-        ComponentArrangement(
-            { MYFilledCard(
-                elevation = CardDefaults.cardElevation(cardDefaultElevation.dp,pressedElevation.dp,focusedElevation.dp,hoveredElevation.dp,disabledElevation.dp)
-            ) },
-            { MYElevatedCard(
-                elevation = CardDefaults.elevatedCardElevation(cardDefaultElevation.dp,pressedElevation.dp,focusedElevation.dp,hoveredElevation.dp,disabledElevation.dp)
-            ) },
-            { MYOutlinedCard(
-                elevation = CardDefaults.outlinedCardElevation(cardDefaultElevation.dp,pressedElevation.dp,focusedElevation.dp,hoveredElevation.dp,disabledElevation.dp)
-            ) },
+            }
         )
-        LaunchedEffect(true) {
-            onChangeBottomSheetHeight(320.dp)
-        }
-        onChangeBottomSheetContent{
-            ControlScreen(
-                cardDefaultElevation = cardDefaultElevation,
-                pressedElevation = pressedElevation,
-                disabledElevation = disabledElevation,
-                onChangeDefaultElevation = { cardDefaultElevation = it},
-                onChangePressedElevation = { pressedElevation = it},
-                onChangeDisabledElevation = { disabledElevation = it},
-            )
-        }
+        MaterialElementScreen(
+            title = "Elevated Card",
+            componentContent = {
+                ElevationLevel.values().forEach {
+                    MYElevatedCard(
+                        text = "Elevated Card ( ${it.dp} )",
+                        defaultElevation = it.dp,
+                        disabledElevation =  it.dp
+                    )
+                }
+            },
+            controlContent = {
+
+            }
+        )
+        MaterialElementScreen(
+            title = "Outlined Card",
+            componentContent = {
+                ElevationLevel.values().forEach {
+                    MYOutlinedCard(
+                        text = "Outlined Card ( ${it.dp} )",
+                        defaultElevation = it.dp,
+                        disabledElevation =  it.dp
+                    )
+                }
+            },
+            controlContent = {
+
+            }
+        )
+
     }
 }
 

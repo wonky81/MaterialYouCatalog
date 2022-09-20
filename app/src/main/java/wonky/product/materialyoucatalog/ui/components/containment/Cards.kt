@@ -7,29 +7,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import wonky.product.materialyoucatalog.ui.screen.ElevationLevel
 
 private const val TAG = "Cards"
 
 @Composable
 fun MYElevatedCard(
+    text: String = "Elevated Card",
     shape: Shape = CardDefaults.elevatedShape,
     colors: CardColors = CardDefaults.elevatedCardColors(),
-    elevation: CardElevation = CardDefaults.elevatedCardElevation(),
+    defaultElevation: Dp = ElevationLevel.Level1.dp,
+    disabledElevation: Dp = ElevationLevel.Level1.dp,
 ){
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
-            .height(164.dp)
+            .height(126.dp)
             .padding(16.dp),
         shape = shape,
         colors = colors,
-        elevation = elevation,
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = defaultElevation, disabledElevation = disabledElevation)
     ) {
         Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 modifier = Modifier.padding(start = 8.dp, top = 8.dp),
-                text = "Elevated Card"
+                text = text
             )
         }
     }
@@ -37,25 +41,27 @@ fun MYElevatedCard(
 
 @Composable
 fun MYFilledCard(
+    text: String = "Filled Card",
     shape: Shape = CardDefaults.shape,
     colors: CardColors = CardDefaults.cardColors(),
-    elevation: CardElevation = CardDefaults.cardElevation(),
+    defaultElevation: Dp = ElevationLevel.Level1.dp,
+    disabledElevation: Dp = ElevationLevel.Level1.dp,
     border: BorderStroke? = null,
 ){
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(164.dp)
+            .height(126.dp)
             .padding(16.dp),
         shape = shape,
         colors = colors,
-        elevation = elevation,
+        elevation = CardDefaults.cardElevation(defaultElevation = defaultElevation, disabledElevation = disabledElevation),
         border = border,
     ) {
         Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 modifier = Modifier.padding(start = 8.dp, top = 8.dp),
-                text = "Filled Card"
+                text = text
             )
         }
     }
@@ -63,25 +69,27 @@ fun MYFilledCard(
 
 @Composable
 fun MYOutlinedCard(
+    text: String = "Outlined Card",
     shape: Shape = CardDefaults.outlinedShape,
     colors: CardColors = CardDefaults.outlinedCardColors(),
-    elevation: CardElevation = CardDefaults.outlinedCardElevation(),
+    defaultElevation: Dp = ElevationLevel.Level1.dp,
+    disabledElevation: Dp = ElevationLevel.Level1.dp,
     border: BorderStroke = CardDefaults.outlinedCardBorder(),
 ){
     OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
-            .height(164.dp)
+            .height(126.dp)
             .padding(16.dp),
         shape = shape,
         colors = colors,
-        elevation = elevation,
+        elevation = CardDefaults.outlinedCardElevation(defaultElevation = defaultElevation, disabledElevation = disabledElevation),
         border = border,
     ) {
         Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 modifier = Modifier.padding(start = 8.dp, top = 8.dp),
-                text = "Outlined Card"
+                text = text
             )
         }
     }

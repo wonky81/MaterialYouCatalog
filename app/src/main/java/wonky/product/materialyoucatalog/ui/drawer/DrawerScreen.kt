@@ -42,10 +42,13 @@ private val containmentScreens = listOf(
 
 private val navigationScreens = listOf(
     DrawerMenu.BottomAppBar,
+    DrawerMenu.NavigationRail,
+    DrawerMenu.TopAppBar
 )
 
 private val selectionScreens = listOf(
-    DrawerMenu.Chips
+    DrawerMenu.Chips,
+    DrawerMenu.Sliders
 )
 
 private val textInputsScreens = listOf(

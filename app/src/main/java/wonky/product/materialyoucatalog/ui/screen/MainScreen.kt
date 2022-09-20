@@ -38,10 +38,13 @@ import wonky.product.materialyoucatalog.ui.drawer.DrawerMenu
 import wonky.product.materialyoucatalog.ui.drawer.DrawerScreen
 import wonky.product.materialyoucatalog.ui.screen.actions.ButtonScreen
 import wonky.product.materialyoucatalog.ui.screen.communication.ProgressIndicatorScreen
-import wonky.product.materialyoucatalog.ui.screen.components.BottomAppBarScreen
-import wonky.product.materialyoucatalog.ui.screen.components.TextFieldScreen
+import wonky.product.materialyoucatalog.ui.screen.navigation.BottomAppBarScreen
+import wonky.product.materialyoucatalog.ui.screen.textinputs.TextFieldScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.CardScreen
+import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
+import wonky.product.materialyoucatalog.ui.screen.navigation.TopAppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.ChipScreen
+import wonky.product.materialyoucatalog.ui.screen.selection.SliderScreen
 import wonky.product.materialyoucatalog.ui.screen.style.FontScreen
 
 private const val TAG = "MainScreen"
@@ -230,6 +233,9 @@ fun MainContent(
                 composable(DrawerMenu.Fonts.route){ FontScreen() }
                 composable(DrawerMenu.ProgressIndicators.route){ ProgressIndicatorScreen() }
                 composable(DrawerMenu.Chips.route){ ChipScreen() }
+                composable(DrawerMenu.Sliders.route){ SliderScreen() }
+                composable(DrawerMenu.NavigationRail.route) { NavigationRailScreen()}
+                composable(DrawerMenu.TopAppBar.route) { TopAppBarScreen() }
 
             }
         }

@@ -6,13 +6,15 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Checkbox
-import androidx.compose.material3.Divider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -201,11 +203,115 @@ fun MaterialElementScreen(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 24.dp)
         ){
             componentContent()
         }
     }
     Spacer8v()
     controlContent()
+}
+
+@Composable
+fun ElevationSelector(
+    modifier: Modifier,
+    text: String,
+    elevation: ElevationLevel,
+    onChangeElevation: (ElevationLevel) -> Unit,
+){
+    var dropDownMenuExpanded by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text("$text : ")
+        Spacer4h()
+        Box{
+            OutlinedButton(
+                shape = RectangleShape,
+                border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.primary),
+                onClick = { dropDownMenuExpanded = !dropDownMenuExpanded }
+            ) {
+                Text("${elevation.name} (${elevation.dp})")
+                Spacer4h()
+                Icon(Icons.Default.ArrowDropDown, contentDescription = null)
+            }
+            DropdownMenu(expanded = dropDownMenuExpanded, onDismissRequest = { dropDownMenuExpanded = false }) {
+                ElevationLevel.values().forEach {
+                    DropdownMenuItem(
+                        text = { Text("${it.name} (${it.dp})")},
+                        onClick = {
+                            dropDownMenuExpanded = false
+                            onChangeElevation(it)
+                        }
+                    )
+                }
+            }
+        }
+    }
+
+}
+
+
+@Composable
+fun ElevationSelector(
+    modifier: Modifier,
+    text: String,
+    elevation: Dp,
+    onChangeElevation: (Dp) -> Unit,
+){
+    var dropDownMenuExpanded by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text("$text : ")
+        Spacer4h()
+        Box{
+            OutlinedButton(
+                shape = RectangleShape,
+                border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.primary),
+                onClick = { dropDownMenuExpanded = !dropDownMenuExpanded }
+            ) {
+                Text("${elevation}")
+                Spacer4h()
+                Icon(Icons.Default.ArrowDropDown, contentDescription = null)
+            }
+            DropdownMenu(expanded = dropDownMenuExpanded, onDismissRequest = { dropDownMenuExpanded = false }) {
+                ElevationLevel.values().forEach {
+                    DropdownMenuItem(
+                        text = { Text("(${it.dp})")},
+                        onClick = {
+                            dropDownMenuExpanded = false
+                            onChangeElevation(it.dp)
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun DialogCloseButton(
+    modifier: Modifier = Modifier,
+    position: Alignment = Alignment.TopEnd,
+    onClick: () -> Unit,
+){
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = position
+    ) {
+        IconButton(onClick = onClick) {
+            Icon(
+                Icons.Filled.Close,
+                contentDescription = null
+            )
+        }
+    }
+
 }
