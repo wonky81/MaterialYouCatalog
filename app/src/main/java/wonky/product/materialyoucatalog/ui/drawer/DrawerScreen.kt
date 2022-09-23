@@ -7,7 +7,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import wonky.product.materialyoucatalog.ui.screen.*
 
@@ -19,7 +18,8 @@ enum class Category {
     Containment,
     Navigation,
     Selection,
-    TextInputs
+    TextInputs,
+    Animation
 }
 
 private val styleScreens = listOf(
@@ -38,12 +38,12 @@ private val communicationScreens = listOf(
 
 private val containmentScreens = listOf(
     DrawerMenu.Cards,
+    DrawerMenu.Dialogs
 )
 
 private val navigationScreens = listOf(
-    DrawerMenu.BottomAppBar,
+    DrawerMenu.AppBar,
     DrawerMenu.NavigationRail,
-    DrawerMenu.TopAppBar
 )
 
 private val selectionScreens = listOf(
@@ -55,6 +55,12 @@ private val textInputsScreens = listOf(
     DrawerMenu.TextFields,
 )
 
+private val animationScreens = listOf(
+    DrawerMenu.AnimatedVisibility,
+    DrawerMenu.AnimatedAsState,
+    DrawerMenu.AnimatedContent,
+    //DrawerMenu.UpdateTransition
+)
 @Composable
 fun DrawerScreen(
     selectedMenuRoute: String,
@@ -103,6 +109,7 @@ private fun SubMenuScreen(
             Category.Navigation.name ->{ navigationScreens }
             Category.Selection.name ->{ selectionScreens }
             Category.TextInputs.name ->{ textInputsScreens }
+            Category.Animation.name -> { animationScreens }
             else -> { styleScreens }
         }
 

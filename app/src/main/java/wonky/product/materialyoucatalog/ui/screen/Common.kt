@@ -9,7 +9,6 @@ import androidx.compose.material.Checkbox
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -37,6 +36,20 @@ enum class ElevationLevel(val dp: Dp){
     Level5(12.0.dp),
 }
 
+
+@Composable
+fun <T> RadioButtonGroup(elements: Array<T>){
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        elements.forEach {
+
+
+
+        }
+    }
+
+}
 
 @Composable
 fun ComponentArrangement(vararg content: @Composable () -> Unit) {
@@ -172,12 +185,17 @@ fun SmallText(message: String) {
 
 @Composable
 fun CheckBoxWithText(
+    enabled: Boolean = true,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     text: String
 ){
     Row(verticalAlignment = Alignment.CenterVertically){
-        Checkbox(checked = checked, onCheckedChange = onCheckedChange )
+        Checkbox(
+            enabled = enabled,
+            checked = checked,
+            onCheckedChange = onCheckedChange
+        )
         Text(
             text = text,
             style = MaterialTheme.typography.labelLarge,
@@ -188,6 +206,7 @@ fun CheckBoxWithText(
 
 @Composable
 fun MaterialElementScreen(
+    modifier: Modifier = Modifier,
     title: String,
     componentContent: @Composable () -> Unit,
     controlContent: @Composable () -> Unit
@@ -197,7 +216,7 @@ fun MaterialElementScreen(
     SubTitleLarge(title = title)
     Spacer8v()
     Surface(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.surfaceVariant )
     ) {

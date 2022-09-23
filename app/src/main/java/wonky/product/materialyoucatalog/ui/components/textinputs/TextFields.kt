@@ -3,6 +3,10 @@ package wonky.product.materialyoucatalog.ui.components.textinputs
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,13 +33,19 @@ fun MYFilledTextField(
     onMessageChange: (String) -> Unit,
     label: @Composable (() -> Unit)? = null,
     hasLeadingIcon: Boolean = false,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
+    hasTrailingIcon: Boolean = false,
     placeholder: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
     hasSupportingText: Boolean = false,
     supportingText: String = "",
 ){
+
+    var leadingIcon: @Composable (() -> Unit)? = null
+    if (hasLeadingIcon) leadingIcon = { Icon(Icons.Filled.Home, null) }
+
+    var trailingIcon: @Composable (() -> Unit)? = null
+    if (hasTrailingIcon) trailingIcon = { Icon(Icons.Filled.Check, null) }
+
     Column() {
         TextField(
             value = message,
@@ -69,13 +79,18 @@ fun MYOutlinedFilledTextField(
     onMessageChange: (String) -> Unit,
     label: @Composable (() -> Unit)? = null,
     hasLeadingIcon: Boolean = false,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
+    hasTrailingIcon: Boolean = false,
     placeholder: @Composable (() -> Unit)? = null,
     isError: Boolean = false,
     hasSupportingText: Boolean = false,
     supportingText: String = "",
 ){
+    var leadingIcon: @Composable (() -> Unit)? = null
+    if (hasLeadingIcon) leadingIcon = { Icon(Icons.Filled.Home, null) }
+
+    var trailingIcon: @Composable (() -> Unit)? = null
+    if (hasTrailingIcon) trailingIcon = { Icon(Icons.Filled.Check, null) }
+
     Column() {
         OutlinedTextField(
             value = message,

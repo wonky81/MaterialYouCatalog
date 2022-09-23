@@ -67,6 +67,7 @@ dependencies {
     def inset_version = "0.21.3-beta"
     implementation "com.google.accompanist:accompanist-insets-ui:$inset_version"
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
+    implementation "com.google.accompanist:accompanist-webview:0.26.4-beta"
 
     def compose_version = '1.0.1'
     implementation "androidx.compose.material:material-icons-extended:$compose_version"

@@ -1,22 +1,32 @@
 package wonky.product.materialyoucatalog.ui.components.dialog
 
-import androidx.compose.foundation.layout.Column
+import android.graphics.drawable.Icon
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.CloseFullscreen
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+import wonky.product.materialyoucatalog.ui.screen.DialogCloseButton
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun MYBasicDialog(
+    showIcon: Boolean = false,
+    onDismiss: () -> Unit
 
 ) {
+    var icon: @Composable (() -> Unit)? = null
+    if (showIcon) icon = { Icon(Icons.Filled.DateRange, null) }
+
     AlertDialog(
-        onDismissRequest = { /*TODO*/ },
+        onDismissRequest = onDismiss,
         title = {
             Text("Basic Dialog")
         },
@@ -24,26 +34,53 @@ fun MYBasicDialog(
             Text("Content Area\n This is the content area for basic dialog.")
         },
         confirmButton = {
-            Text("Confirm")
+            TextButton(onClick = onDismiss) {
+                Text("Confirm")
+            }
+
         },
         dismissButton = {
-            Text("Dismiss")
-        },
-        icon = {
-            Icon(Icons.Filled.DateRange,null)
-        }
-    )
+            TextButton(onClick = onDismiss) {
+                Text("Dismiss")
+            }
 
+        },
+        icon = icon
+    )
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun MYFullScreenDialog(
-
+    onDismiss: () -> Unit
 ) {
-    Dialog(onDismissRequest = { /*TODO*/ }) {
-        Column() {
-            Text("Dialog")
+    Dialog(
+        properties = DialogProperties(usePlatformDefaultWidth = false),
+        onDismissRequest = onDismiss
+    ) {
+        Surface(
+            color = MaterialTheme.colorScheme.surface,
+            modifier = Modifier.fillMaxSize()
+
+        ) {
+            Column() {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier.fillMaxWidth()
+                ){
+                    IconButton(onClick = onDismiss) {
+                        Icon(Icons.Filled.Close, contentDescription = null)
+                    }
+                    Text("Full-screen dialog title")
+                    TextButton(onClick = onDismiss) {
+                        Text("Save")
+                    }
+                }
+
+            }
         }
+
     }
 }
 

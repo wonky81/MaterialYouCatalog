@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -36,20 +37,15 @@ class MainActivity : ComponentActivity() {
                 currentTheme = currentTheme,
                 dynamicColor = dynamicColorEnabled
             ) {
-                ProvideWindowInsets(consumeWindowInsets = false, windowInsetsAnimationsEnabled = true) {
-                    val systemUiController = rememberSystemUiController()
-                    systemUiController.setSystemBarsColor(MaterialTheme.colorScheme.background)
-
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
-                    ) {
-                        AppScreen(
-                            mainViewModel = mainViewModel,
-                            dynamicColorEnabled = dynamicColorEnabled,
-                            onChangeDynamicColorEnabled = { dynamicColorEnabled = it}
-                        )
-                    }
+                ProvideWindowInsets(
+                    consumeWindowInsets = false,
+                    windowInsetsAnimationsEnabled = true
+                ) {
+                    AppScreen(
+                        mainViewModel = mainViewModel,
+                        dynamicColorEnabled = dynamicColorEnabled,
+                        onChangeDynamicColorEnabled = { dynamicColorEnabled = it }
+                    )
                 }
             }
         }
@@ -66,31 +62,45 @@ fun AppScreen(
     mainViewModel: MainViewModel,
     dynamicColorEnabled: Boolean,
     onChangeDynamicColorEnabled: (Boolean) -> Unit
-){
-    Surface(color = MaterialTheme.colorScheme.primary) {
-        val transitionState = remember { MutableTransitionState(SplashState.Shown) }
-        val transition = updateTransition(transitionState, label = "splashTransition")
-        val splashAlpha by transition.animateFloat(
-            transitionSpec = { tween(durationMillis = 300) },
-            label = "splashAlpha"
-        ) {
-            if (it == SplashState.Shown) 1f else 0f
-        }
+) {
+    val transitionState = remember { MutableTransitionState(SplashState.Shown) }
+    val transition = updateTransition(transitionState, label = "splashTransition")
 
-        val contentAlpha by transition.animateFloat(
-            transitionSpec = { tween(durationMillis = 300) },
-            label = "contentAlpha"
-        ) {
-            if (it == SplashState.Shown) 0f else 1f
-        }
 
-        val contentTopPadding by transition.animateDp(
-            transitionSpec = { spring(stiffness = Spring.StiffnessLow) },
-            label = "contentTopPadding"
-        ) {
-            if (it == SplashState.Shown) 100.dp else 0.dp
-        }
+    val splashAlpha by transition.animateFloat(
+        transitionSpec = { tween(durationMillis = 300) },
+        label = "splashAlpha"
+    ) {
+        if (it == SplashState.Shown) 1f else 0f
+    }
 
+    val contentAlpha by transition.animateFloat(
+        transitionSpec = { tween(durationMillis = 300) },
+        label = "contentAlpha"
+    ) {
+        if (it == SplashState.Shown) 0f else 1f
+    }
+
+    val backgroundColor by transition.animateColor(
+        label = "backgroundColor"
+    ) {
+        if (it == SplashState.Shown) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.background
+    }
+
+    val contentTopPadding by transition.animateDp(
+        transitionSpec = { spring(stiffness = Spring.StiffnessLow) },
+        label = "contentTopPadding"
+    ) {
+        if (it == SplashState.Shown) 100.dp else 0.dp
+    }
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setSystemBarsColor(backgroundColor)
+
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = backgroundColor
+    ) {
         Box {
             SplashScreen(
                 modifier = Modifier.alpha(splashAlpha),
@@ -104,8 +114,6 @@ fun AppScreen(
             )
         }
     }
-
-
 
 }
 

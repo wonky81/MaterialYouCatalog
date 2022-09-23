@@ -1,6 +1,7 @@
 package wonky.product.materialyoucatalog.ui.screen
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -13,9 +14,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowUpward
-import androidx.compose.material.icons.filled.ColorLens
-import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -26,10 +25,12 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.web.rememberWebViewState
 import kotlinx.coroutines.launch
 import wonky.product.materialyoucatalog.CatalogTheme
 import wonky.product.materialyoucatalog.MainViewModel
@@ -37,15 +38,19 @@ import wonky.product.materialyoucatalog.R
 import wonky.product.materialyoucatalog.ui.drawer.DrawerMenu
 import wonky.product.materialyoucatalog.ui.drawer.DrawerScreen
 import wonky.product.materialyoucatalog.ui.screen.actions.ButtonScreen
+import wonky.product.materialyoucatalog.ui.screen.animation.AnimateAsStateScreen
+import wonky.product.materialyoucatalog.ui.screen.animation.AnimatedContentScreen
+import wonky.product.materialyoucatalog.ui.screen.animation.AnimatedVisibilityScreen
+import wonky.product.materialyoucatalog.ui.screen.animation.UpdateTransitionScreen
 import wonky.product.materialyoucatalog.ui.screen.communication.ProgressIndicatorScreen
-import wonky.product.materialyoucatalog.ui.screen.navigation.BottomAppBarScreen
-import wonky.product.materialyoucatalog.ui.screen.textinputs.TextFieldScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.CardScreen
+import wonky.product.materialyoucatalog.ui.screen.containment.DialogScreen
+import wonky.product.materialyoucatalog.ui.screen.navigation.AppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
-import wonky.product.materialyoucatalog.ui.screen.navigation.TopAppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.ChipScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.SliderScreen
 import wonky.product.materialyoucatalog.ui.screen.style.FontScreen
+import wonky.product.materialyoucatalog.ui.screen.textinputs.TextFieldScreen
 
 private const val TAG = "MainScreen"
 
@@ -62,62 +67,61 @@ fun MainScreen(
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val composableScope = rememberCoroutineScope()
     val navController = rememberNavController()
-    val bottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+    val bottomSheetState =
+        rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     var addPaletteDialog by remember { mutableStateOf(false) }
     var selectedMenuRouteInDrawer by remember { mutableStateOf(DrawerMenu.Palette.route) }
     var fabShow by remember { mutableStateOf(false) }
     var bottomSheetHeight by remember { mutableStateOf(320.dp) }
-    var bottomSheetContent by remember { mutableStateOf<(@Composable () -> Unit)>({ Text("This should not be shown")}) }
+    var bottomSheetContent by remember { mutableStateOf<(@Composable () -> Unit)>({ Text("This should not be shown") }) }
 
-    Surface(color = MaterialTheme.colorScheme.background) {
-        ModalNavigationDrawer(
-            modifier = modifier,
-            drawerState = drawerState,
-            drawerContent = {
-                DrawerScreen(
-                    selectedMenuRoute = selectedMenuRouteInDrawer,
-                    onDestinationClicked = {
-                        selectedMenuRouteInDrawer = it
-                        navController.navigate(it)
-                        composableScope.launch { drawerState.close() }
+    ModalNavigationDrawer(
+        modifier = modifier,
+        drawerState = drawerState,
+        drawerContent = {
+            DrawerScreen(
+                selectedMenuRoute = selectedMenuRouteInDrawer,
+                onDestinationClicked = {
+                    selectedMenuRouteInDrawer = it
+                    navController.navigate(it)
+                    composableScope.launch { drawerState.close() }
 
-                    }
-                )
-            }
-        ) {
-
-            ModalBottomSheetLayout(
-                sheetContent ={ BottomSheetContent( bottomSheetHeight, bottomSheetContent ) },
-                sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
-                sheetState = bottomSheetState,
-                scrimColor = Color.Transparent
-            ) {
-                MainContent(
-                    drawerState = drawerState,
-                    navController = navController,
-                    fabShow = fabShow,
-                    onChangePaletteDialog = { addPaletteDialog = it },
-                    onShowBottomSheet = { composableScope.launch { bottomSheetState.show() } },
-                    onChangeFabShow = { fabShow = it },
-                    bottomSheetContent = bottomSheetContent,
-                    onChangeBottomSheetContent = { bottomSheetContent = it },
-                    onChangeBottomSheetHeight = { bottomSheetHeight = it }
-                )
-            }
-
-            if (addPaletteDialog) {
-                PaletteDialogScreen(
-                    mainViewModel = mainViewModel,
-                    dynamicColorEnabled = dynamicColorEnabled,
-                    onChangeDynamicColorEnabled = onChangeDynamicColorEnabled,
-                    onDismissed = { addPaletteDialog = false }
-                )
-            }
-
-
-
+                }
+            )
         }
+    ) {
+
+        ModalBottomSheetLayout(
+            sheetContent = { BottomSheetContent(bottomSheetHeight, bottomSheetContent) },
+            sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+            sheetState = bottomSheetState,
+            scrimColor = Color.Transparent
+        ) {
+            MainContent(
+                drawerState = drawerState,
+                navController = navController,
+                fabShow = fabShow,
+                onChangePaletteDialog = { addPaletteDialog = it },
+                onShowBottomSheet = { composableScope.launch { bottomSheetState.show() } },
+                onChangeFabShow = { fabShow = it },
+                bottomSheetContent = bottomSheetContent,
+                onChangeBottomSheetContent = { bottomSheetContent = it },
+                onChangeBottomSheetHeight = { bottomSheetHeight = it }
+            )
+        }
+
+        if (addPaletteDialog) {
+            PaletteDialogScreen(
+                mainViewModel = mainViewModel,
+                dynamicColorEnabled = dynamicColorEnabled,
+                onChangeDynamicColorEnabled = onChangeDynamicColorEnabled,
+                onDismissed = { addPaletteDialog = false }
+            )
+        }
+
+
     }
+
 }
 
 @Composable
@@ -130,7 +134,7 @@ private fun BottomSheetContent(
     ) {
         Box(
             modifier = Modifier.fillMaxWidth()
-        ){
+        ) {
             Divider(
                 modifier = Modifier
                     .width(58.dp)
@@ -166,8 +170,23 @@ fun MainContent(
     onChangeBottomSheetContent: (@Composable () -> Unit) -> Unit,
     onChangeBottomSheetHeight: (Dp) -> Unit
 
-){
+) {
     val composableScope = rememberCoroutineScope()
+
+    var sourceCodeProvided by remember { mutableStateOf(false) }
+    var currentRoute by remember { mutableStateOf("Style/Palette") }
+
+    DisposableEffect(navController){
+        val callback = NavController.OnDestinationChangedListener{controller,_,_->
+            sourceCodeProvided = controller.currentDestination?.route?.startsWith("Style") != true
+            controller.currentDestination?.route?.let { currentRoute = it }
+        }
+        navController.addOnDestinationChangedListener(callback)
+        onDispose {
+            navController.removeOnDestinationChangedListener(callback)
+        }
+    }
+
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -187,15 +206,24 @@ fun MainContent(
                     )
                 },
                 actions = {
+                    if(sourceCodeProvided){
+                        IconButton(onClick = {
+                            when(currentRoute){
+
+                            }
+                        }) {
+                            Icon(Icons.Filled.Code, null)
+                        }
+                    }
+
                     IconButton(onClick = { onChangePaletteDialog(true) }) {
                         Icon(Icons.Filled.ColorLens, null)
                     }
-
                 }
             )
         },
         floatingActionButton = {
-            if(fabShow){
+            if (fabShow) {
                 FloatingActionButton(
                     onClick = onShowBottomSheet
                 ) {
@@ -208,9 +236,11 @@ fun MainContent(
         },
         floatingActionButtonPosition = FabPosition.Center
     ) {
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(top = it.calculateTopPadding())) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = it.calculateTopPadding())
+        ) {
             NavHost(
                 navController = navController,
                 startDestination = DrawerMenu.Palette.route,
@@ -221,31 +251,36 @@ fun MainContent(
                     onChangeFabShow(false)
                 }
                 composable(DrawerMenu.Buttons.route) {
-                    ButtonScreen(onChangeBottomSheetContent, onChangeBottomSheetHeight)
+                    ButtonScreen(
+                        onChangeBottomSheetContent = onChangeBottomSheetContent,
+                        onChangeBottomSheetHeight = onChangeBottomSheetHeight,
+
+                    )
                     onChangeFabShow(false)
                 }
                 composable(DrawerMenu.Cards.route) {
                     CardScreen(onChangeBottomSheetContent, onChangeBottomSheetHeight)
-                    onChangeFabShow(true)
+                    onChangeFabShow(false)
                 }
-                composable(DrawerMenu.BottomAppBar.route){ BottomAppBarScreen() }
-                composable(DrawerMenu.TextFields.route){ TextFieldScreen() }
-                composable(DrawerMenu.Fonts.route){ FontScreen() }
-                composable(DrawerMenu.ProgressIndicators.route){ ProgressIndicatorScreen() }
-                composable(DrawerMenu.Chips.route){ ChipScreen() }
-                composable(DrawerMenu.Sliders.route){ SliderScreen() }
-                composable(DrawerMenu.NavigationRail.route) { NavigationRailScreen()}
-                composable(DrawerMenu.TopAppBar.route) { TopAppBarScreen() }
+                composable(DrawerMenu.TextFields.route) { TextFieldScreen() }
+                composable(DrawerMenu.Fonts.route) { FontScreen() }
+                composable(DrawerMenu.ProgressIndicators.route) { ProgressIndicatorScreen() }
+                composable(DrawerMenu.Chips.route) { ChipScreen() }
+                composable(DrawerMenu.Sliders.route) { SliderScreen() }
+                composable(DrawerMenu.NavigationRail.route) { NavigationRailScreen() }
+                composable(DrawerMenu.AppBar.route) { AppBarScreen() }
+                composable(DrawerMenu.Dialogs.route) { DialogScreen() }
+                composable(DrawerMenu.AnimatedVisibility.route) { AnimatedVisibilityScreen() }
+                composable(DrawerMenu.AnimatedAsState.route) { AnimateAsStateScreen() }
+                composable(DrawerMenu.AnimatedContent.route) { AnimatedContentScreen() }
+                //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
 
             }
         }
     }
 
 
-
-
 }
-
 
 
 @Composable
@@ -330,4 +365,14 @@ fun PaletteDialogScreen(
             }
         }
     )
+}
+
+@Composable
+fun moveSourceCodeScreen(currentRoute: String){
+    val state = rememberWebViewState(url = "")
+    when(currentRoute){
+        //"Actions/Buttons"->
+    }
+
+
 }

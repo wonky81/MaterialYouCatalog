@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVector){
     // Style
     object Palette : DrawerMenu("Palette", "Style/Palette", Icons.Default.ColorLens)
-    object Fonts : DrawerMenu("Fonts", "Typography/Fonts", Icons.Default.FontDownload)
+    object Fonts : DrawerMenu("Fonts", "Style/Fonts", Icons.Default.FontDownload)
 
     //Actions
     object Buttons : DrawerMenu("Buttons", "Actions/Buttons", Icons.Default.SmartButton)
@@ -17,11 +17,11 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
 
     //Containment
     object Cards : DrawerMenu("Cards", "Containment/Cards", Icons.Default.CardMembership)
+    object Dialogs : DrawerMenu("Dialogs", "Containment/Dialogs", Icons.Default.Dialpad)
 
     //Navigation
-    object BottomAppBar : DrawerMenu("BottomAppBar", "Navigation/BottomAppBar", Icons.Default.ViewSidebar)
+    object AppBar : DrawerMenu("AppBar", "Navigation/AppBar", Icons.Default.ViewSidebar)
     object NavigationRail : DrawerMenu("NavigationRail", "Navigation/NavigationRail", Icons.Default.Navigation)
-    object TopAppBar : DrawerMenu("TopAppBar", "Navigation/TopAppBar", Icons.Default.VerticalAlignTop)
 
     //Selection
     object Chips : DrawerMenu("Chips", "Selection/Chips", Icons.Default.Notifications)
@@ -29,6 +29,13 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
 
     //TextInputs
     object TextFields : DrawerMenu("TextFields", "TextInputs/TextFields", Icons.Default.TextFields)
+
+    //Animation
+    object AnimatedVisibility : DrawerMenu("AnimatedVisibility", "Animation/AnimatedVisibility", Icons.Default.Animation)
+    object AnimatedAsState : DrawerMenu("AnimatedAsState", "Animation/AnimatedAsState", Icons.Default.Animation)
+    object AnimatedContent : DrawerMenu("AnimatedContent", "Animation/AnimatedContent", Icons.Default.Animation)
+    object UpdateTransition : DrawerMenu("UpdateTransition", "Animation/UpdateTransition", Icons.Default.Animation)
+
 
 
 }
