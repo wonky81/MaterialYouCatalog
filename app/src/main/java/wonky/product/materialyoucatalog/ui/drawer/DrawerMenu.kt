@@ -36,6 +36,11 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
     object AnimatedContent : DrawerMenu("AnimatedContent", "Animation/AnimatedContent", Icons.Default.Animation)
     object UpdateTransition : DrawerMenu("UpdateTransition", "Animation/UpdateTransition", Icons.Default.Animation)
 
+    // Showcases
+    object SamsungAlarm : DrawerMenu("SamsungAlarm", "Showcases/SamsungAlarm", Icons.Default.Alarm)
+    object SamsungSettings: DrawerMenu("SamsungSettings","Showcases/SamsungSettings", Icons.Default.Settings)
+    object GoogleMail: DrawerMenu("GoogleMail", "Showcases/GoogleMail", Icons.Default.Mail)
+    object YoutubeMusic: DrawerMenu("YoutubeMusic", "Showcases/YoutubeMusic", Icons.Default.LibraryMusic)
 
 
 }

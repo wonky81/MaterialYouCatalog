@@ -19,8 +19,16 @@ enum class Category {
     Navigation,
     Selection,
     TextInputs,
-    Animation
+    Animation,
+    Showcases
 }
+
+private val showcasesScreens = listOf(
+    DrawerMenu.GoogleMail,
+    DrawerMenu.SamsungAlarm,
+    DrawerMenu.SamsungSettings,
+    DrawerMenu.YoutubeMusic
+)
 
 private val styleScreens = listOf(
     DrawerMenu.Palette,
@@ -110,6 +118,7 @@ private fun SubMenuScreen(
             Category.Selection.name ->{ selectionScreens }
             Category.TextInputs.name ->{ textInputsScreens }
             Category.Animation.name -> { animationScreens }
+            Category.Showcases.name -> { showcasesScreens }
             else -> { styleScreens }
         }
 

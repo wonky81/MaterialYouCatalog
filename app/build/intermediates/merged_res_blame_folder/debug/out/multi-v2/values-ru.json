@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "wonky.product.materialyoucatalog.app-mergeDebugResources-45:/values-ru/values-ru.xml",
+            "outputFile": "wonky.product.materialyoucatalog.app-mergeDebugResources-49:/values-ru/values-ru.xml",
             "map": [
                 {
                     "source": "D:\\dev\\android-gradle\\caches\\transforms-3\\66b75389df3da74dabe2c065a4797d94\\transformed\\ui-1.2.0\\res\\values-ru\\values-ru.xml",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "D:\\dev\\android-gradle\\caches\\transforms-3\\4d7f397d5a1b1668bd81c8da177a719a\\transformed\\core-1.7.0\\res\\values-ru\\values-ru.xml",
+                    "source": "D:\\dev\\android-gradle\\caches\\transforms-3\\7ff31375048660f1edb34346992a85b9\\transformed\\core-1.8.0\\res\\values-ru\\values-ru.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

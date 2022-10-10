@@ -19,22 +19,29 @@ import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
 import kotlinx.coroutines.launch
 import wonky.product.materialyoucatalog.CatalogTheme
 import wonky.product.materialyoucatalog.MainViewModel
 import wonky.product.materialyoucatalog.R
+import wonky.product.materialyoucatalog.core.*
+import wonky.product.materialyoucatalog.ui.components.dialog.MYFullScreenDialog
 import wonky.product.materialyoucatalog.ui.drawer.DrawerMenu
 import wonky.product.materialyoucatalog.ui.drawer.DrawerScreen
 import wonky.product.materialyoucatalog.ui.screen.actions.ButtonScreen
@@ -49,6 +56,7 @@ import wonky.product.materialyoucatalog.ui.screen.navigation.AppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.ChipScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.SliderScreen
+import wonky.product.materialyoucatalog.ui.screen.showcases.SamsungAlarmScreen
 import wonky.product.materialyoucatalog.ui.screen.style.FontScreen
 import wonky.product.materialyoucatalog.ui.screen.textinputs.TextFieldScreen
 
@@ -175,6 +183,7 @@ fun MainContent(
 
     var sourceCodeProvided by remember { mutableStateOf(false) }
     var currentRoute by remember { mutableStateOf("Style/Palette") }
+    var showCodeScreen by remember { mutableStateOf(false) }
 
     DisposableEffect(navController){
         val callback = NavController.OnDestinationChangedListener{controller,_,_->
@@ -207,11 +216,7 @@ fun MainContent(
                 },
                 actions = {
                     if(sourceCodeProvided){
-                        IconButton(onClick = {
-                            when(currentRoute){
-
-                            }
-                        }) {
+                        IconButton(onClick = { showCodeScreen = true }) {
                             Icon(Icons.Filled.Code, null)
                         }
                     }
@@ -273,10 +278,15 @@ fun MainContent(
                 composable(DrawerMenu.AnimatedVisibility.route) { AnimatedVisibilityScreen() }
                 composable(DrawerMenu.AnimatedAsState.route) { AnimateAsStateScreen() }
                 composable(DrawerMenu.AnimatedContent.route) { AnimatedContentScreen() }
+                composable(DrawerMenu.SamsungAlarm.route) { SamsungAlarmScreen() }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
 
             }
         }
+        if(showCodeScreen) SourceCodeScreen(
+            currentRoute = currentRoute,
+            onDismissed = { showCodeScreen = false }
+        )
     }
 
 
@@ -367,12 +377,52 @@ fun PaletteDialogScreen(
     )
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun moveSourceCodeScreen(currentRoute: String){
-    val state = rememberWebViewState(url = "")
-    when(currentRoute){
-        //"Actions/Buttons"->
-    }
+fun SourceCodeScreen(
+    currentRoute: String,
+    onDismissed: () -> Unit,
+){
+    Dialog(
+        properties = DialogProperties(usePlatformDefaultWidth = false),
+        onDismissRequest = onDismissed
+    ) {
+        Surface(
+            color = MaterialTheme.colorScheme.surface,
+            modifier = Modifier.fillMaxSize()
 
+        ) {
+            Column() {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                ){
+                    IconButton(onClick = onDismissed) {
+                        Icon(Icons.Filled.Close, contentDescription = null)
+                    }
+                    Spacer8h()
+                    Text(
+                        text = "Source Code",
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                when(currentRoute){
+                    "Actions/Buttons"-> WebView(state = rememberWebViewState(url = ButtonsLink))
+                    "Communication/ProgressIndicators" -> WebView(state = rememberWebViewState(url = ProgressIndicatorLink))
+                    "Containment/Cards" -> WebView(state = rememberWebViewState(url = CardsLink))
+                    "Containment/Dialogs" -> WebView(state = rememberWebViewState(url = DialogsLink))
+                    "Navigation/AppBar" -> WebView(state = rememberWebViewState(url = AppBarLink))
+                    "Navigation/NavigationRail" -> WebView(state = rememberWebViewState(url = NavigationRailLink))
+                    "Selection/Chips" -> WebView(state = rememberWebViewState(url = ChipsLink))
+                    "Selection/Sliders" -> WebView(state = rememberWebViewState(url = SlidersLink))
+                    "TextInputs/TextFields" -> WebView(state = rememberWebViewState(url = TextFieldsLink))
+                    "Animation/AnimatedVisibility" -> WebView(state = rememberWebViewState(url = AnimatedVisibilityLink))
+                    "Animation/AnimatedAsState" -> WebView(state = rememberWebViewState(url = AnimatedAsStateLink))
+                    "Animation/AnimatedContent" -> WebView(state = rememberWebViewState(url = AnimatedContentLink))
+                }
+            }
+        }
+
+    }
 
 }
