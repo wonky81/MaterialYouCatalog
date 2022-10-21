@@ -423,6 +423,7 @@ fun SourceCodeScreen(
                     "Animation/AnimatedVisibility" -> WebView(state = rememberWebViewState(url = AnimatedVisibilityLink))
                     "Animation/AnimatedAsState" -> WebView(state = rememberWebViewState(url = AnimatedAsStateLink))
                     "Animation/AnimatedContent" -> WebView(state = rememberWebViewState(url = AnimatedContentLink))
+                    "Showcases/SamsungAlarm" -> WebView(state = rememberWebViewState(url = SamsungAlarmScreenLink))
                 }
             }
         }

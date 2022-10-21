@@ -463,7 +463,7 @@ fun ShortcutTime(){
 
     LazyRow(
         modifier = Modifier
-            .fillMaxWidth().requiredHeight(164.dp)
+            .fillMaxWidth().requiredHeight(186.dp)
             .padding(32.dp)
     ){
         items(shortcutItems){
