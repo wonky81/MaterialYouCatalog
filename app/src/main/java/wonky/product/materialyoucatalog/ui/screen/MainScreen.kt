@@ -1,7 +1,9 @@
 package wonky.product.materialyoucatalog.ui.screen
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
@@ -63,6 +65,7 @@ import wonky.product.materialyoucatalog.ui.screen.textinputs.TextFieldScreen
 private const val TAG = "MainScreen"
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen(
@@ -164,6 +167,7 @@ private fun BottomSheetContent(
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

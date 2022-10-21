@@ -14,3 +14,4 @@ const val TextFieldsLink = "https://github.com/wonky81/MaterialYouCatalog/blob/a
 const val AnimatedVisibilityLink = "https://github.com/wonky81/MaterialYouCatalog/blob/a801b6ad3d01bd01cbe41d64106c3412a0e53858/app/src/main/java/wonky/product/materialyoucatalog/ui/components/animation/AnimatedVisibility.kt#L44"
 const val AnimatedAsStateLink = "https://github.com/wonky81/MaterialYouCatalog/blob/a801b6ad3d01bd01cbe41d64106c3412a0e53858/app/src/main/java/wonky/product/materialyoucatalog/ui/components/animation/AnimateAsState.kt#L26"
 const val AnimatedContentLink = "https://github.com/wonky81/MaterialYouCatalog/blob/a801b6ad3d01bd01cbe41d64106c3412a0e53858/app/src/main/java/wonky/product/materialyoucatalog/ui/components/animation/AnimatedContent.kt#L15"
+const val SamsungAlarmScreenLink = ""

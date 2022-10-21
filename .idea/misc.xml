@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/MainActivity.kt" value="1.6" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/animation/AnimatedContent.kt" value="0.10400000000000001" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/animation/AnimatedVisibility.kt" value="0.264" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/bottomappbar/BottomAppBar.kt" value="0.3814814814814815" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/buttons/Buttons.kt" value="0.264" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/cards/Cards.kt" value="1.4305555555555556" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/chips/Chips.kt" value="0.44385026737967914" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/dialog/Dialogs.kt" value="0.5285714285714286" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/dropdownmenu/DropdownMenus.kt" value="0.1" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/navigationbar/NavigationBar.kt" value="0.3768518518518518" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/navigationdrawer/NavigationDrawer.kt" value="0.21265822784810126" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/navigationrail/NavigationRail.kt" value="0.21265822784810126" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/textfield/TextFields.kt" value="0.3103896103896104" />
+        <entry key="..\:/dev/workspace/android/MaterialYouCatalog/app/src/main/java/wonky/product/materialyoucatalog/ui/components/topappbar/TopAppBar.kt" value="0.2212962962962963" />
+      </map>
+    </option>
   </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

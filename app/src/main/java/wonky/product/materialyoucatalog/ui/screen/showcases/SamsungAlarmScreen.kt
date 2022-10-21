@@ -1,11 +1,13 @@
 package wonky.product.materialyoucatalog.ui.screen.showcases
 
 import android.os.Build
-import android.widget.NumberPicker
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -363,37 +365,128 @@ fun TimerScreen(
     modifier: Modifier = Modifier
 ){
 
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.End
+    Column(
+        modifier = modifier.fillMaxSize()
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(Icons.Default.Add, contentDescription = null)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(Icons.Default.Add, contentDescription = null)
+            }
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(Icons.Default.MoreVert, contentDescription = null)
+            }
         }
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(Icons.Default.MoreVert, contentDescription = null)
+        Spacer(modifier = Modifier.height(18.dp))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(32.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            TimeSlider(
+                headerText = "Hours",
+                timeSlot = Array(100){ it }.map { if(it<10) "0$it" else it }
+            )
+            Spacer(modifier = Modifier.width(32.dp))
+            TimeSlider(
+                headerText = "Minutes",
+                timeSlot = Array(100){ it }.map { if(it<10) "0$it" else it }
+            )
+            Spacer(modifier = Modifier.width(32.dp))
+            TimeSlider(
+                headerText = "Seconds",
+                timeSlot = Array(100){ it }.map { if(it<10) "0$it" else it }
+            )
         }
-    }
-    Row {
-        TimeSlider(
-            timeSlot = Array(100){ it }
-        )
-    }
+        ShortcutTime()
+        Spacer(modifier = Modifier.height(12.dp))
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Button(
+                onClick = { },
+                enabled = true
+            ){
+                Text(
+                    text = "Start",
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
+        }
 
+    }
 }
 
 @Composable
 fun TimeSlider(
-    timeSlot: Array<Int>
+    headerText: String,
+    timeSlot: List<Any>
 ){
-    LazyColumn(){
-        items(timeSlot){
-            Text(
-                text = it.toString(),
-                style = MaterialTheme.typography.displayMedium
-            )
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = headerText,
+            style = MaterialTheme.typography.titleMedium
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        LazyColumn(
+            modifier = Modifier
+                .height(180.dp)
+                .requiredWidth(62.dp)
+                .padding(start = 6.dp),
+            flingBehavior = ScrollableDefaults.flingBehavior(),
+
+            ){
+            items(timeSlot){
+
+                Text(
+                    text = it.toString(),
+                    style = MaterialTheme.typography.displayMedium
+                )
+            }
         }
     }
+
+
     //NumberPicker
 
+}
+
+@Composable
+fun ShortcutTime(){
+    val shortcutItems = arrayListOf("00:10:00","00:15:00","00:30:00","00:45:00","01:00:00","01:15:00")
+
+    LazyRow(
+        modifier = Modifier
+            .fillMaxWidth().requiredHeight(164.dp)
+            .padding(32.dp)
+    ){
+        items(shortcutItems){
+            Surface(
+                shape = CircleShape,
+                color = Color.LightGray,
+                modifier = Modifier
+                    .size(108.dp)
+                    .padding(12.dp),
+
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        text = it,
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.bodyMedium,
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    )
+                }
+
+            }
+        }
+    }
 }
