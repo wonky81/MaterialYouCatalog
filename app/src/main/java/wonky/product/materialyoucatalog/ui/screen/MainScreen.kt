@@ -418,6 +418,7 @@ fun SourceCodeScreen(
                     "Communication/ProgressIndicators" -> WebView(state = rememberWebViewState(url = ProgressIndicatorLink))
                     "Containment/Cards" -> WebView(state = rememberWebViewState(url = CardsLink))
                     "Containment/Dialogs" -> WebView(state = rememberWebViewState(url = DialogsLink))
+                    "Containment/Tooltips" -> WebView(state = rememberWebViewState(url = TooltipsLink))
                     "Navigation/AppBar" -> WebView(state = rememberWebViewState(url = AppBarLink))
                     "Navigation/NavigationRail" -> WebView(state = rememberWebViewState(url = NavigationRailLink))
                     "Selection/Chips" -> WebView(state = rememberWebViewState(url = ChipsLink))
