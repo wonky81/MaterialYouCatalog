@@ -1,9 +1,11 @@
 package wonky.product.materialyoucatalog
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
@@ -16,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 import wonky.product.materialyoucatalog.ui.screen.*
 import wonky.product.materialyoucatalog.ui.theme.MaterialYouCatalogTheme
@@ -25,6 +28,7 @@ class MainActivity : ComponentActivity() {
 
     private val mainViewModel: MainViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, true)
@@ -49,6 +53,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        MobileAds.initialize(this){}
     }
 }
 
@@ -57,6 +62,7 @@ enum class SplashState {
     Completed
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppScreen(
     mainViewModel: MainViewModel,
@@ -116,19 +122,3 @@ fun AppScreen(
     }
 
 }
-
-
-//ButtonScreen()
-//MYBottomAppBar()
-//CardScreen()
-//ChipScreen()
-//DialogScreen()
-//DropdownMenuScreen()
-//NavigationBarScreen()
-//NavigationDrawerScreen()
-//NavigationRailScreen()
-//ProgressIndicatorScreen()
-//SliderScreen()
-//SwitchScreen()
-//TextFieldScreen()
-//TopAppBarScreen()

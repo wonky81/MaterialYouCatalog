@@ -1,6 +1,10 @@
 package wonky.product.materialyoucatalog.ui.screen.actions
 
+import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
@@ -22,6 +26,8 @@ fun ButtonScreen(
     onChangeBottomSheetContent: (@Composable () -> Unit) -> Unit,
     onChangeBottomSheetHeight: (Dp) -> Unit
 ) {
+
+
     var elevatedButtonDefaultElevation by remember { mutableStateOf(ElevationLevel.Level1) }
     var elevatedButtonDisabledElevation by remember { mutableStateOf(ElevationLevel.Level1) }
     var filledButtonDefaultElevation by remember { mutableStateOf(ElevationLevel.Level1) }
@@ -164,6 +170,10 @@ fun ButtonScreen(
                     checked = switchChecked,
                     onCheckedChange = { switchChecked = it }
                 ) {
+                    Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = null
+                    )
                 }
             },
             controlContent = {

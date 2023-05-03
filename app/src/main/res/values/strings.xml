@@ -16,4 +16,6 @@
     <string name="overview_animate_as_state">AnimateAsState is used when it is state-based and happens during composition, animating single values and animation is finite.</string>
     <string name="overview_animated_content">AnimatedContent is used when animating content change in layout and swapping content based on state.</string>
     <string name="overview_update_transition">UpdateTransition is used when it is state-based and happens during composition. It is animating multiple values simultaneously and animation is finite.</string>
+    <string name="overview_tooltip">Tooltips are informative, specific, and action-oriented text labels that provide contextual support</string>
+    <string name="rich_tooltips_message">Rich tooltips bring attention to a particular element of feature that warrants the user\'s focus. It supports multiple lines of informational text.</string>
 </resources>

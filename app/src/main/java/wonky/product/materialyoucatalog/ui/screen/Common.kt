@@ -209,7 +209,7 @@ fun MaterialElementScreen(
     modifier: Modifier = Modifier,
     title: String,
     componentContent: @Composable () -> Unit,
-    controlContent: @Composable () -> Unit
+    controlContent: @Composable () -> Unit = {}
 ){
     //Div6v()
     Spacer32v()

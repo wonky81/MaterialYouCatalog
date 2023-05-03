@@ -26,6 +26,7 @@ enum class Category {
 private val showcasesScreens = listOf(
     //DrawerMenu.GoogleMail,
     DrawerMenu.SamsungAlarm,
+    DrawerMenu.CircularCarousel
     //DrawerMenu.SamsungSettings,
     //DrawerMenu.YoutubeMusic
 )
@@ -46,7 +47,8 @@ private val communicationScreens = listOf(
 
 private val containmentScreens = listOf(
     DrawerMenu.Cards,
-    DrawerMenu.Dialogs
+    DrawerMenu.Dialogs,
+    DrawerMenu.Tooltips
 )
 
 private val navigationScreens = listOf(

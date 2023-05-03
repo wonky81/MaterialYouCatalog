@@ -18,6 +18,7 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
     //Containment
     object Cards : DrawerMenu("Cards", "Containment/Cards", Icons.Default.CardMembership)
     object Dialogs : DrawerMenu("Dialogs", "Containment/Dialogs", Icons.Default.Dialpad)
+    object Tooltips : DrawerMenu("Tooltips", "Containment/Tooltips", Icons.Default.Campaign)
 
     //Navigation
     object AppBar : DrawerMenu("AppBar", "Navigation/AppBar", Icons.Default.ViewSidebar)
@@ -38,6 +39,7 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
 
     // Showcases
     object SamsungAlarm : DrawerMenu("SamsungAlarm", "Showcases/SamsungAlarm", Icons.Default.Alarm)
+    object CircularCarousel : DrawerMenu("CircularCarousel", "Showcases/CircularCarousel", Icons.Default.ViewCarousel)
     object SamsungSettings: DrawerMenu("SamsungSettings","Showcases/SamsungSettings", Icons.Default.Settings)
     object GoogleMail: DrawerMenu("GoogleMail", "Showcases/GoogleMail", Icons.Default.Mail)
     object YoutubeMusic: DrawerMenu("YoutubeMusic", "Showcases/YoutubeMusic", Icons.Default.LibraryMusic)

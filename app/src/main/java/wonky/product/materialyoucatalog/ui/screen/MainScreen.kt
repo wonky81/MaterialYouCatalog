@@ -2,7 +2,6 @@ package wonky.product.materialyoucatalog.ui.screen
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -43,22 +42,24 @@ import wonky.product.materialyoucatalog.CatalogTheme
 import wonky.product.materialyoucatalog.MainViewModel
 import wonky.product.materialyoucatalog.R
 import wonky.product.materialyoucatalog.core.*
-import wonky.product.materialyoucatalog.ui.components.dialog.MYFullScreenDialog
 import wonky.product.materialyoucatalog.ui.drawer.DrawerMenu
 import wonky.product.materialyoucatalog.ui.drawer.DrawerScreen
 import wonky.product.materialyoucatalog.ui.screen.actions.ButtonScreen
 import wonky.product.materialyoucatalog.ui.screen.animation.AnimateAsStateScreen
 import wonky.product.materialyoucatalog.ui.screen.animation.AnimatedContentScreen
 import wonky.product.materialyoucatalog.ui.screen.animation.AnimatedVisibilityScreen
-import wonky.product.materialyoucatalog.ui.screen.animation.UpdateTransitionScreen
 import wonky.product.materialyoucatalog.ui.screen.communication.ProgressIndicatorScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.CardScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.DialogScreen
+import wonky.product.materialyoucatalog.ui.screen.containment.ToolTipScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.AppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.ChipScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.SliderScreen
-import wonky.product.materialyoucatalog.ui.screen.showcases.SamsungAlarmScreen
+import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.CircularCarousel
+import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.CircularCarouselScreen
+import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.HorizontalSliderScreen
+import wonky.product.materialyoucatalog.ui.screen.showcases.samsungalarm.SamsungAlarmScreen
 import wonky.product.materialyoucatalog.ui.screen.style.FontScreen
 import wonky.product.materialyoucatalog.ui.screen.textinputs.TextFieldScreen
 
@@ -283,7 +284,9 @@ fun MainContent(
                 composable(DrawerMenu.AnimatedAsState.route) { AnimateAsStateScreen() }
                 composable(DrawerMenu.AnimatedContent.route) { AnimatedContentScreen() }
                 composable(DrawerMenu.SamsungAlarm.route) { SamsungAlarmScreen() }
+                composable(DrawerMenu.CircularCarousel.route) { CircularCarouselScreen() }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
+                composable(DrawerMenu.Tooltips.route){ ToolTipScreen() }
 
             }
         }

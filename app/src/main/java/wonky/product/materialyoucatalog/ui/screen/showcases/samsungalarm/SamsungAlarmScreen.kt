@@ -1,4 +1,4 @@
-package wonky.product.materialyoucatalog.ui.screen.showcases
+package wonky.product.materialyoucatalog.ui.screen.showcases.samsungalarm
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -16,9 +16,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 
 enum class AlarmMenu {
@@ -393,12 +396,12 @@ fun TimerScreen(
             Spacer(modifier = Modifier.width(32.dp))
             TimeSlider(
                 headerText = "Minutes",
-                timeSlot = Array(100){ it }.map { if(it<10) "0$it" else it }
+                timeSlot = Array(60){ it }.map { if(it<10) "0$it" else it }
             )
             Spacer(modifier = Modifier.width(32.dp))
             TimeSlider(
                 headerText = "Seconds",
-                timeSlot = Array(100){ it }.map { if(it<10) "0$it" else it }
+                timeSlot = Array(60){ it }.map { if(it<10) "0$it" else it }
             )
         }
         ShortcutTime()
@@ -458,12 +461,70 @@ fun TimeSlider(
 }
 
 @Composable
+fun TimeSlider2(
+    headerText: String,
+    timeSlot: List<Any>
+){
+    TimeSliderCustom(
+        modifier = Modifier
+            .height(180.dp)
+            .requiredWidth(62.dp)
+            .padding(start = 6.dp),
+    ){
+        for(i in 0 until 20){
+            Text(
+                text = "$i",
+                style = MaterialTheme.typography.displayMedium
+            )
+        }
+
+    }
+}
+
+@Composable
+fun TimeSliderCustom(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+){
+    val state = rememberTimeSliderState()
+
+    Layout(
+        modifier = modifier.clipToBounds().drag(state),
+        content = content
+    ){ measurables, constraints ->
+        val itemHeight = constraints.maxHeight/3
+        val itemConstraints = Constraints.fixed(width = constraints.maxWidth, height = itemHeight)
+        val placeables = measurables.map { measurable ->  measurable.measure(itemConstraints)}
+
+
+        state.setup(
+            TimeSliderConfig(
+                contentHeight = constraints.maxHeight.toFloat(),
+                numItems = placeables.size,
+                visibleItems = 3,
+                circularFraction = 0f
+            )
+        )
+
+        layout(
+            width = constraints.maxWidth,
+            height = constraints.maxHeight
+        ){
+            for(i in state.firstVisibleItem..state.lastVisibleItem){
+                placeables[i].placeRelative(state.offsetFor(i))
+            }
+        }
+    }
+}
+
+@Composable
 fun ShortcutTime(){
     val shortcutItems = arrayListOf("00:10:00","00:15:00","00:30:00","00:45:00","01:00:00","01:15:00")
 
     LazyRow(
         modifier = Modifier
-            .fillMaxWidth().requiredHeight(186.dp)
+            .fillMaxWidth()
+            .requiredHeight(186.dp)
             .padding(32.dp)
     ){
         items(shortcutItems){

@@ -13,3 +13,13 @@ fun MYLinearProgressIndicator(){
 fun MYCircularProgressIndicator(){
     CircularProgressIndicator()
 }
+
+@Composable
+fun MyDeterminateLinearProgressIndicator(progress: Float) {
+    LinearProgressIndicator(progress = progress)
+}
+
+@Composable
+fun MyDeterminateCircularProgressIndicator(progress: Float) {
+    CircularProgressIndicator(progress = progress)
+}
