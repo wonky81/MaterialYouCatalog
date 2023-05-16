@@ -2,6 +2,7 @@ package wonky.product.materialyoucatalog.ui.screen
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -59,6 +60,7 @@ import wonky.product.materialyoucatalog.ui.screen.selection.SliderScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.CircularCarousel
 import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.CircularCarouselScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.HorizontalSliderScreen
+import wonky.product.materialyoucatalog.ui.screen.showcases.facebooklogin.FacebookLoginScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.samsungalarm.SamsungAlarmScreen
 import wonky.product.materialyoucatalog.ui.screen.style.FontScreen
 import wonky.product.materialyoucatalog.ui.screen.textinputs.TextFieldScreen
@@ -285,6 +287,9 @@ fun MainContent(
                 composable(DrawerMenu.AnimatedContent.route) { AnimatedContentScreen() }
                 composable(DrawerMenu.SamsungAlarm.route) { SamsungAlarmScreen() }
                 composable(DrawerMenu.CircularCarousel.route) { CircularCarouselScreen() }
+                composable(DrawerMenu.FacebookLogin.route){
+                    FacebookLoginScreen()
+                }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
                 composable(DrawerMenu.Tooltips.route){ ToolTipScreen() }
 
