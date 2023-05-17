@@ -61,6 +61,7 @@ import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.Cir
 import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.CircularCarouselScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.HorizontalSliderScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.facebooklogin.FacebookLoginScreen
+import wonky.product.materialyoucatalog.ui.screen.showcases.gmail.GmailMainScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.samsungalarm.SamsungAlarmScreen
 import wonky.product.materialyoucatalog.ui.screen.style.FontScreen
 import wonky.product.materialyoucatalog.ui.screen.textinputs.TextFieldScreen
@@ -287,9 +288,8 @@ fun MainContent(
                 composable(DrawerMenu.AnimatedContent.route) { AnimatedContentScreen() }
                 composable(DrawerMenu.SamsungAlarm.route) { SamsungAlarmScreen() }
                 composable(DrawerMenu.CircularCarousel.route) { CircularCarouselScreen() }
-                composable(DrawerMenu.FacebookLogin.route){
-                    FacebookLoginScreen()
-                }
+                composable(DrawerMenu.FacebookLogin.route){ FacebookLoginScreen() }
+                composable(DrawerMenu.GmailMain.route){ GmailMainScreen() }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
                 composable(DrawerMenu.Tooltips.route){ ToolTipScreen() }
 
@@ -433,6 +433,7 @@ fun SourceCodeScreen(
                     "Animation/AnimatedAsState" -> WebView(state = rememberWebViewState(url = AnimatedAsStateLink))
                     "Animation/AnimatedContent" -> WebView(state = rememberWebViewState(url = AnimatedContentLink))
                     "Showcases/SamsungAlarm" -> WebView(state = rememberWebViewState(url = SamsungAlarmScreenLink))
+                    "Showcases/FacebookLogin" -> WebView(state = rememberWebViewState(url = FacebookLoginScreenLink))
                 }
             }
         }

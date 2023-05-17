@@ -43,6 +43,10 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
 
     object FacebookLogin : DrawerMenu("FacebookLogin", "Showcases/FacebookLogin", Icons.Default.Login)
 
+    object GmailMain : DrawerMenu("GmailMain", "Showcases/GmailMain", Icons.Default.Mail)
+
+
+
     object SamsungSettings: DrawerMenu("SamsungSettings","Showcases/SamsungSettings", Icons.Default.Settings)
     object GoogleMail: DrawerMenu("GoogleMail", "Showcases/GoogleMail", Icons.Default.Mail)
     object YoutubeMusic: DrawerMenu("YoutubeMusic", "Showcases/YoutubeMusic", Icons.Default.LibraryMusic)
