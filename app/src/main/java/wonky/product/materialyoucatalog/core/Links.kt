@@ -14,3 +14,5 @@ const val AnimatedAsStateLink = "https://github.com/wonky81/MaterialYouCatalog/b
 const val AnimatedContentLink = "https://github.com/wonky81/MaterialYouCatalog/blob/a801b6ad3d01bd01cbe41d64106c3412a0e53858/app/src/main/java/wonky/product/materialyoucatalog/ui/components/animation/AnimatedContent.kt#L15"
 const val SamsungAlarmScreenLink = "https://github.com/wonky81/MaterialYouCatalog/blob/38f8bf1735e788ef773822a17280bcfb1d7a5f62/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/showcases/SamsungAlarmScreen.kt"
 const val TooltipsLink ="https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/containment/ToolTipScreen.kt#L32"
+const val FacebookLoginScreenLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/showcases/facebooklogin/FacebookLoginScreen.kt#L65"
+const val GmailScreenLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/showcases/gmail/GmailScreen.kt#L53"

@@ -289,7 +289,7 @@ fun MainContent(
                 composable(DrawerMenu.SamsungAlarm.route) { SamsungAlarmScreen() }
                 composable(DrawerMenu.CircularCarousel.route) { CircularCarouselScreen() }
                 composable(DrawerMenu.FacebookLogin.route){ FacebookLoginScreen() }
-                composable(DrawerMenu.GmailMain.route){ GmailMainScreen() }
+                composable(DrawerMenu.GoogleMail.route){ GmailMainScreen() }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
                 composable(DrawerMenu.Tooltips.route){ ToolTipScreen() }
 
@@ -434,6 +434,7 @@ fun SourceCodeScreen(
                     "Animation/AnimatedContent" -> WebView(state = rememberWebViewState(url = AnimatedContentLink))
                     "Showcases/SamsungAlarm" -> WebView(state = rememberWebViewState(url = SamsungAlarmScreenLink))
                     "Showcases/FacebookLogin" -> WebView(state = rememberWebViewState(url = FacebookLoginScreenLink))
+                    "Showcases/GoogleMail" -> WebView(state = rememberWebViewState(url = GmailScreenLink))
                 }
             }
         }

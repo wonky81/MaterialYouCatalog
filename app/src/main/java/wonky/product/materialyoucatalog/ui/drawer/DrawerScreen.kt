@@ -28,7 +28,7 @@ private val showcasesScreens = listOf(
     DrawerMenu.SamsungAlarm,
     DrawerMenu.CircularCarousel,
     DrawerMenu.FacebookLogin,
-    DrawerMenu.GmailMain
+    DrawerMenu.GoogleMail
     //DrawerMenu.SamsungSettings,
     //DrawerMenu.YoutubeMusic
 )
