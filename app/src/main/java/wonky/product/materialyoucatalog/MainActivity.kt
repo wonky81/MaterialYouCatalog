@@ -20,6 +20,7 @@ import com.google.accompanist.insets.ProvideWindowInsets
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
+import wonky.product.materialyoucatalog.ad.FullScreenAd
 import wonky.product.materialyoucatalog.ui.screen.*
 import wonky.product.materialyoucatalog.ui.theme.MaterialYouCatalogTheme
 
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, true)
+        FullScreenAd.loadInterstitial(this)
         setContent {
             var dynamicColorEnabled by remember { mutableStateOf(true) }
             val currentTheme by mainViewModel.currentTheme
@@ -54,6 +56,11 @@ class MainActivity : ComponentActivity() {
             }
         }
         MobileAds.initialize(this){}
+    }
+
+    override fun onDestroy() {
+        FullScreenAd.removeInterstitial()
+        super.onDestroy()
     }
 }
 

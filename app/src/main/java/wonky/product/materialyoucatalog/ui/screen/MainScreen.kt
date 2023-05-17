@@ -2,7 +2,6 @@ package wonky.product.materialyoucatalog.ui.screen
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -25,6 +24,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -42,6 +42,7 @@ import kotlinx.coroutines.launch
 import wonky.product.materialyoucatalog.CatalogTheme
 import wonky.product.materialyoucatalog.MainViewModel
 import wonky.product.materialyoucatalog.R
+import wonky.product.materialyoucatalog.ad.FullScreenAd
 import wonky.product.materialyoucatalog.core.*
 import wonky.product.materialyoucatalog.ui.drawer.DrawerMenu
 import wonky.product.materialyoucatalog.ui.drawer.DrawerScreen
@@ -57,9 +58,7 @@ import wonky.product.materialyoucatalog.ui.screen.navigation.AppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.ChipScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.SliderScreen
-import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.CircularCarousel
 import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.CircularCarouselScreen
-import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.HorizontalSliderScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.facebooklogin.FacebookLoginScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.gmail.GmailMainScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.samsungalarm.SamsungAlarmScreen
@@ -192,9 +191,10 @@ fun MainContent(
     var sourceCodeProvided by remember { mutableStateOf(false) }
     var currentRoute by remember { mutableStateOf("Style/Palette") }
     var showCodeScreen by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
-    DisposableEffect(navController){
-        val callback = NavController.OnDestinationChangedListener{controller,_,_->
+    DisposableEffect(navController) {
+        val callback = NavController.OnDestinationChangedListener { controller, _, _ ->
             sourceCodeProvided = controller.currentDestination?.route?.startsWith("Style") != true
             controller.currentDestination?.route?.let { currentRoute = it }
         }
@@ -223,8 +223,12 @@ fun MainContent(
                     )
                 },
                 actions = {
-                    if(sourceCodeProvided){
-                        IconButton(onClick = { showCodeScreen = true }) {
+                    if (sourceCodeProvided) {
+                        IconButton(onClick = {
+                            FullScreenAd.showInterstitial(context = context) {
+                                showCodeScreen = true
+                            }
+                        }) {
                             Icon(Icons.Filled.Code, null)
                         }
                     }
@@ -268,7 +272,7 @@ fun MainContent(
                         onChangeBottomSheetContent = onChangeBottomSheetContent,
                         onChangeBottomSheetHeight = onChangeBottomSheetHeight,
 
-                    )
+                        )
                     onChangeFabShow(false)
                 }
                 composable(DrawerMenu.Cards.route) {
@@ -288,17 +292,19 @@ fun MainContent(
                 composable(DrawerMenu.AnimatedContent.route) { AnimatedContentScreen() }
                 composable(DrawerMenu.SamsungAlarm.route) { SamsungAlarmScreen() }
                 composable(DrawerMenu.CircularCarousel.route) { CircularCarouselScreen() }
-                composable(DrawerMenu.FacebookLogin.route){ FacebookLoginScreen() }
-                composable(DrawerMenu.GoogleMail.route){ GmailMainScreen() }
+                composable(DrawerMenu.FacebookLogin.route) { FacebookLoginScreen() }
+                composable(DrawerMenu.GoogleMail.route) { GmailMainScreen() }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
-                composable(DrawerMenu.Tooltips.route){ ToolTipScreen() }
+                composable(DrawerMenu.Tooltips.route) { ToolTipScreen() }
 
             }
         }
-        if(showCodeScreen) SourceCodeScreen(
-            currentRoute = currentRoute,
-            onDismissed = { showCodeScreen = false }
-        )
+        if (showCodeScreen) {
+            SourceCodeScreen(
+                currentRoute = currentRoute,
+                onDismissed = { showCodeScreen = false }
+            )
+        }
     }
 
 
@@ -338,10 +344,11 @@ fun PaletteDialogScreen(
                 if (!dynamicColorEnabled) {
 
                     LazyVerticalGrid(
-                        columns = GridCells.Fixed(5),
+                        columns = GridCells.Fixed(4),
                     ) {
                         items(CatalogTheme.values()) {
                             Column(
+                                modifier = Modifier.padding(4.dp),
                                 verticalArrangement = Arrangement.Center,
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
@@ -394,7 +401,7 @@ fun PaletteDialogScreen(
 fun SourceCodeScreen(
     currentRoute: String,
     onDismissed: () -> Unit,
-){
+) {
     Dialog(
         properties = DialogProperties(usePlatformDefaultWidth = false),
         onDismissRequest = onDismissed
@@ -407,7 +414,7 @@ fun SourceCodeScreen(
             Column() {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                ){
+                ) {
                     IconButton(onClick = onDismissed) {
                         Icon(Icons.Filled.Close, contentDescription = null)
                     }
@@ -418,8 +425,8 @@ fun SourceCodeScreen(
                         fontWeight = FontWeight.Bold
                     )
                 }
-                when(currentRoute){
-                    "Actions/Buttons"-> WebView(state = rememberWebViewState(url = ButtonsLink))
+                when (currentRoute) {
+                    "Actions/Buttons" -> WebView(state = rememberWebViewState(url = ButtonsLink))
                     "Communication/ProgressIndicators" -> WebView(state = rememberWebViewState(url = ProgressIndicatorLink))
                     "Containment/Cards" -> WebView(state = rememberWebViewState(url = CardsLink))
                     "Containment/Dialogs" -> WebView(state = rememberWebViewState(url = DialogsLink))
@@ -437,8 +444,7 @@ fun SourceCodeScreen(
                     "Showcases/GoogleMail" -> WebView(state = rememberWebViewState(url = GmailScreenLink))
                 }
             }
+
         }
-
     }
-
 }

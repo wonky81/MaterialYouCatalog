@@ -1,6 +1,5 @@
 package wonky.product.materialyoucatalog.ui.theme
 
-import android.app.Activity
 import android.content.Context
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -10,17 +9,16 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
-import androidx.core.view.ViewCompat
-import com.example.compose.BlueDarkColors
-import com.example.compose.BlueLightColors
-import com.google.accompanist.insets.ui.R
+import wonky.product.materialyoucatalog.ui.theme.blue.BlueDarkColors
+import wonky.product.materialyoucatalog.ui.theme.blue.BlueLightColors
 import wonky.product.materialyoucatalog.CatalogTheme
 import wonky.product.materialyoucatalog.DEFAULT_THEME
 import wonky.product.materialyoucatalog.core.PrefHelper
+import wonky.product.materialyoucatalog.ui.theme.deeporange.DeepOrangeDarkColors
+import wonky.product.materialyoucatalog.ui.theme.deeporange.DeepOrangeLightColors
+import wonky.product.materialyoucatalog.ui.theme.green.GreenDarkColors
+import wonky.product.materialyoucatalog.ui.theme.green.GreenLightColors
 import wonky.product.materialyoucatalog.ui.theme.red.RedDarkColors
 import wonky.product.materialyoucatalog.ui.theme.red.RedLightColors
 import wonky.product.materialyoucatalog.ui.theme.teal.TealDarkColors
@@ -67,6 +65,8 @@ fun MaterialYouCatalogTheme(
             CatalogTheme.RED_THEME.name->{ if(darkTheme) RedDarkColors else RedLightColors }
             CatalogTheme.TEAL_THEME.name->{ if(darkTheme) TealDarkColors else TealLightColors }
             CatalogTheme.BLUE_THEME.name->{ if(darkTheme) BlueDarkColors else BlueLightColors }
+            CatalogTheme.DEEP_ORANGE_THEME.name->{ if(darkTheme) DeepOrangeDarkColors else DeepOrangeLightColors}
+            CatalogTheme.GREEN_THEME.name-> { if(darkTheme) GreenDarkColors else GreenLightColors}
             else->{ if(darkTheme) RedDarkColors else RedLightColors }
         }
     }

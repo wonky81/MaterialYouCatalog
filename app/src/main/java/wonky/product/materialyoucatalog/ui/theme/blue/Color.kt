@@ -1,4 +1,4 @@
-package com.example.compose
+package wonky.product.materialyoucatalog.ui.theme.blue
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF4059AA)
