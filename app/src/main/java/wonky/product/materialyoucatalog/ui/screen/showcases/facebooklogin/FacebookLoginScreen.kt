@@ -53,6 +53,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import wonky.product.materialyoucatalog.R
@@ -93,7 +94,7 @@ fun FacebookLoginScreen() {
             modifier = Modifier.weight(1f),
             onInputFocused = { isInputFocused = it }
         )
-        CreateNewAccount(modifier = Modifier.weight(1f))
+        CreateNewAccount(modifier = Modifier.weight(0.5f))
     }
     if (showBottomSheet) {
         BottomSheet(

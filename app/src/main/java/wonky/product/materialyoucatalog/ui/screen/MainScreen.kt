@@ -51,6 +51,7 @@ import wonky.product.materialyoucatalog.ui.screen.animation.AnimateAsStateScreen
 import wonky.product.materialyoucatalog.ui.screen.animation.AnimatedContentScreen
 import wonky.product.materialyoucatalog.ui.screen.animation.AnimatedVisibilityScreen
 import wonky.product.materialyoucatalog.ui.screen.communication.ProgressIndicatorScreen
+import wonky.product.materialyoucatalog.ui.screen.containment.BadgeScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.CardScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.DialogScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.ToolTipScreen
@@ -296,6 +297,7 @@ fun MainContent(
                 composable(DrawerMenu.GoogleMail.route) { GmailMainScreen() }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
                 composable(DrawerMenu.Tooltips.route) { ToolTipScreen() }
+                composable(DrawerMenu.Badges.route) { BadgeScreen()}
 
             }
         }

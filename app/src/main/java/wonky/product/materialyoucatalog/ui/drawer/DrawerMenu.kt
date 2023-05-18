@@ -20,6 +20,8 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
     object Dialogs : DrawerMenu("Dialogs", "Containment/Dialogs", Icons.Default.Dialpad)
     object Tooltips : DrawerMenu("Tooltips", "Containment/Tooltips", Icons.Default.Campaign)
 
+    object Badges : DrawerMenu("Badges", "Containment/Badges", Icons.Default.Badge)
+
     //Navigation
     object AppBar : DrawerMenu("AppBar", "Navigation/AppBar", Icons.Default.ViewSidebar)
     object NavigationRail : DrawerMenu("NavigationRail", "Navigation/NavigationRail", Icons.Default.Navigation)

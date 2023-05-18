@@ -50,7 +50,8 @@ private val communicationScreens = listOf(
 private val containmentScreens = listOf(
     DrawerMenu.Cards,
     DrawerMenu.Dialogs,
-    DrawerMenu.Tooltips
+    DrawerMenu.Tooltips,
+    DrawerMenu.Badges
 )
 
 private val navigationScreens = listOf(
