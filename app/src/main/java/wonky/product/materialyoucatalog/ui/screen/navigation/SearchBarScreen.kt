@@ -51,7 +51,7 @@ fun SearchBarScreen() {
     var isActive by remember { mutableStateOf(false) }
 
     MaterialContents {
-        Overview(content = stringResource(R.string.overview_date_picker))
+        Overview(content = stringResource(R.string.overview_search_bar))
 
         MaterialElementScreen(
             title = "Search Bar in Search Screen ",

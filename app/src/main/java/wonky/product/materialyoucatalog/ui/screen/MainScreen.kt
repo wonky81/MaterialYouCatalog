@@ -450,7 +450,8 @@ fun SourceCodeScreen(
                     "Showcases/FacebookLogin" -> WebView(state = rememberWebViewState(url = FacebookLoginScreenLink))
                     "Showcases/GoogleMail" -> WebView(state = rememberWebViewState(url = GmailScreenLink))
                     "Showcases/CircularCarousel" -> WebView(state = rememberWebViewState(url = CarouselScreenLink))
-
+                    "Selection/DatePickers" -> WebView(state = rememberWebViewState(url = DatePickerLink))
+                    "Navigation/SearchBar" -> WebView(state = rememberWebViewState(url = SearchBarLink ))
                 }
             }
 

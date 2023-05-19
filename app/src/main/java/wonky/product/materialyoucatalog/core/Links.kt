@@ -16,3 +16,7 @@ const val SamsungAlarmScreenLink = "https://github.com/wonky81/MaterialYouCatalo
 const val TooltipsLink ="https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/containment/ToolTipScreen.kt#L32"
 const val FacebookLoginScreenLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/showcases/facebooklogin/FacebookLoginScreen.kt#L65"
 const val GmailScreenLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/showcases/gmail/GmailScreen.kt#L53"
+const val CarouselScreenLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/showcases/circularcarousel/CircularCarouselScreen.kt#L40"
+const val BadgeScreenLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/containment/BadgeScreen.kt#L26"
+const val DatePickerLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/selection/DatePickerScreen.kt#L54"
+const val SearchBarLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/navigation/SearchBarScreen.kt#L38"
