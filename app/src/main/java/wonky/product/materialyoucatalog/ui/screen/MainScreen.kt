@@ -57,7 +57,9 @@ import wonky.product.materialyoucatalog.ui.screen.containment.DialogScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.ToolTipScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.AppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
+import wonky.product.materialyoucatalog.ui.screen.navigation.SearchBarScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.ChipScreen
+import wonky.product.materialyoucatalog.ui.screen.selection.DatePickerScreen
 import wonky.product.materialyoucatalog.ui.screen.selection.SliderScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.circularcarousel.CircularCarouselScreen
 import wonky.product.materialyoucatalog.ui.screen.showcases.facebooklogin.FacebookLoginScreen
@@ -298,6 +300,8 @@ fun MainContent(
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
                 composable(DrawerMenu.Tooltips.route) { ToolTipScreen() }
                 composable(DrawerMenu.Badges.route) { BadgeScreen()}
+                composable(DrawerMenu.DatePickers.route){ DatePickerScreen()}
+                composable(DrawerMenu.SearchBar.route) { SearchBarScreen()}
 
             }
         }
@@ -433,6 +437,7 @@ fun SourceCodeScreen(
                     "Containment/Cards" -> WebView(state = rememberWebViewState(url = CardsLink))
                     "Containment/Dialogs" -> WebView(state = rememberWebViewState(url = DialogsLink))
                     "Containment/Tooltips" -> WebView(state = rememberWebViewState(url = TooltipsLink))
+                    "Containment/Badges" -> WebView(state = rememberWebViewState(url = BadgeScreenLink))
                     "Navigation/AppBar" -> WebView(state = rememberWebViewState(url = AppBarLink))
                     "Navigation/NavigationRail" -> WebView(state = rememberWebViewState(url = NavigationRailLink))
                     "Selection/Chips" -> WebView(state = rememberWebViewState(url = ChipsLink))
@@ -444,6 +449,8 @@ fun SourceCodeScreen(
                     "Showcases/SamsungAlarm" -> WebView(state = rememberWebViewState(url = SamsungAlarmScreenLink))
                     "Showcases/FacebookLogin" -> WebView(state = rememberWebViewState(url = FacebookLoginScreenLink))
                     "Showcases/GoogleMail" -> WebView(state = rememberWebViewState(url = GmailScreenLink))
+                    "Showcases/CircularCarousel" -> WebView(state = rememberWebViewState(url = CarouselScreenLink))
+
                 }
             }
 

@@ -57,11 +57,13 @@ private val containmentScreens = listOf(
 private val navigationScreens = listOf(
     DrawerMenu.AppBar,
     DrawerMenu.NavigationRail,
+    DrawerMenu.SearchBar,
 )
 
 private val selectionScreens = listOf(
     DrawerMenu.Chips,
-    DrawerMenu.Sliders
+    DrawerMenu.Sliders,
+    DrawerMenu.DatePickers
 )
 
 private val textInputsScreens = listOf(

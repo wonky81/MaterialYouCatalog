@@ -26,9 +26,13 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
     object AppBar : DrawerMenu("AppBar", "Navigation/AppBar", Icons.Default.ViewSidebar)
     object NavigationRail : DrawerMenu("NavigationRail", "Navigation/NavigationRail", Icons.Default.Navigation)
 
+    object SearchBar : DrawerMenu( "SearchBar", "Navigation/SearchBar", Icons.Default.Search)
+
     //Selection
     object Chips : DrawerMenu("Chips", "Selection/Chips", Icons.Default.Notifications)
     object Sliders : DrawerMenu("Sliders", "Selection/Sliders", Icons.Default.DoorSliding)
+
+    object DatePickers: DrawerMenu("DatePickers", "Selection/DatePickers", Icons.Default.DateRange)
 
     //TextInputs
     object TextFields : DrawerMenu("TextFields", "TextInputs/TextFields", Icons.Default.TextFields)
