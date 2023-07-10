@@ -2,6 +2,7 @@ package wonky.product.materialyoucatalog.ui.screen
 
 import android.annotation.SuppressLint
 import android.os.Build
+import android.webkit.WebView
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -54,6 +55,7 @@ import wonky.product.materialyoucatalog.ui.screen.communication.ProgressIndicato
 import wonky.product.materialyoucatalog.ui.screen.containment.BadgeScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.CardScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.DialogScreen
+import wonky.product.materialyoucatalog.ui.screen.containment.TabScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.ToolTipScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.AppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
@@ -302,6 +304,7 @@ fun MainContent(
                 composable(DrawerMenu.Badges.route) { BadgeScreen()}
                 composable(DrawerMenu.DatePickers.route){ DatePickerScreen()}
                 composable(DrawerMenu.SearchBar.route) { SearchBarScreen()}
+                composable(DrawerMenu.Tab.route) { TabScreen() }
 
             }
         }
@@ -380,7 +383,8 @@ fun PaletteDialogScreen(
                                 ) {}
                                 Spacer(modifier = Modifier.padding(vertical = 4.dp))
                                 Text(
-                                    text = it.paletteName
+                                    text = it.paletteName,
+                                    style = MaterialTheme.typography.labelMedium
                                 )
                             }
 
@@ -452,6 +456,7 @@ fun SourceCodeScreen(
                     "Showcases/CircularCarousel" -> WebView(state = rememberWebViewState(url = CarouselScreenLink))
                     "Selection/DatePickers" -> WebView(state = rememberWebViewState(url = DatePickerLink))
                     "Navigation/SearchBar" -> WebView(state = rememberWebViewState(url = SearchBarLink ))
+                    "Containment/Tab" -> WebView(state = rememberWebViewState(url = TabLink))
                 }
             }
 

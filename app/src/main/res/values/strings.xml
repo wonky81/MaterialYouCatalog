@@ -17,5 +17,9 @@
     <string name="overview_animated_content">AnimatedContent is used when animating content change in layout and swapping content based on state.</string>
     <string name="overview_update_transition">UpdateTransition is used when it is state-based and happens during composition. It is animating multiple values simultaneously and animation is finite.</string>
     <string name="overview_tooltip">Tooltips are informative, specific, and action-oriented text labels that provide contextual support</string>
+    <string name="overview_badge">Badges convey dynamic information, such as counts or status. A badge can include labels or numbers.</string>
+    <string name="overview_date_picker">Date pickers let people select a date, or a range of dates.</string>
+    <string name="overview_search_bar">Search allows users to enter a keyword or phrase and get relevant information. It’s an alternative to other forms of navigation.</string>
     <string name="rich_tooltips_message">Rich tooltips bring attention to a particular element of feature that warrants the user\'s focus. It supports multiple lines of informational text.</string>
+    <string name="overview_tab">Tabs organize content across different screens and views</string>
 </resources>
