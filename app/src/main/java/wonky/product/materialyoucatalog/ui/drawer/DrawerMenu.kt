@@ -19,6 +19,7 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
     object Cards : DrawerMenu("Cards", "Containment/Cards", Icons.Default.CardMembership)
     object Dialogs : DrawerMenu("Dialogs", "Containment/Dialogs", Icons.Default.Dialpad)
     object Tooltips : DrawerMenu("Tooltips", "Containment/Tooltips", Icons.Default.Campaign)
+    object Tab : DrawerMenu("Tab", "Containment/Tab", Icons.Default.Tab)
 
     object Badges : DrawerMenu("Badges", "Containment/Badges", Icons.Default.Badge)
 

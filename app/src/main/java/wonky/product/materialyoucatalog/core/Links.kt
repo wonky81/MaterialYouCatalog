@@ -20,3 +20,4 @@ const val CarouselScreenLink = "https://github.com/wonky81/MaterialYouCatalog/bl
 const val BadgeScreenLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/containment/BadgeScreen.kt#L26"
 const val DatePickerLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/selection/DatePickerScreen.kt#L54"
 const val SearchBarLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/navigation/SearchBarScreen.kt#L38"
+const val TabLink = ""

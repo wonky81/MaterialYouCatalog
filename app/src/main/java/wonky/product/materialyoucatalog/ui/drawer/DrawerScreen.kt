@@ -51,7 +51,8 @@ private val containmentScreens = listOf(
     DrawerMenu.Cards,
     DrawerMenu.Dialogs,
     DrawerMenu.Tooltips,
-    DrawerMenu.Badges
+    DrawerMenu.Badges,
+    DrawerMenu.Tab
 )
 
 private val navigationScreens = listOf(
