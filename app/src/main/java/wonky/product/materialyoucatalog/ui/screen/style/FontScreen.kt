@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.DockedSearchBar
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -32,15 +33,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import wonky.product.materialyoucatalog.R
+import wonky.product.materialyoucatalog.ui.components.animation.AnimateColorAsStateSample
 import wonky.product.materialyoucatalog.ui.components.style.*
 import wonky.product.materialyoucatalog.ui.screen.*
 import kotlin.math.roundToInt
 
 @Composable
 fun FontScreen() {
-    // should be in Range 11.sp ~ 57.sp
-    var fontSizeSliderValue by remember { mutableStateOf(0f)  }
-    var fontSize = convert(fontSizeSliderValue)
+
+    var fontSizeValue by remember { mutableStateOf(10f)  }
 
 
     MaterialContents {
@@ -64,35 +65,34 @@ fun FontScreen() {
         LabelSmallText(text = "Label Small")
 
 
-
-
-/*        MaterialElementScreen(
-            title = "Font Size in DP",
-            componentContent = {
-                Column(
-                    modifier = Modifier.height(300.dp)
-                ) {
-                    Text(
-                        text = " ${fontSize.spToDp()} dp ",
-                        fontSize = fontSize.sp
-                    )
-                }
-            },
-            controlContent = {
-
-                Column(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.Start,
-                    verticalArrangement = Arrangement.Center
-                ) {
-
-                    Slider(
-                        value = fontSizeSliderValue,
-                        onValueChange = { fontSizeSliderValue = it }
-                    )
-                }
-            }
-        )*/
+//
+//        MaterialElementScreen(
+//            title = "Font Size in DP",
+//            componentContent = {
+//                Column(
+//                    modifier = Modifier.height(300.dp)
+//                ) {
+//                    Text(
+//                        text = "${fontSizeValue} sp",
+//                        fontSize = fontSizeValue.sp
+//                    )
+//                }
+//            },
+//            controlContent = {
+//
+//                Column(
+//                    modifier = Modifier.fillMaxWidth(),
+//                    horizontalAlignment = Alignment.Start,
+//                    verticalArrangement = Arrangement.Center
+//                ) {
+//
+//                    Slider(
+//                        value = fontSizeValue,
+//                        onValueChange = { fontSizeValue = it }
+//                    )
+//                }
+//            }
+//        )
     }
 }
 

@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -57,6 +58,7 @@ import wonky.product.materialyoucatalog.ui.screen.containment.CardScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.DialogScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.TabScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.ToolTipScreen
+import wonky.product.materialyoucatalog.ui.screen.layouts.ColumnAndRowScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.AppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.SearchBarScreen
@@ -305,13 +307,15 @@ fun MainContent(
                 composable(DrawerMenu.DatePickers.route){ DatePickerScreen()}
                 composable(DrawerMenu.SearchBar.route) { SearchBarScreen()}
                 composable(DrawerMenu.Tab.route) { TabScreen() }
-
+                composable(DrawerMenu.ColumnAndRow.route){ ColumnAndRowScreen() }
             }
         }
         if (showCodeScreen) {
             SourceCodeScreen(
                 currentRoute = currentRoute,
-                onDismissed = { showCodeScreen = false }
+                onClose = {
+                    showCodeScreen = false
+                }
             )
         }
     }
@@ -410,8 +414,36 @@ fun PaletteDialogScreen(
 @Composable
 fun SourceCodeScreen(
     currentRoute: String,
-    onDismissed: () -> Unit,
+    onClose: () -> Unit
 ) {
+    val link = when (currentRoute) {
+        "Actions/Buttons" -> ButtonsLink
+        "Communication/ProgressIndicators" -> ProgressIndicatorLink
+        "Containment/Cards" -> CardsLink
+        "Containment/Dialogs" -> DialogsLink
+        "Containment/Tooltips" -> TooltipsLink
+        "Containment/Badges" -> BadgeScreenLink
+        "Navigation/AppBar" -> AppBarLink
+        "Navigation/NavigationRail" -> NavigationRailLink
+        "Selection/Chips" -> ChipsLink
+        "Selection/Sliders" -> SlidersLink
+        "TextInputs/TextFields" -> TextFieldsLink
+        "Animation/AnimatedVisibility" -> AnimatedVisibilityLink
+        "Animation/AnimatedAsState" -> AnimatedAsStateLink
+        "Animation/AnimatedContent" -> AnimatedContentLink
+        "Showcases/SamsungAlarm" -> SamsungAlarmScreenLink
+        "Showcases/FacebookLogin" -> FacebookLoginScreenLink
+        "Showcases/GoogleMail" -> GmailScreenLink
+        "Showcases/CircularCarousel" -> CarouselScreenLink
+        "Selection/DatePickers" -> DatePickerLink
+        "Navigation/SearchBar" -> SearchBarLink
+        "Containment/Tab" -> TabLink
+        else -> ""
+    }
+    val uriHandler = LocalUriHandler.current
+    uriHandler.openUri(link)
+    onClose()
+    /*
     Dialog(
         properties = DialogProperties(usePlatformDefaultWidth = false),
         onDismissRequest = onDismissed
@@ -435,31 +467,32 @@ fun SourceCodeScreen(
                         fontWeight = FontWeight.Bold
                     )
                 }
-                when (currentRoute) {
-                    "Actions/Buttons" -> WebView(state = rememberWebViewState(url = ButtonsLink))
-                    "Communication/ProgressIndicators" -> WebView(state = rememberWebViewState(url = ProgressIndicatorLink))
-                    "Containment/Cards" -> WebView(state = rememberWebViewState(url = CardsLink))
-                    "Containment/Dialogs" -> WebView(state = rememberWebViewState(url = DialogsLink))
-                    "Containment/Tooltips" -> WebView(state = rememberWebViewState(url = TooltipsLink))
-                    "Containment/Badges" -> WebView(state = rememberWebViewState(url = BadgeScreenLink))
-                    "Navigation/AppBar" -> WebView(state = rememberWebViewState(url = AppBarLink))
-                    "Navigation/NavigationRail" -> WebView(state = rememberWebViewState(url = NavigationRailLink))
-                    "Selection/Chips" -> WebView(state = rememberWebViewState(url = ChipsLink))
-                    "Selection/Sliders" -> WebView(state = rememberWebViewState(url = SlidersLink))
-                    "TextInputs/TextFields" -> WebView(state = rememberWebViewState(url = TextFieldsLink))
-                    "Animation/AnimatedVisibility" -> WebView(state = rememberWebViewState(url = AnimatedVisibilityLink))
-                    "Animation/AnimatedAsState" -> WebView(state = rememberWebViewState(url = AnimatedAsStateLink))
-                    "Animation/AnimatedContent" -> WebView(state = rememberWebViewState(url = AnimatedContentLink))
-                    "Showcases/SamsungAlarm" -> WebView(state = rememberWebViewState(url = SamsungAlarmScreenLink))
-                    "Showcases/FacebookLogin" -> WebView(state = rememberWebViewState(url = FacebookLoginScreenLink))
-                    "Showcases/GoogleMail" -> WebView(state = rememberWebViewState(url = GmailScreenLink))
-                    "Showcases/CircularCarousel" -> WebView(state = rememberWebViewState(url = CarouselScreenLink))
-                    "Selection/DatePickers" -> WebView(state = rememberWebViewState(url = DatePickerLink))
-                    "Navigation/SearchBar" -> WebView(state = rememberWebViewState(url = SearchBarLink ))
-                    "Containment/Tab" -> WebView(state = rememberWebViewState(url = TabLink))
-                }
+//                val link = when (currentRoute) {
+//                    "Actions/Buttons" -> WebView(state = rememberWebViewState(url = ButtonsLink))
+//                    "Communication/ProgressIndicators" -> WebView(state = rememberWebViewState(url = ProgressIndicatorLink))
+//                    "Containment/Cards" -> WebView(state = rememberWebViewState(url = CardsLink))
+//                    "Containment/Dialogs" -> WebView(state = rememberWebViewState(url = DialogsLink))
+//                    "Containment/Tooltips" -> WebView(state = rememberWebViewState(url = TooltipsLink))
+//                    "Containment/Badges" -> WebView(state = rememberWebViewState(url = BadgeScreenLink))
+//                    "Navigation/AppBar" -> WebView(state = rememberWebViewState(url = AppBarLink))
+//                    "Navigation/NavigationRail" -> WebView(state = rememberWebViewState(url = NavigationRailLink))
+//                    "Selection/Chips" -> WebView(state = rememberWebViewState(url = ChipsLink))
+//                    "Selection/Sliders" -> WebView(state = rememberWebViewState(url = SlidersLink))
+//                    "TextInputs/TextFields" -> WebView(state = rememberWebViewState(url = TextFieldsLink))
+//                    "Animation/AnimatedVisibility" -> WebView(state = rememberWebViewState(url = AnimatedVisibilityLink))
+//                    "Animation/AnimatedAsState" -> WebView(state = rememberWebViewState(url = AnimatedAsStateLink))
+//                    "Animation/AnimatedContent" -> WebView(state = rememberWebViewState(url = AnimatedContentLink))
+//                    "Showcases/SamsungAlarm" -> WebView(state = rememberWebViewState(url = SamsungAlarmScreenLink))
+//                    "Showcases/FacebookLogin" -> WebView(state = rememberWebViewState(url = FacebookLoginScreenLink))
+//                    "Showcases/GoogleMail" -> WebView(state = rememberWebViewState(url = GmailScreenLink))
+//                    "Showcases/CircularCarousel" -> WebView(state = rememberWebViewState(url = CarouselScreenLink))
+//                    "Selection/DatePickers" -> WebView(state = rememberWebViewState(url = DatePickerLink))
+//                    "Navigation/SearchBar" -> WebView(state = rememberWebViewState(url = SearchBarLink ))
+//                    "Containment/Tab" -> WebView(state = rememberWebViewState(url = TabLink))
+//                }
+
             }
 
         }
-    }
+    }*/
 }

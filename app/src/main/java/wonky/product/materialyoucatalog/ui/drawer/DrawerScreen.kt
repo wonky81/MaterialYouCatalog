@@ -20,6 +20,7 @@ enum class Category {
     Selection,
     TextInputs,
     Animation,
+    Layouts,
     Showcases
 }
 
@@ -77,6 +78,10 @@ private val animationScreens = listOf(
     DrawerMenu.AnimatedContent,
     //DrawerMenu.UpdateTransition
 )
+
+private val layoutScreens = listOf(
+    DrawerMenu.ColumnAndRow
+)
 @Composable
 fun DrawerScreen(
     selectedMenuRoute: String,
@@ -126,6 +131,7 @@ private fun SubMenuScreen(
             Category.Selection.name ->{ selectionScreens }
             Category.TextInputs.name ->{ textInputsScreens }
             Category.Animation.name -> { animationScreens }
+            Category.Layouts.name -> { layoutScreens }
             Category.Showcases.name -> { showcasesScreens }
             else -> { styleScreens }
         }

@@ -44,6 +44,8 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
     object AnimatedContent : DrawerMenu("AnimatedContent", "Animation/AnimatedContent", Icons.Default.Animation)
     object UpdateTransition : DrawerMenu("UpdateTransition", "Animation/UpdateTransition", Icons.Default.Animation)
 
+    object ColumnAndRow: DrawerMenu("Column and Row", "Layouts/ColumnAndRow", Icons.Default.Layers)
+
     // Showcases
     object SamsungAlarm : DrawerMenu("SamsungAlarm", "Showcases/SamsungAlarm", Icons.Default.Alarm)
     object CircularCarousel : DrawerMenu("CircularCarousel", "Showcases/CircularCarousel", Icons.Default.ViewCarousel)
