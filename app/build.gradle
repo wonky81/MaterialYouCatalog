@@ -7,14 +7,22 @@ plugins {
 
 android {
     namespace 'wonky.product.materialyoucatalog'
+    signingConfigs {
+        release {
+            storeFile file('D:\\dev\\restandroid_keystore.jks')
+            storePassword 'bird1219!'
+            keyAlias 'restandroid'
+            keyPassword 'bird1219!'
+        }
+    }
     compileSdk 33
 
     defaultConfig {
         applicationId "wonky.product.materialyoucatalog"
         minSdk 21
         targetSdk 33
-        versionCode 11
-        versionName "1.2"
+        versionCode 18
+        versionName "1.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -55,7 +63,7 @@ dependencies {
     implementation 'androidx.activity:activity-compose:1.3.1'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.compose.material3:material3:1.1.0-rc01'
+    implementation 'androidx.compose.material3:material3:1.1.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -67,7 +75,7 @@ dependencies {
     def inset_version = "0.21.3-beta"
     implementation "com.google.accompanist:accompanist-insets-ui:$inset_version"
     implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
-    implementation "com.google.accompanist:accompanist-webview:0.26.4-beta"
+    implementation "com.google.accompanist:accompanist-webview:0.31.5-beta"
 
     def compose_version = '1.0.1'
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
@@ -82,6 +90,8 @@ dependencies {
     def hilt_lifecycle_viewmodel = "1.0.0-alpha03"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_viewmodel"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_viewmodel"
+
+    implementation("io.coil-kt:coil-compose:2.3.0")
 
     // Admob
     implementation 'com.google.android.gms:play-services-ads:22.0.0'

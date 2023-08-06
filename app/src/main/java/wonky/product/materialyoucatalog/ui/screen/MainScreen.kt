@@ -438,6 +438,7 @@ fun SourceCodeScreen(
         "Selection/DatePickers" -> DatePickerLink
         "Navigation/SearchBar" -> SearchBarLink
         "Containment/Tab" -> TabLink
+        "Layouts/ColumnAndRow" -> ColumnAndRowLink
         else -> ""
     }
     val uriHandler = LocalUriHandler.current
