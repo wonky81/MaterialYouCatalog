@@ -304,11 +304,11 @@ fun MainContent(
                 composable(DrawerMenu.GoogleMail.route) { GmailMainScreen() }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
                 composable(DrawerMenu.Tooltips.route) { ToolTipScreen() }
-                composable(DrawerMenu.Badges.route) { BadgeScreen()}
-                composable(DrawerMenu.DatePickers.route){ DatePickerScreen()}
-                composable(DrawerMenu.SearchBar.route) { SearchBarScreen()}
+                composable(DrawerMenu.Badges.route) { BadgeScreen() }
+                composable(DrawerMenu.DatePickers.route) { DatePickerScreen() }
+                composable(DrawerMenu.SearchBar.route) { SearchBarScreen() }
                 composable(DrawerMenu.Tab.route) { TabScreen() }
-                composable(DrawerMenu.ColumnAndRow.route){ ColumnAndRowScreen() }
+                composable(DrawerMenu.ColumnAndRow.route) { ColumnAndRowScreen() }
                 composable(DrawerMenu.Box.route) { BoxScreen() }
             }
         }
@@ -441,6 +441,7 @@ fun SourceCodeScreen(
         "Navigation/SearchBar" -> SearchBarLink
         "Containment/Tab" -> TabLink
         "Layouts/ColumnAndRow" -> ColumnAndRowLink
+        "Layouts/Box" -> BoxLink
         else -> ""
     }
     val uriHandler = LocalUriHandler.current
