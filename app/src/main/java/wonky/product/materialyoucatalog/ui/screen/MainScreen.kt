@@ -58,6 +58,7 @@ import wonky.product.materialyoucatalog.ui.screen.containment.CardScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.DialogScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.TabScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.ToolTipScreen
+import wonky.product.materialyoucatalog.ui.screen.layouts.BoxScreen
 import wonky.product.materialyoucatalog.ui.screen.layouts.ColumnAndRowScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.AppBarScreen
 import wonky.product.materialyoucatalog.ui.screen.navigation.NavigationRailScreen
@@ -308,6 +309,7 @@ fun MainContent(
                 composable(DrawerMenu.SearchBar.route) { SearchBarScreen()}
                 composable(DrawerMenu.Tab.route) { TabScreen() }
                 composable(DrawerMenu.ColumnAndRow.route){ ColumnAndRowScreen() }
+                composable(DrawerMenu.Box.route) { BoxScreen() }
             }
         }
         if (showCodeScreen) {

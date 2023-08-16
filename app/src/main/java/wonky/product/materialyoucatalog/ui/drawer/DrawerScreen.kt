@@ -80,7 +80,8 @@ private val animationScreens = listOf(
 )
 
 private val layoutScreens = listOf(
-    DrawerMenu.ColumnAndRow
+    DrawerMenu.ColumnAndRow,
+    DrawerMenu.Box
 )
 @Composable
 fun DrawerScreen(

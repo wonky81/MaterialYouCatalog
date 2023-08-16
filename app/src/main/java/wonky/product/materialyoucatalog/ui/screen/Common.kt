@@ -17,10 +17,11 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import wonky.product.materialyoucatalog.ui.screen.layouts.ColumnAlignmentProperties
-import wonky.product.materialyoucatalog.ui.screen.layouts.ColumnArrangementProperties
-import wonky.product.materialyoucatalog.ui.screen.layouts.RowAlignmentProperties
-import wonky.product.materialyoucatalog.ui.screen.layouts.RowArrangementProperties
+import wonky.product.materialyoucatalog.ui.screen.layouts.BoxContentAlignmentProperties
+import wonky.product.materialyoucatalog.ui.screen.layouts.AlignmentHorizontalProperties
+import wonky.product.materialyoucatalog.ui.screen.layouts.AlignmentVerticalProperties
+import wonky.product.materialyoucatalog.ui.screen.layouts.ArrangementHorizontalProperties
+import wonky.product.materialyoucatalog.ui.screen.layouts.ArrangementVerticalProperties
 
 /*
 shape
@@ -321,12 +322,13 @@ fun ElevationSelector(
     }
 }
 
+
 @Composable
-fun ColumnArrangementPropertiesDropDownSelector(
+fun AlignmentHorizontalPropertiesDropDownSelector(
     modifier: Modifier,
     supportText: String,
-    currentSelection: ColumnArrangementProperties,
-    onChangeSelection: (ColumnArrangementProperties) -> Unit,
+    currentSelection: AlignmentHorizontalProperties,
+    onChangeSelection: (AlignmentHorizontalProperties) -> Unit,
 ){
     var dropDownMenuExpanded by remember { mutableStateOf(false) }
 
@@ -347,49 +349,7 @@ fun ColumnArrangementPropertiesDropDownSelector(
                 Icon(Icons.Default.ArrowDropDown, contentDescription = null)
             }
             DropdownMenu(expanded = dropDownMenuExpanded, onDismissRequest = { dropDownMenuExpanded = false }) {
-               ColumnArrangementProperties.values().forEach {
-                    DropdownMenuItem(
-                        text = { Text("${it.name}")},
-                        onClick = {
-                            dropDownMenuExpanded = false
-                            onChangeSelection(it)
-                        }
-                    )
-                }
-            }
-        }
-    }
-}
-
-
-
-@Composable
-fun ColumnAlignmentPropertiesDropDownSelector(
-    modifier: Modifier,
-    supportText: String,
-    currentSelection: ColumnAlignmentProperties,
-    onChangeSelection: (ColumnAlignmentProperties) -> Unit,
-){
-    var dropDownMenuExpanded by remember { mutableStateOf(false) }
-
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ){
-        Text("$supportText : ")
-        Spacer2h()
-        Box{
-            OutlinedButton(
-                shape = RectangleShape,
-                border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.primary),
-                onClick = { dropDownMenuExpanded = !dropDownMenuExpanded }
-            ) {
-                Text("${currentSelection.name}")
-                Spacer2h()
-                Icon(Icons.Default.ArrowDropDown, contentDescription = null)
-            }
-            DropdownMenu(expanded = dropDownMenuExpanded, onDismissRequest = { dropDownMenuExpanded = false }) {
-                ColumnAlignmentProperties.values().forEach {
+                AlignmentHorizontalProperties.values().forEach {
                     DropdownMenuItem(
                         text = { Text("${it.name}")},
                         onClick = {
@@ -404,11 +364,11 @@ fun ColumnAlignmentPropertiesDropDownSelector(
 }
 
 @Composable
-fun RowArrangementPropertiesDropDownSelector(
+fun AlignmentVerticalPropertiesDropDownSelector(
     modifier: Modifier,
     supportText: String,
-    currentSelection: RowArrangementProperties,
-    onChangeSelection: (RowArrangementProperties) -> Unit,
+    currentSelection: AlignmentVerticalProperties,
+    onChangeSelection: (AlignmentVerticalProperties) -> Unit,
 ){
     var dropDownMenuExpanded by remember { mutableStateOf(false) }
 
@@ -429,7 +389,7 @@ fun RowArrangementPropertiesDropDownSelector(
                 Icon(Icons.Default.ArrowDropDown, contentDescription = null)
             }
             DropdownMenu(expanded = dropDownMenuExpanded, onDismissRequest = { dropDownMenuExpanded = false }) {
-                RowArrangementProperties.values().forEach {
+                AlignmentVerticalProperties.values().forEach {
                     DropdownMenuItem(
                         text = { Text("${it.name}")},
                         onClick = {
@@ -443,12 +403,13 @@ fun RowArrangementPropertiesDropDownSelector(
     }
 }
 
+
 @Composable
-fun RowAlignmentPropertiesDropDownSelector(
+fun ArrangementHorizontalPropertiesDropDownSelector(
     modifier: Modifier,
     supportText: String,
-    currentSelection: RowAlignmentProperties,
-    onChangeSelection: (RowAlignmentProperties) -> Unit,
+    currentSelection: ArrangementHorizontalProperties,
+    onChangeSelection: (ArrangementHorizontalProperties) -> Unit,
 ){
     var dropDownMenuExpanded by remember { mutableStateOf(false) }
 
@@ -469,7 +430,87 @@ fun RowAlignmentPropertiesDropDownSelector(
                 Icon(Icons.Default.ArrowDropDown, contentDescription = null)
             }
             DropdownMenu(expanded = dropDownMenuExpanded, onDismissRequest = { dropDownMenuExpanded = false }) {
-                RowAlignmentProperties.values().forEach {
+                ArrangementHorizontalProperties.values().forEach {
+                    DropdownMenuItem(
+                        text = { Text("${it.name}")},
+                        onClick = {
+                            dropDownMenuExpanded = false
+                            onChangeSelection(it)
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+fun ArrangementVerticalPropertiesDropDownSelector(
+    modifier: Modifier,
+    supportText: String,
+    currentSelection: ArrangementVerticalProperties,
+    onChangeSelection: (ArrangementVerticalProperties) -> Unit,
+){
+    var dropDownMenuExpanded by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text("$supportText : ")
+        Spacer2h()
+        Box{
+            OutlinedButton(
+                shape = RectangleShape,
+                border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.primary),
+                onClick = { dropDownMenuExpanded = !dropDownMenuExpanded }
+            ) {
+                Text("${currentSelection.name}")
+                Spacer2h()
+                Icon(Icons.Default.ArrowDropDown, contentDescription = null)
+            }
+            DropdownMenu(expanded = dropDownMenuExpanded, onDismissRequest = { dropDownMenuExpanded = false }) {
+                ArrangementVerticalProperties.values().forEach {
+                    DropdownMenuItem(
+                        text = { Text("${it.name}")},
+                        onClick = {
+                            dropDownMenuExpanded = false
+                            onChangeSelection(it)
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+@Composable
+fun BoxAlignmentPropertiesDropDownSelector(
+    modifier: Modifier,
+    supportText: String,
+    currentSelection: BoxContentAlignmentProperties,
+    onChangeSelection: (BoxContentAlignmentProperties) -> Unit,
+){
+    var dropDownMenuExpanded by remember { mutableStateOf(false) }
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Text("$supportText : ")
+        Spacer2h()
+        Box{
+            OutlinedButton(
+                shape = RectangleShape,
+                border = BorderStroke(width = 1.dp, color = MaterialTheme.colorScheme.primary),
+                onClick = { dropDownMenuExpanded = !dropDownMenuExpanded }
+            ) {
+                Text("${currentSelection.name}")
+                Spacer2h()
+                Icon(Icons.Default.ArrowDropDown, contentDescription = null)
+            }
+            DropdownMenu(expanded = dropDownMenuExpanded, onDismissRequest = { dropDownMenuExpanded = false }) {
+                BoxContentAlignmentProperties.values().forEach {
                     DropdownMenuItem(
                         text = { Text("${it.name}")},
                         onClick = {
