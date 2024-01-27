@@ -20,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.gms.ads.AdRequest
@@ -40,7 +42,11 @@ fun PaletteScreen() {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        AdvertiseView()
+        Text(
+            text = "Material3 Palette Color",
+            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.titleMedium
+        )
         Spacer(modifier = Modifier.padding(vertical = 8.dp))
         PaletteItem("Primary", MaterialTheme.colorScheme.primary)
         PaletteItem( "onPrimary", MaterialTheme.colorScheme.onPrimary)
@@ -65,6 +71,7 @@ fun PaletteScreen() {
         PaletteItem( "Outline-Variant", MaterialTheme.colorScheme.outlineVariant)
         PaletteItem( "Surface-Variant", MaterialTheme.colorScheme.surfaceVariant)
         PaletteItem( "OnSurface-Variant", MaterialTheme.colorScheme.onSurfaceVariant)
+        AdvertiseView()
     }
 }
 

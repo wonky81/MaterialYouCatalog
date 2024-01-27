@@ -21,8 +21,8 @@ android {
         applicationId "wonky.product.materialyoucatalog"
         minSdk 21
         targetSdk 33
-        versionCode 18
-        versionName "1.8"
+        versionCode 111
+        versionName "1.11"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
