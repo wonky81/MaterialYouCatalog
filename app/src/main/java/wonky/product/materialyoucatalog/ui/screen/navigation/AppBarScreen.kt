@@ -130,7 +130,7 @@ fun AppBarScreen() {
         MaterialElementScreen(
             title = "Small TopAppBar",
             componentContent = {
-                MYSmallTopAppBar(
+                MYTopAppBar(
                     modifier = Padding6h()
                 )
             },
@@ -169,7 +169,7 @@ fun AppBarScreen() {
 
                         }
                         KindTopAppBar.Small -> {
-                            MYSmallTopAppBar()
+                            MYTopAppBar()
 
                         }
                     }

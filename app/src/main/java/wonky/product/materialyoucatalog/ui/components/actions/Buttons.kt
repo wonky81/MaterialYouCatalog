@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Alarm
+import androidx.compose.material.icons.filled.BookmarkBorder
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -127,6 +129,66 @@ fun MYIconButton(
                 Icons.Filled.Alarm,
                 contentDescription = null
             )
+        }
+    }
+}
+
+@Composable
+fun MYSingleChoiceSegmentedButton(
+    enabled: Boolean
+){
+    var selectedIndex by remember { mutableStateOf(0) }
+    val options = listOf("First", "Second", "Third")
+    SingleChoiceSegmentedButtonRow {
+        options.forEachIndexed { index, label ->
+            SegmentedButton(
+                shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
+                onClick = { selectedIndex = index },
+                selected = index == selectedIndex,
+                enabled = enabled
+            ){
+                Text(label)
+            }
+        }
+    }
+}
+
+@Composable
+fun MYMultiChoiceSegmentedButton(
+    enabled: Boolean
+){
+    val checkedList = remember { mutableStateListOf<Int>() }
+    val options = listOf("Favorites", "Trending", "Saved")
+    val icons = listOf(
+        Icons.Filled.StarBorder,
+        Icons.AutoMirrored.Filled.TrendingUp,
+        Icons.Filled.BookmarkBorder
+    )
+    MultiChoiceSegmentedButtonRow {
+        options.forEachIndexed { index, label ->
+            SegmentedButton(
+                shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
+                icon = {
+                    SegmentedButtonDefaults.Icon(active = index in checkedList) {
+                        Icon(
+                            imageVector = icons[index],
+                            contentDescription = null,
+                            modifier = Modifier.size(SegmentedButtonDefaults.IconSize)
+                        )
+                    }
+                },
+                onCheckedChange = {
+                    if (index in checkedList) {
+                        checkedList.remove(index)
+                    } else {
+                        checkedList.add(index)
+                    }
+                },
+                checked = index in checkedList,
+                enabled = enabled
+            ) {
+                Text(label)
+            }
         }
     }
 }

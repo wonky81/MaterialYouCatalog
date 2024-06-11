@@ -1,11 +1,9 @@
 package wonky.product.materialyoucatalog.ui.screen.actions
 
-import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -18,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import wonky.product.materialyoucatalog.R
 import wonky.product.materialyoucatalog.ui.components.actions.*
 import wonky.product.materialyoucatalog.ui.components.selection.MYSwitch
-import wonky.product.materialyoucatalog.ui.components.selection.MYSwitchChecked
 import wonky.product.materialyoucatalog.ui.screen.*
 
 @Composable
@@ -52,6 +49,8 @@ fun ButtonScreen(
     var filledIconButtonEnabled by remember { mutableStateOf(true) }
     var filledTonalIconButtonEnabled by remember { mutableStateOf(true) }
     var outlinedIconButtonEnabled by remember { mutableStateOf(true) }
+    var singleChoiceSegButtonEnabled by remember { mutableStateOf(true) }
+    var multiChoiceSegButtonEnabled by remember { mutableStateOf(true) }
 
 
     MaterialContents {
@@ -185,12 +184,28 @@ fun ButtonScreen(
         )
 
         MaterialElementScreen(
-            title = "Segmented Button",
+            title = "Single Choice Segmented Button",
             componentContent = {
-                MainWarningMessage(stringResource(R.string.not_available_message))
+                MYSingleChoiceSegmentedButton(singleChoiceSegButtonEnabled)
             },
             controlContent = {
+                CheckBoxWithText(
+                    checked = singleChoiceSegButtonEnabled,
+                    onCheckedChange = { singleChoiceSegButtonEnabled = it },
+                    text = "Enabled")
+            }
+        )
 
+        MaterialElementScreen(
+            title = "Multi Choice Segmented Button",
+            componentContent = {
+                MYMultiChoiceSegmentedButton(multiChoiceSegButtonEnabled)
+            },
+            controlContent = {
+                CheckBoxWithText(
+                    checked = multiChoiceSegButtonEnabled,
+                    onCheckedChange = { multiChoiceSegButtonEnabled = it },
+                    text = "Enabled")
             }
         )
 
