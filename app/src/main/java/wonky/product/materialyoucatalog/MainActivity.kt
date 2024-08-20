@@ -76,7 +76,8 @@ fun AppScreen(
     dynamicColorEnabled: Boolean,
     onChangeDynamicColorEnabled: (Boolean) -> Unit
 ) {
-    val transitionState = remember { MutableTransitionState(SplashState.Shown) }
+    // Splash will not be used according to the google policy.
+    val transitionState = remember { MutableTransitionState(SplashState.Completed) }
     val transition = updateTransition(transitionState, label = "splashTransition")
 
 
@@ -115,10 +116,10 @@ fun AppScreen(
         color = backgroundColor
     ) {
         Box {
-            SplashScreen(
-                modifier = Modifier.alpha(splashAlpha),
-                onTimeout = { transitionState.targetState = SplashState.Completed }
-            )
+//            SplashScreen(
+//                modifier = Modifier.alpha(splashAlpha),
+//                onTimeout = { transitionState.targetState = SplashState.Completed }
+//            )
             MainScreen(
                 mainViewModel = mainViewModel,
                 modifier = Modifier.alpha(contentAlpha),

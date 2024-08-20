@@ -7,7 +7,11 @@ import androidx.lifecycle.ViewModel
 import wonky.product.materialyoucatalog.ui.theme.blue.BlueDarkColors
 import wonky.product.materialyoucatalog.ui.theme.blue.BlueLightColors
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import wonky.product.materialyoucatalog.core.PrefHelper
+import wonky.product.materialyoucatalog.core.PrefHelper.AdCountsDefault
+import wonky.product.materialyoucatalog.core.PrefHelper.PREF_KEY_AD_COUNTS
 import wonky.product.materialyoucatalog.core.PrefHelper.get
 import wonky.product.materialyoucatalog.core.PrefHelper.operation
 import wonky.product.materialyoucatalog.core.PrefHelper.put
@@ -36,6 +40,10 @@ enum class CatalogTheme(val paletteName: String, val lightColorScheme: ColorSche
 @HiltViewModel
 class MainViewModel  @Inject constructor(private val app: Application) : ViewModel() {
 
+    private val _adCounts = MutableStateFlow(PrefHelper.prefs(app.applicationContext)
+        .get(PrefHelper.PREF_KEY_AD_COUNTS, AdCountsDefault) as Int)
+
+
     val currentTheme = mutableStateOf(
         PrefHelper.prefs(app.applicationContext)
             .get(PrefHelper.KEY_CURRENT_THEME, DEFAULT_THEME) as String
@@ -46,5 +54,13 @@ class MainViewModel  @Inject constructor(private val app: Application) : ViewMod
         PrefHelper.prefs(app.applicationContext).operation {
             it.put(Pair(PrefHelper.KEY_CURRENT_THEME, theme))
         }
+    }
+
+    fun checkShowAd(): Boolean{
+        _adCounts.value++
+        PrefHelper.prefs(app.applicationContext).operation {
+            it.put(Pair(PREF_KEY_AD_COUNTS, _adCounts.value))
+        }
+        return _adCounts.value%3==0
     }
 }

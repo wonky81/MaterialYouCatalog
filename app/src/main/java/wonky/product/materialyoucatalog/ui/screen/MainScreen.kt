@@ -172,6 +172,7 @@ fun MainScreen(
             scrimColor = Color.Transparent
         ) {
             MainContent(
+                mainViewModel = mainViewModel,
                 drawerState = drawerState,
                 navController = navController,
                 fabShow = fabShow,
@@ -235,6 +236,7 @@ private fun BottomSheetContent(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainContent(
+    mainViewModel: MainViewModel,
     drawerState: DrawerState,
     navController: NavHostController,
     fabShow: Boolean,
@@ -251,7 +253,6 @@ fun MainContent(
     var sourceCodeProvided by remember { mutableStateOf(false) }
     var currentRoute by remember { mutableStateOf("Style/Palette") }
     var showCodeScreen by remember { mutableStateOf(false) }
-    var showCaseScreen by remember { mutableStateOf(false) }
     val context = LocalContext.current
 
     DisposableEffect(navController) {
@@ -329,6 +330,9 @@ fun MainContent(
                     onChangeFabShow(false)
                 }
                 composable(DrawerMenu.Buttons.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
                     ButtonScreen(
                         onChangeBottomSheetContent = onChangeBottomSheetContent,
                         onChangeBottomSheetHeight = onChangeBottomSheetHeight,
@@ -337,52 +341,134 @@ fun MainContent(
                     onChangeFabShow(false)
                 }
                 composable(DrawerMenu.Cards.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
                     CardScreen(onChangeBottomSheetContent, onChangeBottomSheetHeight)
                     onChangeFabShow(false)
                 }
-                composable(DrawerMenu.TextFields.route) { TextFieldScreen() }
-                composable(DrawerMenu.Fonts.route) { FontScreen() }
-                composable(DrawerMenu.ProgressIndicators.route) { ProgressIndicatorScreen() }
-                composable(DrawerMenu.Chips.route) { ChipScreen() }
-                composable(DrawerMenu.Sliders.route) { SliderScreen() }
-                composable(DrawerMenu.NavigationRail.route) { NavigationRailScreen() }
-                composable(DrawerMenu.AppBar.route) { AppBarScreen() }
-                composable(DrawerMenu.Dialogs.route) { DialogScreen() }
-                composable(DrawerMenu.AnimatedVisibility.route) { AnimatedVisibilityScreen() }
-                composable(DrawerMenu.AnimatedAsState.route) { AnimateAsStateScreen() }
-                composable(DrawerMenu.AnimatedContent.route) { AnimatedContentScreen() }
-                composable(DrawerMenu.SamsungAlarm.route) {
-                    FullScreenAd.showInterstitial(context = context) {
-                        showCaseScreen = true
+                composable(DrawerMenu.TextFields.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
                     }
+                    TextFieldScreen()
+                }
+                composable(DrawerMenu.Fonts.route) {
+                    FontScreen()
+                }
+                composable(DrawerMenu.ProgressIndicators.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    ProgressIndicatorScreen()
+                }
+                composable(DrawerMenu.Chips.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    ChipScreen()
+                }
+                composable(DrawerMenu.Sliders.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    SliderScreen()
+                }
+                composable(DrawerMenu.NavigationRail.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    NavigationRailScreen()
+                }
+                composable(DrawerMenu.AppBar.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    AppBarScreen()
+                }
+                composable(DrawerMenu.Dialogs.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    DialogScreen()
+                }
+                composable(DrawerMenu.AnimatedVisibility.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    AnimatedVisibilityScreen()
+                }
+                composable(DrawerMenu.AnimatedAsState.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    AnimateAsStateScreen()
+                }
+                composable(DrawerMenu.AnimatedContent.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    AnimatedContentScreen()
+                }
+                composable(DrawerMenu.SamsungAlarm.route) {
+                    FullScreenAd.showInterstitial(context = context) {}
                     SamsungAlarmScreen()
                 }
                 composable(DrawerMenu.CircularCarousel.route) {
-                    FullScreenAd.showInterstitial(context = context) {
-                        showCaseScreen = true
-                    }
+                    FullScreenAd.showInterstitial(context = context) {}
                     CircularCarouselScreen()
                 }
                 composable(DrawerMenu.FacebookLogin.route) {
-                    FullScreenAd.showInterstitial(context = context) {
-                        showCaseScreen = true
-                    }
+                    FullScreenAd.showInterstitial(context = context) {}
                     FacebookLoginScreen()
                 }
                 composable(DrawerMenu.GoogleMail.route) {
-                    FullScreenAd.showInterstitial(context = context) {
-                        showCaseScreen = true
-                    }
+                    FullScreenAd.showInterstitial(context = context) {}
                     GmailMainScreen()
                 }
                 //composable(DrawerMenu.UpdateTransition.route) { UpdateTransitionScreen() }
-                composable(DrawerMenu.Tooltips.route) { ToolTipScreen() }
-                composable(DrawerMenu.Badges.route) { BadgeScreen() }
-                composable(DrawerMenu.DatePickers.route) { DatePickerScreen() }
-                composable(DrawerMenu.SearchBar.route) { SearchBarScreen() }
-                composable(DrawerMenu.Tab.route) { TabScreen() }
-                composable(DrawerMenu.ColumnAndRow.route) { ColumnAndRowScreen() }
-                composable(DrawerMenu.Box.route) { BoxScreen() }
+                composable(DrawerMenu.Tooltips.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    ToolTipScreen()
+                }
+                composable(DrawerMenu.Badges.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    BadgeScreen()
+                }
+                composable(DrawerMenu.DatePickers.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    DatePickerScreen()
+                }
+                composable(DrawerMenu.SearchBar.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    SearchBarScreen()
+                }
+                composable(DrawerMenu.Tab.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    TabScreen()
+                }
+                composable(DrawerMenu.ColumnAndRow.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    ColumnAndRowScreen()
+                }
+                composable(DrawerMenu.Box.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    BoxScreen()
+                }
             }
         }
         if (showCodeScreen) {

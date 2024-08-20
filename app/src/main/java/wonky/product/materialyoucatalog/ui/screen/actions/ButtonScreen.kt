@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import wonky.product.materialyoucatalog.R
@@ -57,6 +58,19 @@ fun ButtonScreen(
         Overview(stringResource(R.string.overview_buttons))
         MaterialElementScreen(
             title = "Elevated Button",
+            hasSourceCode = true,
+            sourceCodeContent = buildAnnotatedString {
+                append("    ElevatedButton(\n" +
+                        "        enabled = enabled,\n" +
+                        "        shape = shape,\n" +
+                        "        colors = colors,\n" +
+                        "        elevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = defaultElevation, disabledElevation = disabledElevation),\n" +
+                        "        border = border,\n" +
+                        "        onClick = { /*TODO*/ }\n" +
+                        "    ) {\n" +
+                        "        Text(\"ElevatedButton\")\n" +
+                        "    }")
+            },
             componentContent = {
                 MYElevatedButton(
                     enabled = elevatedButtonEnabled,

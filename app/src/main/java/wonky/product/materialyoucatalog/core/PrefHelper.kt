@@ -8,6 +8,10 @@ object PrefHelper {
 
     const val KEY_CURRENT_THEME = "key_current_theme"
 
+    const val PREF_KEY_AD_COUNTS="key_ad_counts"
+
+    const val AdCountsDefault = 0
+
     fun prefs(context: Context): SharedPreferences =
         context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
