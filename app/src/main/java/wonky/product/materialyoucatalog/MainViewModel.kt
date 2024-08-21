@@ -2,7 +2,10 @@ package wonky.product.materialyoucatalog
 
 import android.app.Application
 import androidx.compose.material3.ColorScheme
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import wonky.product.materialyoucatalog.ui.theme.blue.BlueDarkColors
 import wonky.product.materialyoucatalog.ui.theme.blue.BlueLightColors
@@ -15,6 +18,7 @@ import wonky.product.materialyoucatalog.core.PrefHelper.PREF_KEY_AD_COUNTS
 import wonky.product.materialyoucatalog.core.PrefHelper.get
 import wonky.product.materialyoucatalog.core.PrefHelper.operation
 import wonky.product.materialyoucatalog.core.PrefHelper.put
+import wonky.product.materialyoucatalog.ui.drawer.DrawerMenu
 import wonky.product.materialyoucatalog.ui.theme.deeporange.DeepOrangeDarkColors
 import wonky.product.materialyoucatalog.ui.theme.deeporange.DeepOrangeLightColors
 import wonky.product.materialyoucatalog.ui.theme.green.GreenDarkColors
@@ -28,7 +32,11 @@ import javax.inject.Inject
 
 val DEFAULT_THEME = CatalogTheme.RED_THEME.name
 
-enum class CatalogTheme(val paletteName: String, val lightColorScheme: ColorScheme, val darkColorScheme: ColorScheme) {
+enum class CatalogTheme(
+    val paletteName: String,
+    val lightColorScheme: ColorScheme,
+    val darkColorScheme: ColorScheme
+) {
     RED_THEME("RED", RedLightColors, RedDarkColors),
     TEAL_THEME("TEAL", TealLightColors, TealDarkColors),
     BLUE_THEME("BLUE", BlueLightColors, BlueDarkColors),
@@ -38,10 +46,59 @@ enum class CatalogTheme(val paletteName: String, val lightColorScheme: ColorSche
 
 
 @HiltViewModel
-class MainViewModel  @Inject constructor(private val app: Application) : ViewModel() {
+class MainViewModel @Inject constructor(private val app: Application) : ViewModel() {
 
-    private val _adCounts = MutableStateFlow(PrefHelper.prefs(app.applicationContext)
-        .get(PrefHelper.PREF_KEY_AD_COUNTS, AdCountsDefault) as Int)
+
+    private val _menuList = MutableStateFlow(
+        listOf(
+            DrawerMenu.Palette,
+            DrawerMenu.Fonts,
+            DrawerMenu.Buttons,
+            DrawerMenu.ProgressIndicators,
+            DrawerMenu.Cards,
+            DrawerMenu.Dialogs,
+            DrawerMenu.Tooltips,
+            DrawerMenu.Badges,
+            DrawerMenu.Tab,
+            DrawerMenu.AppBar,
+            DrawerMenu.NavigationRail,
+            DrawerMenu.SearchBar,
+            DrawerMenu.Chips,
+            DrawerMenu.Sliders,
+            DrawerMenu.DatePickers,
+            DrawerMenu.TextFields,
+            DrawerMenu.AnimatedVisibility,
+            DrawerMenu.AnimatedAsState,
+            DrawerMenu.AnimatedContent,
+            DrawerMenu.ColumnAndRow,
+            DrawerMenu.Box,
+            DrawerMenu.SamsungAlarm,
+            DrawerMenu.CircularCarousel,
+            DrawerMenu.FacebookLogin,
+            DrawerMenu.GoogleMail,
+        )
+    )
+
+    val menuList = _menuList.asStateFlow()
+
+    var _selectedMenuInDrawer = MutableStateFlow<DrawerMenu>(DrawerMenu.Home)
+    var selectedMenuInDrawer = _selectedMenuInDrawer.asStateFlow()
+
+//    var _selectedMenuRouteInDrawer = MutableStateFlow(DrawerMenu.Home.route)
+//    var selectedMenuRouteInDrawer = _selectedMenuRouteInDrawer.asStateFlow()
+
+//    fun setSelectedMenuRouteInDrawer(route: String) {
+//        _selectedMenuRouteInDrawer.value = route
+//    }
+
+    fun setSelectedMenuInDrawer(menu: DrawerMenu) {
+        _selectedMenuInDrawer.value = menu
+    }
+
+    private val _adCounts = MutableStateFlow(
+        PrefHelper.prefs(app.applicationContext)
+            .get(PrefHelper.PREF_KEY_AD_COUNTS, AdCountsDefault) as Int
+    )
 
 
     val currentTheme = mutableStateOf(
@@ -56,11 +113,11 @@ class MainViewModel  @Inject constructor(private val app: Application) : ViewMod
         }
     }
 
-    fun checkShowAd(): Boolean{
+    fun checkShowAd(): Boolean {
         _adCounts.value++
         PrefHelper.prefs(app.applicationContext).operation {
             it.put(Pair(PREF_KEY_AD_COUNTS, _adCounts.value))
         }
-        return _adCounts.value%3==0
+        return _adCounts.value % 3 == 0
     }
 }

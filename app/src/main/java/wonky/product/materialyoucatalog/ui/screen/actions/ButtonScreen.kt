@@ -58,13 +58,14 @@ fun ButtonScreen(
         Overview(stringResource(R.string.overview_buttons))
         MaterialElementScreen(
             title = "Elevated Button",
-            hasSourceCode = true,
+//            hasSourceCode = true,
+            hasSourceCode = false,
             sourceCodeContent = buildAnnotatedString {
                 append("    ElevatedButton(\n" +
-                        "        enabled = enabled,\n" +
+                        "        enabled = ${elevatedButtonEnabled},\n" +
                         "        shape = shape,\n" +
                         "        colors = colors,\n" +
-                        "        elevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = defaultElevation, disabledElevation = disabledElevation),\n" +
+                        "        elevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = ${elevatedButtonDefaultElevation.dp}, disabledElevation = ${elevatedButtonDisabledElevation.dp}),\n" +
                         "        border = border,\n" +
                         "        onClick = { /*TODO*/ }\n" +
                         "    ) {\n" +

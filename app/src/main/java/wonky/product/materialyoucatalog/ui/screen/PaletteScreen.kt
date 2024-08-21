@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -31,6 +32,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import wonky.product.materialyoucatalog.BuildConfig
+import wonky.product.materialyoucatalog.R
 
 
 @Composable
@@ -43,7 +45,7 @@ fun PaletteScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Material3 Palette Color",
+            text = stringResource(R.string.palette_overview),
             fontWeight = FontWeight.Bold,
             style = MaterialTheme.typography.titleMedium
         )
@@ -71,7 +73,7 @@ fun PaletteScreen() {
         PaletteItem( "Outline-Variant", MaterialTheme.colorScheme.outlineVariant)
         PaletteItem( "Surface-Variant", MaterialTheme.colorScheme.surfaceVariant)
         PaletteItem( "OnSurface-Variant", MaterialTheme.colorScheme.onSurfaceVariant)
-        AdvertiseView()
+//        AdvertiseView()
     }
 }
 

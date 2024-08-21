@@ -50,6 +50,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -144,7 +145,7 @@ fun MainScreen(
     val bottomSheetState =
         rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     var addPaletteDialog by remember { mutableStateOf(false) }
-    var selectedMenuRouteInDrawer by remember { mutableStateOf(DrawerMenu.Palette.route) }
+    val selectedMenuInDrawer by mainViewModel.selectedMenuInDrawer.collectAsState()
     var fabShow by remember { mutableStateOf(false) }
     var bottomSheetHeight by remember { mutableStateOf(320.dp) }
     var bottomSheetContent by remember { mutableStateOf<(@Composable () -> Unit)>({ Text("This should not be shown") }) }
@@ -154,10 +155,10 @@ fun MainScreen(
         drawerState = drawerState,
         drawerContent = {
             DrawerScreen(
-                selectedMenuRoute = selectedMenuRouteInDrawer,
+                selectedMenu = selectedMenuInDrawer,
                 onDestinationClicked = {
-                    selectedMenuRouteInDrawer = it
-                    navController.navigate(it)
+                    mainViewModel.setSelectedMenuInDrawer(it)
+                    navController.navigate(it.route)
                     composableScope.launch { drawerState.close() }
 
                 }
@@ -176,6 +177,7 @@ fun MainScreen(
                 drawerState = drawerState,
                 navController = navController,
                 fabShow = fabShow,
+                currentMenu =  selectedMenuInDrawer,
                 onChangePaletteDialog = { addPaletteDialog = it },
                 onShowBottomSheet = { composableScope.launch { bottomSheetState.show() } },
                 onChangeFabShow = { fabShow = it },
@@ -240,6 +242,7 @@ fun MainContent(
     drawerState: DrawerState,
     navController: NavHostController,
     fabShow: Boolean,
+    currentMenu: DrawerMenu,
     onChangePaletteDialog: (Boolean) -> Unit,
     onShowBottomSheet: () -> Unit,
     onChangeFabShow: (Boolean) -> Unit,
@@ -257,7 +260,8 @@ fun MainContent(
 
     DisposableEffect(navController) {
         val callback = NavController.OnDestinationChangedListener { controller, _, _ ->
-            sourceCodeProvided = controller.currentDestination?.route?.startsWith("Style") != true
+            sourceCodeProvided = (controller.currentDestination?.route?.startsWith("Style") == true ||
+                    controller.currentDestination?.route?.startsWith("Home") == true)!= true
             controller.currentDestination?.route?.let { currentRoute = it }
         }
         navController.addOnDestinationChangedListener(callback)
@@ -269,7 +273,7 @@ fun MainContent(
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(stringResource(R.string.app_title)) },
+                title = { Text(currentMenu.title) },
                 navigationIcon = {
                     IconButton(
                         onClick = {
@@ -314,7 +318,7 @@ fun MainContent(
             }
         },
         floatingActionButtonPosition = FabPosition.Center
-    ) {
+    ) { it ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -322,9 +326,20 @@ fun MainContent(
         ) {
             NavHost(
                 navController = navController,
-                startDestination = DrawerMenu.Palette.route,
+                startDestination = DrawerMenu.Home.route,
                 modifier = Modifier
             ) {
+
+                composable(DrawerMenu.Home.route) {
+                    HomeScreen(
+                        mainViewModel = mainViewModel,
+                        onSelected = { drawerMenu ->
+                            mainViewModel.setSelectedMenuInDrawer(drawerMenu)
+                            navController.navigate(drawerMenu.route)
+                        }
+                    )
+                }
+
                 composable(DrawerMenu.Palette.route) {
                     PaletteScreen()
                     onChangeFabShow(false)

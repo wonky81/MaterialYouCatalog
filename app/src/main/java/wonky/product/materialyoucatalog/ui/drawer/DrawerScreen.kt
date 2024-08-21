@@ -12,6 +12,7 @@ import wonky.product.materialyoucatalog.ui.screen.*
 
 
 enum class Category {
+    Home,
     Style,
     Actions,
     Communication,
@@ -23,6 +24,10 @@ enum class Category {
     Layouts,
     Showcases
 }
+
+private val homeScreens = listOf(
+    DrawerMenu.Home
+)
 
 private val showcasesScreens = listOf(
     //DrawerMenu.GoogleMail,
@@ -83,10 +88,11 @@ private val layoutScreens = listOf(
     DrawerMenu.ColumnAndRow,
     DrawerMenu.Box
 )
+
 @Composable
 fun DrawerScreen(
-    selectedMenuRoute: String,
-    onDestinationClicked: (route: String) -> Unit
+    selectedMenu: DrawerMenu,
+    onDestinationClicked: (menu: DrawerMenu) -> Unit
 ) {
 
     Surface(color = MaterialTheme.colorScheme.background) {
@@ -97,11 +103,11 @@ fun DrawerScreen(
                 .padding(16.dp)
         ) {
             Spacer12()
-            MainTitle(title = "Material3 Catalog" )
+            MainTitle(title = "Material3 Catalog")
             Spacer16v()
             Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 Category.values().forEachIndexed { index, category ->
-                    SubMenuScreen(category.name, index, selectedMenuRoute, onDestinationClicked)
+                    SubMenuScreen(category.name, index, selectedMenu.route, onDestinationClicked)
                 }
             }
         }
@@ -114,7 +120,7 @@ private fun SubMenuScreen(
     categoryName: String,
     position: Int,
     selectedMenuRoute: String,
-    onDestinationClicked: (route: String) -> Unit
+    onDestinationClicked: (menu: DrawerMenu) -> Unit
 ) {
     Column(
         modifier = Modifier.padding(start = 12.dp),
@@ -123,18 +129,55 @@ private fun SubMenuScreen(
     ) {
         SubTitleSmall(title = categoryName)
         Spacer6v()
-        var screens = when(categoryName){
-            Category.Style.name -> { styleScreens }
-            Category.Actions.name ->{ actionsScreens }
-            Category.Communication.name ->{ communicationScreens }
-            Category.Containment.name ->{ containmentScreens }
-            Category.Navigation.name ->{ navigationScreens }
-            Category.Selection.name ->{ selectionScreens }
-            Category.TextInputs.name ->{ textInputsScreens }
-            Category.Animation.name -> { animationScreens }
-            Category.Layouts.name -> { layoutScreens }
-            Category.Showcases.name -> { showcasesScreens }
-            else -> { styleScreens }
+        var screens = when (categoryName) {
+
+            Category.Home.name -> {
+                homeScreens
+            }
+
+            Category.Style.name -> {
+                styleScreens
+            }
+
+            Category.Actions.name -> {
+                actionsScreens
+            }
+
+            Category.Communication.name -> {
+                communicationScreens
+            }
+
+            Category.Containment.name -> {
+                containmentScreens
+            }
+
+            Category.Navigation.name -> {
+                navigationScreens
+            }
+
+            Category.Selection.name -> {
+                selectionScreens
+            }
+
+            Category.TextInputs.name -> {
+                textInputsScreens
+            }
+
+            Category.Animation.name -> {
+                animationScreens
+            }
+
+            Category.Layouts.name -> {
+                layoutScreens
+            }
+
+            Category.Showcases.name -> {
+                showcasesScreens
+            }
+
+            else -> {
+                styleScreens
+            }
         }
 
         screens.forEach {
@@ -142,12 +185,12 @@ private fun SubMenuScreen(
                 label = { Text(it.title) },
                 icon = { Icon(it.icon, contentDescription = null) },
                 selected = selectedMenuRoute == it.route,
-                onClick = { onDestinationClicked(it.route) }
+                onClick = { onDestinationClicked(it) }
             )
             Spacer(modifier = Modifier.padding(vertical = 4.dp))
         }
         Spacer6v()
-        if(position!=Category.values().lastIndex){
+        if (position != Category.values().lastIndex) {
             Divider(
                 modifier = Modifier
                     .padding(horizontal = 4.dp)

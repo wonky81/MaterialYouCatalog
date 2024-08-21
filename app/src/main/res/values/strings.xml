@@ -25,4 +25,6 @@
     <string name="overview_tab">Tabs organize content across different screens and views</string>
     <string name="overview_column_and_row">Column and Row are two of the most basic layout components in Jetpack Compose. They are used to arrange child composables in either a vertical or horizontal order.</string>
     <string name="overview_box">The Box layout is a simple layout that stacks its children in a single row or column, depending on the axis specified. It is a very versatile layout that can be used to create a variety of layouts, such as buttons, images, and text.</string>
+    <string name="overview_m3">Material Design 3 (M3) is the latest version of Google\'s open-source Material Design system.</string>
+    <string name="palette_overview">Create accessible, personal color schemes communicating your product\'s hierarchy, state, and brand.</string>
 </resources>
