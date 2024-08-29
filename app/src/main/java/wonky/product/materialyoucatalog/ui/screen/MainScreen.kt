@@ -84,6 +84,7 @@ import wonky.product.materialyoucatalog.core.BadgeScreenLink
 import wonky.product.materialyoucatalog.core.BoxLink
 import wonky.product.materialyoucatalog.core.ButtonsLink
 import wonky.product.materialyoucatalog.core.CardsLink
+import wonky.product.materialyoucatalog.core.CarouselLink
 import wonky.product.materialyoucatalog.core.CarouselScreenLink
 import wonky.product.materialyoucatalog.core.ChipsLink
 import wonky.product.materialyoucatalog.core.ColumnAndRowLink
@@ -623,6 +624,7 @@ fun SourceCodeScreen(
         "Containment/Tab" -> TabLink
         "Layouts/ColumnAndRow" -> ColumnAndRowLink
         "Layouts/Box" -> BoxLink
+        "Containment/Carousel" -> CarouselLink
         else -> ""
     }
     val uriHandler = LocalUriHandler.current

@@ -82,14 +82,12 @@ fun MenuItem(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
-            IconButton(
-                onClick = {}
-            ) {
-                Icon(
-                    imageVector = item.icon,
-                    contentDescription = item.title
-                )
-            }
+
+            Icon(
+                imageVector = item.icon,
+                contentDescription = item.title
+            )
+
 //            androidx.compose.material.IconButton() { }
 //            IconButton(
 //                imageVector = item.icon,
