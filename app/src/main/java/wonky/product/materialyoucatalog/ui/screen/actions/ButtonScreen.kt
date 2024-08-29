@@ -3,6 +3,7 @@ package wonky.product.materialyoucatalog.ui.screen.actions
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
@@ -14,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import dev.snipme.highlights.Highlights
 import wonky.product.materialyoucatalog.R
 import wonky.product.materialyoucatalog.ui.components.actions.*
 import wonky.product.materialyoucatalog.ui.components.selection.MYSwitch
@@ -52,26 +54,24 @@ fun ButtonScreen(
     var outlinedIconButtonEnabled by remember { mutableStateOf(true) }
     var singleChoiceSegButtonEnabled by remember { mutableStateOf(true) }
     var multiChoiceSegButtonEnabled by remember { mutableStateOf(true) }
+    val elevatedButtonMd by remember(elevatedButtonEnabled, elevatedButtonDefaultElevation, elevatedButtonDisabledElevation) { mutableStateOf(Highlights.Builder(code = """
+    ElevatedButton(
+        enabled = ${elevatedButtonEnabled},
+        elevation = ButtonDefaults.elevatedButtonElevation(
+            defaultElevation =  ${elevatedButtonDefaultElevation}.dp, 
+            disabledElevation = ${elevatedButtonDisabledElevation}.dp
+        )
+    )
+    """).build())}
 
+        MaterialContents {
 
-    MaterialContents {
         Overview(stringResource(R.string.overview_buttons))
         MaterialElementScreen(
             title = "Elevated Button",
 //            hasSourceCode = true,
-            hasSourceCode = false,
-            sourceCodeContent = buildAnnotatedString {
-                append("    ElevatedButton(\n" +
-                        "        enabled = ${elevatedButtonEnabled},\n" +
-                        "        shape = shape,\n" +
-                        "        colors = colors,\n" +
-                        "        elevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = ${elevatedButtonDefaultElevation.dp}, disabledElevation = ${elevatedButtonDisabledElevation.dp}),\n" +
-                        "        border = border,\n" +
-                        "        onClick = { /*TODO*/ }\n" +
-                        "    ) {\n" +
-                        "        Text(\"ElevatedButton\")\n" +
-                        "    }")
-            },
+            hasSourceCode = true,
+            sourceCodeContent = elevatedButtonMd,
             componentContent = {
                 MYElevatedButton(
                     enabled = elevatedButtonEnabled,
@@ -194,7 +194,8 @@ fun ButtonScreen(
                 CheckBoxWithText(
                     checked = switchEnabled,
                     onCheckedChange = { switchEnabled = it },
-                    text = "Enabled")
+                    text = "Enabled"
+                )
             }
         )
 
@@ -207,7 +208,8 @@ fun ButtonScreen(
                 CheckBoxWithText(
                     checked = singleChoiceSegButtonEnabled,
                     onCheckedChange = { singleChoiceSegButtonEnabled = it },
-                    text = "Enabled")
+                    text = "Enabled"
+                )
             }
         )
 
@@ -220,7 +222,8 @@ fun ButtonScreen(
                 CheckBoxWithText(
                     checked = multiChoiceSegButtonEnabled,
                     onCheckedChange = { multiChoiceSegButtonEnabled = it },
-                    text = "Enabled")
+                    text = "Enabled"
+                )
             }
         )
 
@@ -231,7 +234,11 @@ fun ButtonScreen(
                 MYIconButton(iconButtonEnabled)
             },
             controlContent = {
-                CheckBoxWithText(checked = iconButtonEnabled, onCheckedChange = {iconButtonEnabled = it}, text = "Enabled" )
+                CheckBoxWithText(
+                    checked = iconButtonEnabled,
+                    onCheckedChange = { iconButtonEnabled = it },
+                    text = "Enabled"
+                )
             }
         )
 
@@ -241,7 +248,11 @@ fun ButtonScreen(
                 MYFilledIconButton(filledIconButtonEnabled)
             },
             controlContent = {
-                CheckBoxWithText(checked = filledIconButtonEnabled, onCheckedChange = {filledIconButtonEnabled = it}, text = "Enabled" )
+                CheckBoxWithText(
+                    checked = filledIconButtonEnabled,
+                    onCheckedChange = { filledIconButtonEnabled = it },
+                    text = "Enabled"
+                )
             }
         )
 
@@ -251,7 +262,11 @@ fun ButtonScreen(
                 MYFilledTonalIconButton(filledTonalIconButtonEnabled)
             },
             controlContent = {
-                CheckBoxWithText(checked = filledTonalIconButtonEnabled, onCheckedChange = {filledTonalIconButtonEnabled = it}, text = "Enabled" )
+                CheckBoxWithText(
+                    checked = filledTonalIconButtonEnabled,
+                    onCheckedChange = { filledTonalIconButtonEnabled = it },
+                    text = "Enabled"
+                )
             }
         )
 
@@ -261,7 +276,11 @@ fun ButtonScreen(
                 MYOutlinedIconButton(outlinedIconButtonEnabled)
             },
             controlContent = {
-                CheckBoxWithText(checked = outlinedIconButtonEnabled, onCheckedChange = {outlinedIconButtonEnabled = it}, text = "Enabled" )
+                CheckBoxWithText(
+                    checked = outlinedIconButtonEnabled,
+                    onCheckedChange = { outlinedIconButtonEnabled = it },
+                    text = "Enabled"
+                )
             }
         )
 
@@ -277,11 +296,19 @@ fun ButtonScreen(
                 )
             },
             controlContent = {
-                Row{
-                    CheckBoxWithText(checked = iconToggleButtonEnabled, onCheckedChange = {iconToggleButtonEnabled = it}, text = "Enabled" )
-                    CheckBoxWithText(checked = iconToggleButtonChecked, onCheckedChange = {iconToggleButtonChecked = it}, text = "Checked" )
+                Row {
+                    CheckBoxWithText(
+                        checked = iconToggleButtonEnabled,
+                        onCheckedChange = { iconToggleButtonEnabled = it },
+                        text = "Enabled"
+                    )
+                    CheckBoxWithText(
+                        checked = iconToggleButtonChecked,
+                        onCheckedChange = { iconToggleButtonChecked = it },
+                        text = "Checked"
+                    )
                 }
-             }
+            }
         )
 
         MaterialElementScreen(
@@ -294,9 +321,17 @@ fun ButtonScreen(
                 )
             },
             controlContent = {
-                Row{
-                    CheckBoxWithText(checked = filledIconToggleButtonEnabled, onCheckedChange = {filledIconToggleButtonEnabled = it}, text = "Enabled" )
-                    CheckBoxWithText(checked = filledIconToggleButtonChecked, onCheckedChange = {filledIconToggleButtonChecked = it}, text = "Checked" )
+                Row {
+                    CheckBoxWithText(
+                        checked = filledIconToggleButtonEnabled,
+                        onCheckedChange = { filledIconToggleButtonEnabled = it },
+                        text = "Enabled"
+                    )
+                    CheckBoxWithText(
+                        checked = filledIconToggleButtonChecked,
+                        onCheckedChange = { filledIconToggleButtonChecked = it },
+                        text = "Checked"
+                    )
                 }
 
             }
@@ -312,9 +347,17 @@ fun ButtonScreen(
                 )
             },
             controlContent = {
-                Row{
-                    CheckBoxWithText(checked = filledTonalIconToggleButtonEnabled, onCheckedChange = {filledTonalIconToggleButtonEnabled = it}, text = "Enabled" )
-                    CheckBoxWithText(checked = filledTonalIconToggleButtonChecked, onCheckedChange = {filledTonalIconToggleButtonChecked = it}, text = "Checked" )
+                Row {
+                    CheckBoxWithText(
+                        checked = filledTonalIconToggleButtonEnabled,
+                        onCheckedChange = { filledTonalIconToggleButtonEnabled = it },
+                        text = "Enabled"
+                    )
+                    CheckBoxWithText(
+                        checked = filledTonalIconToggleButtonChecked,
+                        onCheckedChange = { filledTonalIconToggleButtonChecked = it },
+                        text = "Checked"
+                    )
                 }
             }
         )
@@ -329,9 +372,17 @@ fun ButtonScreen(
                 )
             },
             controlContent = {
-                Row{
-                    CheckBoxWithText(checked = outlinedIconToggleButtonEnabled, onCheckedChange = {outlinedIconToggleButtonEnabled = it}, text = "Enabled" )
-                    CheckBoxWithText(checked = outlinedIconToggleButtonChecked, onCheckedChange = {outlinedIconToggleButtonChecked = it}, text = "Checked" )
+                Row {
+                    CheckBoxWithText(
+                        checked = outlinedIconToggleButtonEnabled,
+                        onCheckedChange = { outlinedIconToggleButtonEnabled = it },
+                        text = "Enabled"
+                    )
+                    CheckBoxWithText(
+                        checked = outlinedIconToggleButtonChecked,
+                        onCheckedChange = { outlinedIconToggleButtonChecked = it },
+                        text = "Checked"
+                    )
                 }
             }
         )
@@ -344,7 +395,11 @@ fun ButtonScreen(
                 )
             },
             controlContent = {
-                CheckBoxWithText(checked = textButtonEnabled, onCheckedChange = {textButtonEnabled = it}, text = "Enabled" )
+                CheckBoxWithText(
+                    checked = textButtonEnabled,
+                    onCheckedChange = { textButtonEnabled = it },
+                    text = "Enabled"
+                )
 
             }
         )

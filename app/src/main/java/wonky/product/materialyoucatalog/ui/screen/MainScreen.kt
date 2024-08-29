@@ -108,6 +108,7 @@ import wonky.product.materialyoucatalog.ui.screen.animation.AnimatedVisibilitySc
 import wonky.product.materialyoucatalog.ui.screen.communication.ProgressIndicatorScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.BadgeScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.CardScreen
+import wonky.product.materialyoucatalog.ui.screen.containment.CarouselScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.DialogScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.TabScreen
 import wonky.product.materialyoucatalog.ui.screen.containment.ToolTipScreen
@@ -483,6 +484,12 @@ fun MainContent(
                         FullScreenAd.showInterstitial(context = context) {}
                     }
                     BoxScreen()
+                }
+                composable(DrawerMenu.Carousel.route) {
+                    if(mainViewModel.checkShowAd()){
+                        FullScreenAd.showInterstitial(context = context) {}
+                    }
+                    CarouselScreen()
                 }
             }
         }

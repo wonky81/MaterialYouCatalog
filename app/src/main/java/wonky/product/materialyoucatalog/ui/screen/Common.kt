@@ -35,10 +35,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import dev.snipme.highlights.Highlights
+import dev.snipme.kodeview.view.CodeTextView
 import wonky.product.materialyoucatalog.ui.screen.layouts.AlignmentHorizontalProperties
 import wonky.product.materialyoucatalog.ui.screen.layouts.AlignmentVerticalProperties
 import wonky.product.materialyoucatalog.ui.screen.layouts.ArrangementHorizontalProperties
@@ -241,7 +242,7 @@ fun MaterialElementScreen(
     title: String,
     componentContent: @Composable () -> Unit,
     controlContent: @Composable () -> Unit = {},
-    sourceCodeContent: AnnotatedString? = null
+    sourceCodeContent: Highlights? = null
 ){
     var expandCodeViewer by remember { mutableStateOf(false) }
 
@@ -274,9 +275,12 @@ fun MaterialElementScreen(
                     .fillMaxWidth()
                     .padding(vertical = 24.dp)
             ){
-                Text(
-                    text = sourceCodeContent?:AnnotatedString("")
-                )
+//                MarkdownText(
+//                    markdown = sourceCodeContent?:""
+//                )
+                sourceCodeContent?.let {
+                    CodeTextView(highlights = it)
+                }
             }
         }
     }

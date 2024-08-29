@@ -25,6 +25,7 @@ enum class Category {
     Showcases
 }
 
+
 private val homeScreens = listOf(
     DrawerMenu.Home
 )
@@ -58,7 +59,8 @@ private val containmentScreens = listOf(
     DrawerMenu.Dialogs,
     DrawerMenu.Tooltips,
     DrawerMenu.Badges,
-    DrawerMenu.Tab
+    DrawerMenu.Tab,
+    DrawerMenu.Carousel
 )
 
 private val navigationScreens = listOf(

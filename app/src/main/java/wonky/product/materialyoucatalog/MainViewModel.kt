@@ -60,6 +60,7 @@ class MainViewModel @Inject constructor(private val app: Application) : ViewMode
             DrawerMenu.Tooltips,
             DrawerMenu.Badges,
             DrawerMenu.Tab,
+            DrawerMenu.Carousel,
             DrawerMenu.AppBar,
             DrawerMenu.NavigationRail,
             DrawerMenu.SearchBar,

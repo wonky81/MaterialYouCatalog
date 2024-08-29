@@ -32,7 +32,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVector){
 
     // Home
-    object Home: DrawerMenu("Material3 Catalog", "home", Icons.Filled.Home)
+    object Home: DrawerMenu("Material3 Catalog", "Home", Icons.Filled.Home)
 
     // Style
     object Palette : DrawerMenu("Palette", "Style/Palette", Icons.Filled.ColorLens)
@@ -51,6 +51,8 @@ sealed class DrawerMenu(val title: String, val route: String, val icon: ImageVec
     object Tab : DrawerMenu("Tab", "Containment/Tab", Icons.Filled.Tab)
 
     object Badges : DrawerMenu("Badges", "Containment/Badges", Icons.Filled.Badge)
+
+    object Carousel : DrawerMenu("Carousel", "Containment/Carousel", Icons.Filled.ViewCarousel)
 
     //Navigation
     object AppBar : DrawerMenu("AppBar", "Navigation/AppBar", Icons.Filled.ViewSidebar)

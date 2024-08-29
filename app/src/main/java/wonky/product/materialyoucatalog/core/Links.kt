@@ -1,5 +1,7 @@
 package wonky.product.materialyoucatalog.core
 
+import wonky.product.materialyoucatalog.ui.drawer.DrawerMenu
+
 const val ButtonsLink = "https://github.com/wonky81/MaterialYouCatalog/blob/a801b6ad3d01bd01cbe41d64106c3412a0e53858/app/src/main/java/wonky/product/materialyoucatalog/ui/components/actions/Buttons.kt#L23"
 const val ProgressIndicatorLink = "https://github.com/wonky81/MaterialYouCatalog/blob/a801b6ad3d01bd01cbe41d64106c3412a0e53858/app/src/main/java/wonky/product/materialyoucatalog/ui/components/communication/ProgressIndicator.kt#L7"
 const val CardsLink = "https://github.com/wonky81/MaterialYouCatalog/blob/a801b6ad3d01bd01cbe41d64106c3412a0e53858/app/src/main/java/wonky/product/materialyoucatalog/ui/components/containment/Cards.kt#L16"
@@ -23,3 +25,4 @@ const val SearchBarLink = "https://github.com/wonky81/MaterialYouCatalog/blob/de
 const val TabLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/containment/TabScreen.kt#L76"
 const val ColumnAndRowLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/layouts/ColumnAndRowScreen.kt#L39"
 const val BoxLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/layouts/BoxScreen.kt#L26"
+const val CarouselLink = "https://github.com/wonky81/MaterialYouCatalog/blob/dev/app/src/main/java/wonky/product/materialyoucatalog/ui/screen/layouts/BoxScreen.kt#L26"
