@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Checkbox
+import androidx.compose.material.IconToggleButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Close
@@ -21,6 +23,7 @@ import androidx.compose.material.icons.filled.CodeOff
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.FilledIconToggleButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -38,8 +41,6 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import dev.snipme.highlights.Highlights
-import dev.snipme.kodeview.view.CodeTextView
 import wonky.product.materialyoucatalog.ui.screen.layouts.AlignmentHorizontalProperties
 import wonky.product.materialyoucatalog.ui.screen.layouts.AlignmentVerticalProperties
 import wonky.product.materialyoucatalog.ui.screen.layouts.ArrangementHorizontalProperties
@@ -242,7 +243,7 @@ fun MaterialElementScreen(
     title: String,
     componentContent: @Composable () -> Unit,
     controlContent: @Composable () -> Unit = {},
-    sourceCodeContent: Highlights? = null
+    sourceCodeContent: @Composable () -> Unit = {},
 ){
     var expandCodeViewer by remember { mutableStateOf(false) }
 
@@ -253,9 +254,14 @@ fun MaterialElementScreen(
         SubTitleLarge(title = title)
         if(hasSourceCode){
             Spacer4h()
-            IconButton(onClick = { expandCodeViewer = !expandCodeViewer }) {
+
+            FilledIconToggleButton(
+                modifier = Modifier.size(32.dp),
+                checked = expandCodeViewer,
+                onCheckedChange = { expandCodeViewer = !expandCodeViewer }
+            ) {
                 Icon(
-                    imageVector = if (expandCodeViewer) Icons.Default.CodeOff else Icons.Default.Code,
+                    imageVector = Icons.Default.Code,
                     contentDescription = null
                 )
             }
@@ -270,17 +276,13 @@ fun MaterialElementScreen(
             border = BorderStroke(1.dp, color = MaterialTheme.colorScheme.surfaceVariant )
         ) {
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 24.dp)
+                    .padding(vertical = 4.dp)
             ){
-//                MarkdownText(
-//                    markdown = sourceCodeContent?:""
-//                )
-                sourceCodeContent?.let {
-                    CodeTextView(highlights = it)
-                }
+                sourceCodeContent()
             }
         }
     }

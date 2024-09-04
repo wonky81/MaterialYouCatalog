@@ -1,25 +1,57 @@
 package wonky.product.materialyoucatalog.ui.screen.actions
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import dev.snipme.highlights.Highlights
 import wonky.product.materialyoucatalog.R
-import wonky.product.materialyoucatalog.ui.components.actions.*
+import wonky.product.materialyoucatalog.core.sourcecode_viewer.colorize
+import wonky.product.materialyoucatalog.core.sourcecode_viewer.functionColor
+import wonky.product.materialyoucatalog.core.sourcecode_viewer.parameterColor
+import wonky.product.materialyoucatalog.core.sourcecode_viewer.valueColor
+import wonky.product.materialyoucatalog.ui.components.actions.MYButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYElevatedButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYFilledIconButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYFilledIconToggleButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYFilledTonalButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYFilledTonalIconButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYFilledTonalIconToggleButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYIconButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYIconToggleButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYMultiChoiceSegmentedButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYOutlinedIconButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYOutlinedIconToggleButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYRadioButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYSingleChoiceSegmentedButton
+import wonky.product.materialyoucatalog.ui.components.actions.MYTextButton
 import wonky.product.materialyoucatalog.ui.components.selection.MYSwitch
-import wonky.product.materialyoucatalog.ui.screen.*
+import wonky.product.materialyoucatalog.ui.screen.CheckBoxWithText
+import wonky.product.materialyoucatalog.ui.screen.ElevationLevel
+import wonky.product.materialyoucatalog.ui.screen.ElevationSelector
+import wonky.product.materialyoucatalog.ui.screen.MaterialContents
+import wonky.product.materialyoucatalog.ui.screen.MaterialElementScreen
+import wonky.product.materialyoucatalog.ui.screen.Overview
 
 @Composable
 fun ButtonScreen(
@@ -54,24 +86,109 @@ fun ButtonScreen(
     var outlinedIconButtonEnabled by remember { mutableStateOf(true) }
     var singleChoiceSegButtonEnabled by remember { mutableStateOf(true) }
     var multiChoiceSegButtonEnabled by remember { mutableStateOf(true) }
-    val elevatedButtonMd by remember(elevatedButtonEnabled, elevatedButtonDefaultElevation, elevatedButtonDisabledElevation) { mutableStateOf(Highlights.Builder(code = """
+    val elevatedButtonCode by remember(
+        elevatedButtonEnabled,
+        elevatedButtonDefaultElevation,
+        elevatedButtonDisabledElevation
+    ) {
+        mutableStateOf(
+            """
     ElevatedButton(
         enabled = ${elevatedButtonEnabled},
         elevation = ButtonDefaults.elevatedButtonElevation(
-            defaultElevation =  ${elevatedButtonDefaultElevation}.dp, 
+            defaultElevation =  ${elevatedButtonDefaultElevation}.dp,
             disabledElevation = ${elevatedButtonDisabledElevation}.dp
         )
-    )
-    """).build())}
+    ){
+        Text("Elevated Button")
+    }
+    """
+        )
+    }
+    val elevatedButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(ElevatedButton|elevatedButtonElevation)\\s*", functionColor))
+        add(Pair("(enabled\\s*=|elevation\\s*=|defaultElevation\\s*=|disabledElevation\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false|Level\\d+\\.\\s*dp)",valueColor))
+    }
 
-        MaterialContents {
+
+    val filledButtonCode by remember(
+        filledButtonEnabled,
+        filledButtonDefaultElevation,
+        filledButtonDisabledElevation
+    ) {
+        mutableStateOf(
+            """
+    Button(
+        enabled = ${filledButtonEnabled},
+        elevation = ButtonDefaults.buttonElevation(
+            defaultElevation =  ${filledButtonDefaultElevation}.dp,
+            disabledElevation = ${filledButtonDisabledElevation}.dp
+        )
+    ){
+        Text("Button")
+    }
+    """
+        )
+    }
+    val filledButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(Button\\(|buttonElevation)\\s*", functionColor))
+        add(Pair("(enabled\\s*=|elevation\\s*=|defaultElevation\\s*=|disabledElevation\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false|Level\\d+\\.\\s*dp)",valueColor))
+    }
+
+    val filledTonalButtonCode by remember(
+        filledTonalButtonEnabled,
+        filledTonalButtonDefaultElevation,
+        filledTonalButtonDisabledElevation
+    ) {
+        mutableStateOf(
+            """
+    FilledTonalButton(
+        enabled = ${filledTonalButtonEnabled},
+        elevation = ButtonDefaults.filledTonalButtonElevation(
+            defaultElevation =  ${filledTonalButtonDefaultElevation}.dp,
+            disabledElevation = ${filledTonalButtonDisabledElevation}.dp
+        )
+    ){
+        Text("FilledTonal Button")
+    }
+    """
+        )
+    }
+    val filledTonalButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(FilledTonalButton|filledTonalButtonElevation)\\s*", functionColor))
+        add(Pair("(enabled\\s*=|elevation\\s*=|defaultElevation\\s*=|disabledElevation\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false|Level\\d+\\.\\s*dp)",valueColor))
+    }
+
+    val radioButtonCode =
+    """
+    var selected by remember { mutableStateOf(1) }
+    Row(verticalAlignment = Alignment.CenterVertically){
+        RadioButton(selected = selected==1 , onClick = { selected = 1 })
+        RadioButton(selected = selected==2 , onClick = { selected = 2 })
+        RadioButton(selected = selected==3 , onClick = { selected = 3 })
+    }
+    """
+    val radioButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(RadioButton|Row|remember)\\s*", functionColor))
+        add(Pair("(selected\\s+=|onClick\\s*=)\\s*", parameterColor))
+        add(Pair("(1|2|3\\s*)",valueColor))
+    }
+
+    MaterialContents {
 
         Overview(stringResource(R.string.overview_buttons))
         MaterialElementScreen(
             title = "Elevated Button",
-//            hasSourceCode = true,
             hasSourceCode = true,
-            sourceCodeContent = elevatedButtonMd,
+            sourceCodeContent = {
+                    Text(
+                        text = colorize(elevatedButtonCode,elevatedButtonRegexColorList),
+                        style = MaterialTheme.typography.bodySmall
+                    )
+            },
             componentContent = {
                 MYElevatedButton(
                     enabled = elevatedButtonEnabled,
@@ -104,6 +221,13 @@ fun ButtonScreen(
         )
         MaterialElementScreen(
             title = "Filled Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(filledButtonCode,filledButtonRegexColorList),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYButton(
                     enabled = filledButtonEnabled,
@@ -135,6 +259,13 @@ fun ButtonScreen(
         )
         MaterialElementScreen(
             title = "Filled Tonal Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(filledTonalButtonCode,filledTonalButtonRegexColorList),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYFilledTonalButton(
                     enabled = filledTonalButtonEnabled,
@@ -168,6 +299,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Radio Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(radioButtonCode,radioButtonRegexColorList),
+                    style = MaterialTheme.typography.labelSmall
+                )
+            },
             componentContent = {
                 MYRadioButton()
             },

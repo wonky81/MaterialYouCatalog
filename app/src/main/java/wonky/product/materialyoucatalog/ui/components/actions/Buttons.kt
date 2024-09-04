@@ -35,7 +35,7 @@ fun MYButton(
         enabled = enabled,
         shape = shape,
         colors = colors,
-        elevation = ButtonDefaults.elevatedButtonElevation(defaultElevation = defaultElevation, disabledElevation = disabledElevation),
+        elevation = ButtonDefaults.buttonElevation(defaultElevation = defaultElevation, disabledElevation = disabledElevation),
         border = border,
         onClick = { /*TODO*/ }
     ) {
@@ -60,7 +60,7 @@ fun MYElevatedButton(
         border = border,
         onClick = { /*TODO*/ }
     ) {
-        Text("ElevatedButton")
+        Text("Elevated Button")
     }
 }
 
@@ -81,7 +81,7 @@ fun MYFilledTonalButton(
         border = border,
         onClick = { /*TODO*/ }
     ) {
-        Text("FilledTonalButton")
+        Text("FilledTonal Button")
     }
 }
 
