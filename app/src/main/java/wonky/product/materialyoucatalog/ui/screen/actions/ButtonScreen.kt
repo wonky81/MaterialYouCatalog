@@ -166,9 +166,9 @@ fun ButtonScreen(
     """
     var selected by remember { mutableStateOf(1) }
     Row(verticalAlignment = Alignment.CenterVertically){
-        RadioButton(selected = selected==1 , onClick = { selected = 1 })
-        RadioButton(selected = selected==2 , onClick = { selected = 2 })
-        RadioButton(selected = selected==3 , onClick = { selected = 3 })
+        RadioButton(selected = selected==1 , onClick = { selected=1 })
+        RadioButton(selected = selected==2 , onClick = { selected=2 })
+        RadioButton(selected = selected==3 , onClick = { selected=3 })
     }
     """
     val radioButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
@@ -176,6 +176,255 @@ fun ButtonScreen(
         add(Pair("(selected\\s+=|onClick\\s*=)\\s*", parameterColor))
         add(Pair("(1|2|3\\s*)",valueColor))
     }
+
+    val switchButtonCode =
+        """
+    Switch(
+        enabled = ${switchEnabled},
+        checked = ${switchChecked},
+        onCheckedChange = { ${switchChecked} = it },
+    ) {
+        Icon(
+            imageVector = Icons.Default.Check,
+            contentDescription = null
+        )
+    }
+    """
+    val switchButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(Switch|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|checked\\s*=|onCheckedChange\\s*=|imageVector\\s*=|contentDescription\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+
+    val singleChoiceSegmentedButtonCode =
+        """
+    var selectedIndex by remember { mutableStateOf(0) }
+    val options = listOf("First", "Second", "Third")
+    SingleChoiceSegmentedButtonRow {
+        options.forEachIndexed { index, label ->
+            SegmentedButton(
+                shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
+                onClick = { selectedIndex = index },
+                selected = index==selectedIndex,
+                enabled = ${singleChoiceSegButtonEnabled}
+            ){
+                Text(label)
+            }
+        }
+    }
+    """
+    val singleChoiceSegmentedButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(SingleChoiceSegmentedButtonRow|forEachIndexed|remember|SegmentedButton(?!Defaults)|itemShape|Text)\\s*", functionColor))
+        add(Pair("(shape\\s*=|index\\s+=|count\\s*=|onClick\\s*=|selected\\s*=|enabled\\s*=)\\s*", parameterColor))
+        add(Pair("(First|Second|Third|true|false\\s*)",valueColor))
+    }
+
+
+    val multiChoiceSegmentedButtonCode =
+        """
+    val checkedList = remember { mutableStateListOf<Int>() }
+    val options = listOf("Favorites", "Trending", "Saved")
+    val icons = listOf(
+        Icons.Filled.StarBorder,
+        Icons.AutoMirrored.Filled.TrendingUp,
+        Icons.Filled.BookmarkBorder
+    )
+    MultiChoiceSegmentedButtonRow {
+        options.forEachIndexed { index, label ->
+            SegmentedButton(
+                shape = SegmentedButtonDefaults.itemShape(index = index, count = options.size),
+                icon = {
+                    SegmentedButtonDefaults.Icon(active = index in checkedList) {
+                        Icon(
+                            imageVector = icons[index],
+                            contentDescription = null,
+                            modifier = Modifier.size(SegmentedButtonDefaults.IconSize)
+                        )
+                    }
+                },
+                onCheckedChange = {
+                    if (index in checkedList) {
+                        checkedList.remove(index)
+                    } else {
+                        checkedList.add(index)
+                    }
+                },
+                checked = index in checkedList,
+                enabled = ${multiChoiceSegButtonEnabled}
+            ) {
+                Text(label)
+            }
+        }
+    }
+    """
+    val multiChoiceSegmentedButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(MultiChoiceSegmentedButtonRow|forEachIndexed|remember|SegmentedButton(?!Defaults)|itemShape|Text|Icon(?!(Size|s))|remove|add)\\s*", functionColor))
+        add(Pair("(shape\\s*=|index\\s+=|count\\s*=|icon\\s*=|checked\\s*=|enabled\\s*=|onCheckedChange|imageVector\\s*=|contentDescription\\s*=|modifier\\s*=)\\s*", parameterColor))
+        add(Pair("(Favorites|Trending(?!Up)|Saved|true|false\\s*)",valueColor))
+    }
+
+
+    val iconButtonCode =
+        """
+        IconButton(
+            enabled = ${iconButtonEnabled},
+        ) {
+            Icon(
+                Icons.Filled.Alarm,
+                contentDescription = null
+            )
+        }
+    """
+    val iconButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(IconButton|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|contentDescription\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+    val filledIconButtonCode =
+        """
+        FilledIconButton(
+            enabled = ${filledIconButtonEnabled},
+        ) {
+            Icon(
+                Icons.Filled.Alarm,
+                contentDescription = null
+            )
+        }
+    """
+    val filledIconButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(FilledIconButton|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|contentDescription\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+    val filledTonalIconButtonCode =
+        """
+        FilledTonalIconButton(
+            enabled = ${filledTonalIconButtonEnabled},
+        ) {
+            Icon(
+                Icons.Filled.Alarm,
+                contentDescription = null
+            )
+        }
+    """
+    val filledTonalIconButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(FilledTonalIconButton|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|contentDescription\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+    val outlinedIconButtonCode =
+        """
+        OutlinedIconButton(
+            enabled = ${outlinedIconButtonEnabled},
+        ) {
+            Icon(
+                Icons.Filled.Alarm,
+                contentDescription = null
+            )
+        }
+    """
+    val outlinedIconButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(OutlinedIconButton|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|contentDescription\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+    val iconToggleButtonCode =
+        """
+        IconToggleButton(
+            enabled = ${iconToggleButtonEnabled},
+            checked = ${iconToggleButtonChecked},
+            onCheckedChange = { ${iconToggleButtonChecked} = it }
+        ) {
+            Icon(
+                Icons.Filled.Alarm,
+                contentDescription = null
+            )
+        }
+    """
+    val iconToggleButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(IconToggleButton|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|contentDescription\\s*=|checked\\s*=|onCheckedChange\\s*)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+    val filledIconToggleButtonCode =
+        """
+        FilledIconToggleButton(
+            enabled = ${filledIconToggleButtonEnabled},
+            checked = ${filledIconToggleButtonChecked},
+            onCheckedChange = {${filledIconToggleButtonChecked} = it }
+        ) {
+            Icon(
+                Icons.Filled.Alarm,
+                contentDescription = null
+            )
+        }
+    """
+    val filledIconToggleButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(FilledIconToggleButton|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|contentDescription\\s*=|checked\\s*=|onCheckedChange\\s*)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+    val filledTonalIconToggleButtonCode =
+        """
+        FilledTonalIconToggleButton(
+            enabled = ${filledTonalIconToggleButtonEnabled},
+            checked = ${filledTonalIconToggleButtonChecked},
+            onCheckedChange = {${filledTonalIconToggleButtonChecked} = it }
+        ) {
+            Icon(
+                Icons.Filled.Alarm,
+                contentDescription = null
+            )
+        }
+    """
+    val filledTonalIconToggleButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(FilledTonalIconToggleButton|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|contentDescription\\s*=|checked\\s*=|onCheckedChange\\s*)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+    val outlinedIconToggleButtonCode =
+        """
+        OutlinedIconToggleButton(
+            enabled = ${outlinedIconToggleButtonEnabled},
+            checked = ${outlinedIconToggleButtonChecked},
+            onCheckedChange = {${outlinedIconToggleButtonChecked} = it }
+        ) {
+            Icon(
+                Icons.Filled.Alarm,
+                contentDescription = null
+            )
+        }
+    """
+    val outlinedIconToggleButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(OutlinedIconToggleButton|Icon(?!s))\\s*", functionColor))
+        add(Pair("(enabled\\s*=|contentDescription\\s*=|checked\\s*=|onCheckedChange\\s*)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+    val textButtonCode =
+        """
+        TextButton(
+            enabled = ${textButtonEnabled},
+    
+        ) {
+            Text("textButton")
+        }
+    """
+    val textButtonRegexColorList = mutableListOf<Pair<String,Color>>().apply {
+        add(Pair("(TextButton(?!\")|Text)\\s*", functionColor))
+        add(Pair("(enabled\\s*=)\\s*", parameterColor))
+        add(Pair("(true|false\\s*)",valueColor))
+    }
+
+
 
     MaterialContents {
 
@@ -316,6 +565,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Switch Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(switchButtonCode,switchButtonRegexColorList),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYSwitch(
                     enabled = switchEnabled,
@@ -339,6 +595,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Single Choice Segmented Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(singleChoiceSegmentedButtonCode,singleChoiceSegmentedButtonRegexColorList),
+                    style = MaterialTheme.typography.labelSmall
+                )
+            },
             componentContent = {
                 MYSingleChoiceSegmentedButton(singleChoiceSegButtonEnabled)
             },
@@ -353,6 +616,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Multi Choice Segmented Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(multiChoiceSegmentedButtonCode, multiChoiceSegmentedButtonRegexColorList),
+                    style = MaterialTheme.typography.labelSmall
+                )
+            },
             componentContent = {
                 MYMultiChoiceSegmentedButton(multiChoiceSegButtonEnabled)
             },
@@ -368,6 +638,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Icon Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(iconButtonCode, iconButtonRegexColorList),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYIconButton(iconButtonEnabled)
             },
@@ -382,6 +659,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Filled Icon Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(filledIconButtonCode, filledIconButtonRegexColorList),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYFilledIconButton(filledIconButtonEnabled)
             },
@@ -396,6 +680,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Filled Tonal Icon Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(filledTonalIconButtonCode, filledTonalIconButtonRegexColorList),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYFilledTonalIconButton(filledTonalIconButtonEnabled)
             },
@@ -410,6 +701,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Outlined Icon Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(outlinedIconButtonCode, outlinedIconButtonRegexColorList),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYOutlinedIconButton(outlinedIconButtonEnabled)
             },
@@ -425,6 +723,13 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Icon Toggle Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(iconToggleButtonCode, iconToggleButtonRegexColorList),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYIconToggleButton(
                     enabled = iconToggleButtonEnabled,
@@ -451,6 +756,16 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Filled Icon Toggle Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(
+                        filledIconToggleButtonCode,
+                        filledIconToggleButtonRegexColorList
+                    ),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYFilledIconToggleButton(
                     enabled = filledIconToggleButtonEnabled,
@@ -477,6 +792,16 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Filled Tonal Icon Toggle Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(
+                        filledTonalIconToggleButtonCode,
+                        filledTonalIconToggleButtonRegexColorList
+                    ),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYFilledTonalIconToggleButton(
                     enabled = filledTonalIconToggleButtonEnabled,
@@ -502,6 +827,16 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Outlined Icon Toggle Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(
+                        outlinedIconToggleButtonCode,
+                        outlinedIconToggleButtonRegexColorList
+                    ),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYOutlinedIconToggleButton(
                     enabled = outlinedIconToggleButtonEnabled,
@@ -527,6 +862,16 @@ fun ButtonScreen(
 
         MaterialElementScreen(
             title = "Text Button",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(
+                        textButtonCode,
+                        textButtonRegexColorList
+                    ),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            },
             componentContent = {
                 MYTextButton(
                     enabled = textButtonEnabled

@@ -263,7 +263,10 @@ fun MainContent(
     DisposableEffect(navController) {
         val callback = NavController.OnDestinationChangedListener { controller, _, _ ->
             sourceCodeProvided = (controller.currentDestination?.route?.startsWith("Style") == true ||
-                    controller.currentDestination?.route?.startsWith("Home") == true)!= true
+                    controller.currentDestination?.route?.startsWith("Home") == true||
+                    controller.currentDestination?.route?.startsWith("Communication/ProgressIndicators") == true||
+                    controller.currentDestination?.route?.startsWith("Containment/Dialogs") == true||
+                    controller.currentDestination?.route?.startsWith("Actions/Buttons") == true)!= true
             controller.currentDestination?.route?.let { currentRoute = it }
         }
         navController.addOnDestinationChangedListener(callback)
@@ -601,7 +604,7 @@ fun SourceCodeScreen(
     onClose: () -> Unit
 ) {
     val link = when (currentRoute) {
-        "Actions/Buttons" -> ButtonsLink
+//        "Actions/Buttons" -> ButtonsLink
         "Communication/ProgressIndicators" -> ProgressIndicatorLink
         "Containment/Cards" -> CardsLink
         "Containment/Dialogs" -> DialogsLink

@@ -109,7 +109,7 @@ fun MYTextButton(
         enabled = enabled,
         onClick = { /*TODO*/ }
     ) {
-        Text("TextButton")
+        Text("textButton")
     }
 }
 

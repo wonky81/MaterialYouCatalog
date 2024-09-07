@@ -249,9 +249,13 @@ fun MaterialElementScreen(
 
     Spacer32v()
     Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        SubTitleLarge(title = title)
+        SubTitleLarge(
+            title = title
+        )
         if(hasSourceCode){
             Spacer4h()
 
