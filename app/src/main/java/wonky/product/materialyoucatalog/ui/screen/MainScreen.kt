@@ -266,6 +266,10 @@ fun MainContent(
                     controller.currentDestination?.route?.startsWith("Home") == true||
                     controller.currentDestination?.route?.startsWith("Communication/ProgressIndicators") == true||
                     controller.currentDestination?.route?.startsWith("Containment/Dialogs") == true||
+                    controller.currentDestination?.route?.startsWith("Containment/Tooltips") == true||
+                    controller.currentDestination?.route?.startsWith("Containment/Badges") == true||
+                    controller.currentDestination?.route?.startsWith("Containment/Tab") == true||
+                    controller.currentDestination?.route?.startsWith("Containment/Carousel") == true||
                     controller.currentDestination?.route?.startsWith("Actions/Buttons") == true)!= true
             controller.currentDestination?.route?.let { currentRoute = it }
         }

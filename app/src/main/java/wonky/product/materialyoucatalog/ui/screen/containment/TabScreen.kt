@@ -26,11 +26,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import wonky.product.materialyoucatalog.R
+import wonky.product.materialyoucatalog.core.sourcecode_viewer.colorize
+import wonky.product.materialyoucatalog.core.sourcecode_viewer.functionColor
+import wonky.product.materialyoucatalog.core.sourcecode_viewer.parameterColor
+import wonky.product.materialyoucatalog.core.sourcecode_viewer.valueColor
 import wonky.product.materialyoucatalog.ui.screen.CheckBoxWithText
 import wonky.product.materialyoucatalog.ui.screen.ElevationSelector
 import wonky.product.materialyoucatalog.ui.screen.MaterialContents
@@ -65,10 +70,72 @@ fun TabScreen(){
     var primaryTabSelectedIndex by remember { mutableStateOf(0) }
     var showIcons by remember { mutableStateOf(true) }
 
+    val tabCode =
+        """
+        TabRow(
+            selectedTabIndex = ${primaryTabSelectedIndex},
+            indicator = { tabPositions ->
+                if (${primaryTabSelectedIndex} < tabPositions.size) {
+                    TabRowDefaults.Indicator(
+                        modifier = Modifier.tabIndicatorOffset(tabPositions[${primaryTabSelectedIndex}]),
+                        color = selectedColor
+                    )
+                }
+            }
+        ) {
+            TabMenus.forEachIndexed{ index, menu ->
+                val selected = ${primaryTabSelectedIndex} == index
+                if(${showIcons}){
+                    Tab(
+                        selected = selected,
+                        onClick = { ${primaryTabSelectedIndex} = index },
+                        text = { Text(
+                                    text = menu.title, 
+                                    maxLines = 1, 
+                                    overflow = TextOverflow.Ellipsis, 
+                                    color = if(selected) selectedColor else defaultColor
+                                  ) 
+                                },
+                        icon = { Icon(
+                                    imageVector = menu.icon,
+                                    tint = if(selected) selectedColor else defaultColor, 
+                                    contentDescription = null
+                                  )
+                               }
+                    )
+                }else{
+                    Tab(
+                        selected = selected,
+                        onClick = { ${primaryTabSelectedIndex} = index },
+                        text = { Text(
+                                    text = menu.title, 
+                                    maxLines = 1, 
+                                    overflow = TextOverflow.Ellipsis, 
+                                    color = if(selected) selectedColor else defaultColor
+                                  ) 
+                                },
+                    )
+                }
+            }
+        }
+    """
+    val tabRegexColorList = mutableListOf<Pair<String, Color>>().apply {
+        add(Pair("(TabRow(?!D)|Indicator|tabIndicatorOffset|Indicator|forEachIndexed|Tab(?!(S|M|R))|Text(?!O)|Icon(?!s))\\s*", functionColor))
+        add(Pair("(contentDescription\\s*=|maxLines\\s*=|overflow\\s*=|imageVector\\s*=|tint\\s*=|selectedTabIndex\\s*=|indicator\\s*=|modifier\\s*=|color\\s*=|selected\\s*=|onClick\\s*=|text\\s*=|icon\\s*=)\\s*", parameterColor))
+        add(Pair("(primaryTabSelectedIndex|showIcons|true|false\\s*)", valueColor))
+    }
+
     MaterialContents {
         Overview(content = stringResource(R.string.overview_tab))
         MaterialElementScreen(
             title = "Tabs",
+            hasSourceCode = true,
+            sourceCodeContent = {
+                Text(
+                    text = colorize(tabCode,tabRegexColorList),
+                    style = androidx.compose.material3.MaterialTheme.typography.labelSmall
+                )
+            },
             componentContent = {
                 Column(
                     modifier = Modifier.padding(horizontal = 8.dp)
