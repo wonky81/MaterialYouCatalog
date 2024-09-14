@@ -271,6 +271,10 @@ fun MainContent(
                     controller.currentDestination?.route?.startsWith("Containment/Tab") == true||
                     controller.currentDestination?.route?.startsWith("Containment/Carousel") == true||
                     controller.currentDestination?.route?.startsWith("Navigation/AppBar") == true||
+                    controller.currentDestination?.route?.startsWith("Navigation/NavigationRail") == true||
+                    controller.currentDestination?.route?.startsWith("Navigation/SearchBar") == true||
+                    controller.currentDestination?.route?.startsWith("Selection/Chips") == true||
+                    controller.currentDestination?.route?.startsWith("Selection/Sliders") == true||
                     controller.currentDestination?.route?.startsWith("Actions/Buttons") == true)!= true
             controller.currentDestination?.route?.let { currentRoute = it }
         }
