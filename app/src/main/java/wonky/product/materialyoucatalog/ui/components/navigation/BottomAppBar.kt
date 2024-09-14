@@ -27,25 +27,25 @@ fun MYBottomAppBar(
         BottomAppBar(
             modifier = modifier,
             actions = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {}) {
                     Icon(
                         Icons.Filled.Menu,
                         contentDescription = null
                     )
                 }
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {}) {
                     Icon(
                         Icons.Filled.Check,
                         contentDescription = null
                     )
                 }
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {}) {
                     Icon(
                         Icons.Filled.Edit,
                         contentDescription = null
                     )
                 }
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {}) {
                     Icon(
                         Icons.Filled.Settings,
                         contentDescription = null
@@ -55,7 +55,7 @@ fun MYBottomAppBar(
             floatingActionButton = {
                 if(fabShow){
                     FloatingActionButton(
-                        onClick = { /*TODO*/ },
+                        onClick = {},
                         containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
                     ) {
                         Icon(

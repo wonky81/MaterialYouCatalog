@@ -24,12 +24,12 @@ fun MYCenterAlignedTopAppBar(
             modifier = modifier,
             title = { Text("Title")},
             navigationIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {}) {
                     Icon(Icons.Filled.Menu,null)
                 }
             },
             actions = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {}) {
                     Icon(Icons.Filled.Settings,null)
                 }
 
@@ -68,7 +68,7 @@ fun MYLargeTopAppBar(
                 }
 
             },
-            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            colors = TopAppBarDefaults.largeTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.primary,
                 titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
@@ -91,17 +91,17 @@ fun MYMediumTopAppBar(
             modifier = modifier,
             title = { Text("Title")},
             navigationIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {}) {
                     Icon(Icons.Filled.Menu,null)
                 }
             },
             actions = {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {}) {
                     Icon(Icons.Filled.Settings,null)
                 }
 
             },
-            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            colors = TopAppBarDefaults.mediumTopAppBarColors(
                 containerColor = MaterialTheme.colorScheme.primary,
                 titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
@@ -134,7 +134,7 @@ fun MYTopAppBar(
                 }
 
             },
-            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            colors = TopAppBarDefaults.topAppBarColors(
                 containerColor = MaterialTheme.colorScheme.primary,
                 titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 actionIconContentColor = MaterialTheme.colorScheme.onPrimary,

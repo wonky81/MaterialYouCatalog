@@ -28,21 +28,21 @@ fun MYNavigationRail(
                 selected = selectedMenu == 1,
                 alwaysShowLabel = showLabel,
                 icon = { Icon(Icons.Filled.Add,null) },
-                label = { Text(" Item 1")},
+                label = { Text("Item 1")},
                 onClick = { selectedMenu = 1 }
             )
             NavigationRailItem(
                 selected = selectedMenu == 2,
                 alwaysShowLabel = showLabel,
                 icon = { Icon(Icons.Filled.Call,null) },
-                label = { Text(" Item 2")},
+                label = { Text("Item 2")},
                 onClick = { selectedMenu = 2 }
             )
             NavigationRailItem(
                 selected = selectedMenu == 3,
                 alwaysShowLabel = showLabel,
                 icon = { Icon(Icons.Filled.Notifications,null) },
-                label = { Text(" Item 3")},
+                label = { Text("Item 3")},
                 onClick = { selectedMenu = 3 }
             )
         }
