@@ -9,10 +9,7 @@ android {
     namespace 'wonky.product.materialyoucatalog'
     signingConfigs {
         release {
-            storeFile file('D:\\dev\\restandroid_keystore.jks')
-            storePassword 'bird1219!'
-            keyAlias 'restandroid'
-            keyPassword 'bird1219!'
+
         }
     }
     compileSdk 34
