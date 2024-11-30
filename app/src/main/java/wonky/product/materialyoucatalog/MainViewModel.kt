@@ -119,6 +119,6 @@ class MainViewModel @Inject constructor(private val app: Application) : ViewMode
         PrefHelper.prefs(app.applicationContext).operation {
             it.put(Pair(PREF_KEY_AD_COUNTS, _adCounts.value))
         }
-        return _adCounts.value % 3 == 0
+        return _adCounts.value % 6 == 0
     }
 }
