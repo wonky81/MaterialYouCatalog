@@ -9,17 +9,20 @@ android {
     namespace 'wonky.product.materialyoucatalog'
     signingConfigs {
         release {
-
+            storeFile file('D:\\dev\\restandroid_keystore.jks')
+            storePassword 'bird1219!'
+            keyAlias 'restandroid'
+            keyPassword 'bird1219!'
         }
     }
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "wonky.product.materialyoucatalog"
         minSdk 21
-        targetSdk 34
-        versionCode 119
-        versionName "1.19"
+        targetSdk 35
+        versionCode 121
+        versionName "1.21"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -42,9 +45,10 @@ android {
     }
     buildFeatures {
         compose true
+        buildConfig true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.4.0'
+        kotlinCompilerExtensionVersion '1.5.10'
     }
     packagingOptions {
         resources {

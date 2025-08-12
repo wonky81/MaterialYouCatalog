@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import wonky.product.materialyoucatalog.R
 import wonky.product.materialyoucatalog.ui.components.animation.AnimateColorAsStateSample
@@ -15,7 +16,6 @@ import wonky.product.materialyoucatalog.ui.components.animation.AnimateFloatAsSt
 import wonky.product.materialyoucatalog.ui.screen.MaterialContents
 import wonky.product.materialyoucatalog.ui.screen.MaterialElementScreen
 import wonky.product.materialyoucatalog.ui.screen.Overview
-
 
 @Composable
 fun AnimateAsStateScreen() {

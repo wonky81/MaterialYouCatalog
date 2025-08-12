@@ -264,7 +264,7 @@ fun ColumnAndRowScreen() {
                     Spacer4h()
                     Button(
                         onClick = {
-                            flowColumnItems.removeLast()
+                            flowColumnItems.removeAt(flowColumnItems.lastIndex)
                             flowColumnItemCount--
                         },
                         enabled = flowColumnItemCount > FlowItemRange.first
@@ -329,7 +329,7 @@ fun ColumnAndRowScreen() {
                     Spacer4h()
                     Button(
                         onClick = {
-                            flowRowItems.removeLast()
+                            flowRowItems.removeAt(flowRowItems.lastIndex)
                             flowRowItemCount--
                         },
                         enabled = flowRowItemCount > FlowItemRange.first
